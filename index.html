@@ -25,7 +25,6 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Jost', sans-serif; background: var(--off-white); color: var(--charcoal); min-height: 100vh; }
 
-/* NAV */
 nav {
   background: var(--charcoal);
   padding: 0 48px;
@@ -46,6 +45,7 @@ nav {
   letter-spacing: 4px;
   text-transform: uppercase;
   text-decoration: none;
+  cursor: pointer;
 }
 .nav-links { display: flex; align-items: center; gap: 32px; }
 .nav-links a {
@@ -55,6 +55,7 @@ nav {
   color: #9A9088;
   text-decoration: none;
   transition: color 0.2s;
+  cursor: pointer;
 }
 .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 .nav-actions { display: flex; align-items: center; gap: 16px; }
@@ -76,12 +77,12 @@ nav {
 /* HERO */
 .hero {
   background: var(--charcoal);
-  min-height: 520px;
+  min-height: 500px;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: 80px 48px;
+  padding: 80px 48px 60px;
 }
 .hero-bg-text {
   position: absolute;
@@ -97,7 +98,7 @@ nav {
   pointer-events: none;
   letter-spacing: -8px;
 }
-.hero-content { position: relative; z-index: 2; max-width: 580px; }
+.hero-content { position: relative; z-index: 2; max-width: 600px; }
 .hero-tag {
   font-size: 11px;
   letter-spacing: 3px;
@@ -127,13 +128,106 @@ nav {
   margin-bottom: 36px;
   font-weight: 300;
 }
+
+/* SEARCH BAR */
+.search-container { position: relative; margin-bottom: 28px; max-width: 520px; }
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #252525;
+  border: 1px solid #3A3A3A;
+  border-radius: 3px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.search-bar:focus-within { border-color: var(--gold); }
+.search-icon {
+  padding: 0 14px;
+  color: var(--gold);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+.search-bar input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  color: var(--warm-white);
+  padding: 14px 0;
+  letter-spacing: 0.3px;
+}
+.search-bar input::placeholder { color: #5A5248; }
+.search-bar button {
+  padding: 14px 20px;
+  background: var(--gold);
+  border: none;
+  color: var(--charcoal);
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.search-bar button:hover { background: #B8943E; }
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  background: var(--charcoal-mid);
+  border: 1px solid #3A3A3A;
+  border-top: none;
+  border-radius: 0 0 3px 3px;
+  z-index: 50;
+  display: none;
+}
+.search-suggestions.open { display: block; }
+.suggestion-item {
+  padding: 11px 16px;
+  font-size: 13px;
+  color: #CCC;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.15s;
+}
+.suggestion-item:hover { background: #333; color: var(--gold); }
+.suggestion-tag {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  background: #333;
+  padding: 2px 7px;
+  border-radius: 1px;
+  margin-left: auto;
+}
+.search-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.search-tag {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #7A7269;
+  background: #252525;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 5px 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.search-tag:hover { border-color: var(--gold); color: var(--gold); }
+
 .hero-ctas { display: flex; gap: 14px; align-items: center; }
 .btn-primary {
   font-family: 'Jost', sans-serif;
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  padding: 14px 32px;
+  padding: 13px 28px;
   background: var(--gold);
   color: var(--charcoal);
   border: none;
@@ -150,7 +244,7 @@ nav {
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  padding: 14px 32px;
+  padding: 13px 28px;
   background: transparent;
   color: var(--warm-white);
   border: 1px solid #444;
@@ -162,7 +256,6 @@ nav {
 }
 .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
 
-/* STATS BAR */
 .stats-bar {
   background: var(--charcoal-mid);
   border-top: 1px solid #333;
@@ -173,51 +266,23 @@ nav {
   gap: 64px;
 }
 .stat { text-align: center; }
-.stat-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 28px;
-  font-weight: 400;
-  color: var(--gold);
-}
-.stat-label {
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #6A6058;
-  margin-top: 2px;
-}
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--gold); }
+.stat-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #6A6058; margin-top: 2px; }
 
-/* MAIN CONTENT */
+/* SEARCH RESULTS */
+#search-results-section { display: none; }
+.results-header { padding: 40px 48px 20px; max-width: 1280px; margin: 0 auto; }
+.results-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--charcoal); }
+.results-sub { font-size: 13px; color: var(--mid); margin-top: 4px; }
+.no-results { text-align: center; padding: 60px 48px; color: var(--mid); font-size: 15px; }
+.no-results em { font-style: italic; color: var(--gold-dark); }
+
 main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
-
-/* SECTION HEADER */
-.section-header { padding: 60px 0 32px; display: flex; align-items: flex-end; justify-content: space-between; }
-.section-eyebrow {
-  font-size: 10px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 8px;
-}
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 36px;
-  font-weight: 400;
-  color: var(--charcoal);
-  line-height: 1.2;
-}
+.section-header { padding: 56px 0 28px; display: flex; align-items: flex-end; justify-content: space-between; }
+.section-eyebrow { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; color: var(--charcoal); line-height: 1.2; }
 .section-title em { font-style: italic; }
-.section-link {
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--gold-dark);
-  text-decoration: none;
-  border-bottom: 1px solid var(--gold-mid);
-  padding-bottom: 2px;
-  cursor: pointer;
-  transition: color 0.2s;
-}
+.section-link { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-dark); text-decoration: none; border-bottom: 1px solid var(--gold-mid); padding-bottom: 2px; cursor: pointer; transition: color 0.2s; }
 .section-link:hover { color: var(--gold); }
 
 /* RETAILER GRID */
@@ -232,238 +297,107 @@ main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
   animation: fadeUp 0.4s ease both;
 }
 .retailer-card:hover { border-color: var(--gold); transform: translateY(-3px); }
-.retailer-card-banner {
-  background: var(--charcoal);
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+.retailer-card-img {
+  height: 160px;
   overflow: hidden;
+  position: relative;
+  background: #EEE;
 }
-.retailer-card-banner::after {
-  content: '';
+.retailer-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+.retailer-card:hover .retailer-card-img img { transform: scale(1.04); }
+.retailer-card-img .img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.45) 100%);
+}
+.retailer-card-img .img-abbr {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 1px;
-  background: var(--gold);
-  opacity: 0.4;
-}
-.retailer-abbr {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 40px;
-  font-weight: 300;
-  color: var(--gold);
-  letter-spacing: 4px;
-  opacity: 0.8;
-}
-.retailer-info { padding: 20px; }
-.retailer-tier {
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gold-dark);
-  background: var(--gold-light);
-  display: inline-block;
-  padding: 3px 8px;
-  border-radius: 1px;
-  margin-bottom: 8px;
-}
-.retailer-name {
+  bottom: 12px; left: 16px;
   font-family: 'Cormorant Garamond', serif;
   font-size: 22px;
-  font-weight: 400;
-  color: var(--charcoal);
-  margin-bottom: 4px;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 2px;
 }
-.retailer-tag { font-size: 13px; color: var(--mid); font-weight: 300; margin-bottom: 16px; }
+.retailer-info { padding: 18px 18px 18px; }
+.retailer-tier { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dark); background: var(--gold-light); display: inline-block; padding: 3px 8px; border-radius: 1px; margin-bottom: 8px; }
+.retailer-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--charcoal); margin-bottom: 4px; }
+.retailer-tag { font-size: 13px; color: var(--mid); font-weight: 300; margin-bottom: 14px; }
 .retailer-actions { display: flex; gap: 8px; }
-.card-btn {
-  flex: 1;
-  font-family: 'Jost', sans-serif;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 9px 0;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-weight: 500;
-}
+.card-btn { flex: 1; font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 9px 0; border-radius: 2px; cursor: pointer; transition: all 0.2s; font-weight: 500; }
 .card-btn-dark { background: var(--charcoal); color: var(--gold); border: 1px solid var(--charcoal); }
 .card-btn-dark:hover { background: var(--charcoal-light); }
 .card-btn-outline { background: transparent; color: var(--charcoal); border: 1px solid var(--light-border); }
 .card-btn-outline:hover { border-color: var(--gold); color: var(--gold-dark); }
 
-/* STORE PAGE */
-#store-page { display: none; }
-.store-hero {
-  background: var(--charcoal);
-  padding: 48px;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  border-bottom: 1px solid #333;
-}
-.store-back {
-  font-family: 'Jost', sans-serif;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--gold);
-  background: none;
-  border: 1px solid #444;
-  border-radius: 2px;
-  padding: 8px 16px;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.store-back:hover { border-color: var(--gold); }
-.store-back svg { width: 14px; height: 14px; }
-.store-hero-abbr {
-  width: 60px; height: 60px;
-  background: var(--charcoal-mid);
-  border: 1px solid var(--gold);
-  border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  color: var(--gold);
-  letter-spacing: 2px;
-}
-.store-hero-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 32px;
-  font-weight: 400;
-  color: var(--warm-white);
-}
-.store-hero-tag { font-size: 13px; color: #7A7269; font-weight: 300; }
-
-.store-tabs {
-  background: var(--warm-white);
-  border-bottom: 1px solid var(--light-border);
-  display: flex;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 48px;
-}
-.store-tab {
-  font-size: 12px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 16px 0;
-  margin-right: 36px;
-  cursor: pointer;
-  color: var(--mid);
-  border-bottom: 2px solid transparent;
-  background: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  font-family: 'Jost', sans-serif;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-.store-tab.active { color: var(--gold-dark); border-bottom-color: var(--gold); }
-
-.store-content { max-width: 1280px; margin: 0 auto; padding: 40px 48px 60px; }
-
-/* BROWSE GRID */
-.items-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.item-card {
+/* STYLES GRID (search results) */
+.styles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 0 48px 60px; max-width: 1280px; margin: 0 auto; }
+.style-card {
   background: var(--warm-white);
   border: 1px solid var(--light-border);
   border-radius: 4px;
   overflow: hidden;
-  transition: border-color 0.2s;
-}
-.item-card:hover { border-color: var(--gold); }
-.item-img-wrap {
-  height: 180px;
-  background: var(--off-white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 56px;
-  border-bottom: 1px solid var(--light-border);
-}
-.item-details { padding: 14px 16px 16px; }
-.item-cat-label {
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--mid);
-  margin-bottom: 5px;
-}
-.item-name { font-size: 15px; color: var(--charcoal); margin-bottom: 4px; font-weight: 400; }
-.item-price { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold-dark); margin-bottom: 12px; }
-.item-add-btn {
-  width: 100%;
-  font-family: 'Jost', sans-serif;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 9px 0;
-  background: var(--charcoal);
-  color: var(--gold);
-  border: none;
-  border-radius: 2px;
   cursor: pointer;
-  font-weight: 500;
-  transition: background 0.2s;
+  transition: border-color 0.2s, transform 0.2s;
 }
+.style-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.style-card-img { height: 200px; overflow: hidden; background: #EEE; }
+.style-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; display: block; }
+.style-card:hover .style-card-img img { transform: scale(1.04); }
+.style-card-info { padding: 12px 14px 14px; }
+.style-card-name { font-size: 14px; color: var(--charcoal); margin-bottom: 3px; }
+.style-card-retailer { font-size: 11px; color: var(--mid); }
+.style-card-price { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--gold-dark); margin-top: 6px; }
+
+/* STORE PAGE */
+#store-page { display: none; }
+.store-hero { background: var(--charcoal); padding: 40px 48px; display: flex; align-items: center; gap: 24px; border-bottom: 1px solid #333; }
+.store-back { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); background: none; border: 1px solid #444; border-radius: 2px; padding: 9px 16px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+.store-back:hover { border-color: var(--gold); }
+.store-hero-img { width: 64px; height: 64px; border-radius: 4px; overflow: hidden; border: 1px solid var(--gold); flex-shrink: 0; }
+.store-hero-img img { width: 100%; height: 100%; object-fit: cover; }
+.store-hero-name { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 400; color: var(--warm-white); }
+.store-hero-tag { font-size: 13px; color: #7A7269; font-weight: 300; margin-top: 2px; }
+.store-tabs { background: var(--warm-white); border-bottom: 1px solid var(--light-border); display: flex; padding: 0 48px; }
+.store-tab { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; padding: 16px 0; margin-right: 36px; cursor: pointer; color: var(--mid); border-bottom: 2px solid transparent; background: none; border-top: none; border-left: none; border-right: none; font-family: 'Jost', sans-serif; font-weight: 500; transition: all 0.2s; }
+.store-tab.active { color: var(--gold-dark); border-bottom-color: var(--gold); }
+.store-content { max-width: 1280px; margin: 0 auto; padding: 36px 48px 60px; }
+
+/* ITEMS GRID */
+.items-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.item-card { background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+.item-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.item-img-wrap { height: 200px; overflow: hidden; background: #EEE; position: relative; }
+.item-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; display: block; }
+.item-card:hover .item-img-wrap img { transform: scale(1.04); }
+.item-details { padding: 14px 16px 16px; }
+.item-cat-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--mid); margin-bottom: 5px; }
+.item-name { font-size: 15px; color: var(--charcoal); margin-bottom: 4px; }
+.item-price { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold-dark); margin-bottom: 12px; }
+.item-add-btn { width: 100%; font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 9px 0; background: var(--charcoal); color: var(--gold); border: none; border-radius: 2px; cursor: pointer; font-weight: 500; transition: background 0.2s; }
 .item-add-btn:hover { background: var(--charcoal-light); }
 
 /* CHAT */
-.chat-layout { display: grid; grid-template-columns: 1fr 380px; gap: 32px; align-items: start; }
-.chat-window {
-  background: var(--warm-white);
-  border: 1px solid var(--light-border);
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  height: 520px;
-}
-.chat-header-bar {
-  background: var(--charcoal);
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border-radius: 4px 4px 0 0;
-}
+.chat-layout { display: grid; grid-template-columns: 1fr 360px; gap: 28px; align-items: start; }
+.chat-window { background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; display: flex; flex-direction: column; height: 520px; }
+.chat-header-bar { background: var(--charcoal); padding: 14px 20px; display: flex; align-items: center; gap: 12px; border-radius: 4px 4px 0 0; }
 .chat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
-.chat-header-title { font-size: 13px; color: var(--warm-white); font-weight: 400; }
+.chat-header-title { font-size: 13px; color: var(--warm-white); }
 .chat-header-sub { font-size: 11px; color: #7A7269; margin-left: auto; }
 .messages-area { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 14px; background: var(--off-white); }
 .msg-row { display: flex; gap: 10px; align-items: flex-end; }
 .msg-row.user { flex-direction: row-reverse; }
-.msg-avatar {
-  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
-  background: var(--charcoal);
-  border: 1px solid var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; color: var(--gold); font-weight: 500;
-}
+.msg-avatar { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; background: var(--charcoal); border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--gold); font-weight: 500; letter-spacing: 0.5px; }
 .msg-avatar.user-av { background: var(--gold-light); border-color: var(--gold-mid); color: var(--gold-dark); }
-.msg-bubble {
-  max-width: 75%;
-  padding: 11px 15px;
-  border-radius: 12px;
-  font-size: 14px;
-  line-height: 1.55;
-}
+.msg-bubble { max-width: 75%; padding: 11px 15px; border-radius: 12px; font-size: 14px; line-height: 1.55; }
 .msg-bubble.ai { background: var(--warm-white); color: var(--charcoal); border: 1px solid var(--light-border); border-bottom-left-radius: 3px; }
 .msg-bubble.user { background: var(--charcoal); color: var(--gold-light); border-bottom-right-radius: 3px; }
 .product-recs { display: flex; gap: 10px; margin-top: 10px; overflow-x: auto; padding-bottom: 4px; }
-.rec-card {
-  min-width: 120px; background: var(--warm-white);
-  border: 1px solid var(--light-border); border-radius: 4px; overflow: hidden; flex-shrink: 0;
-}
-.rec-img { height: 80px; background: var(--off-white); display: flex; align-items: center; justify-content: center; font-size: 30px; }
+.rec-card { min-width: 120px; background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; overflow: hidden; flex-shrink: 0; }
+.rec-img { height: 90px; overflow: hidden; background: #EEE; }
+.rec-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .rec-info { padding: 8px; }
 .rec-name { font-size: 11px; color: var(--charcoal); }
 .rec-price { font-size: 11px; color: var(--gold-dark); font-weight: 500; margin-top: 2px; }
@@ -474,124 +408,79 @@ main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
 .typing-dot:nth-child(2){animation-delay:.2s}.typing-dot:nth-child(3){animation-delay:.4s}
 @keyframes tdot{0%,80%,100%{opacity:.2}40%{opacity:1}}
 .chat-input-area { padding: 14px 16px; border-top: 1px solid var(--light-border); background: var(--warm-white); display: flex; gap: 10px; border-radius: 0 0 4px 4px; }
-.chat-input-area input {
-  flex: 1; padding: 10px 14px; border: 1px solid var(--light-border); border-radius: 2px;
-  font-family: 'Jost', sans-serif; font-size: 13px; color: var(--charcoal); background: var(--off-white);
-  outline: none; transition: border-color 0.2s;
-}
+.chat-input-area input { flex: 1; padding: 10px 14px; border: 1px solid var(--light-border); border-radius: 2px; font-family: 'Jost', sans-serif; font-size: 13px; color: var(--charcoal); background: var(--off-white); outline: none; transition: border-color 0.2s; }
 .chat-input-area input:focus { border-color: var(--gold); }
-.chat-send-btn {
-  padding: 10px 18px; background: var(--charcoal); color: var(--gold); border: none;
-  border-radius: 2px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 11px;
-  letter-spacing: 1.5px; text-transform: uppercase; transition: background 0.2s;
-}
+.chat-send-btn { padding: 10px 18px; background: var(--charcoal); color: var(--gold); border: none; border-radius: 2px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; transition: background 0.2s; }
 .chat-send-btn:hover { background: var(--charcoal-light); }
-
 .chat-sidebar { display: flex; flex-direction: column; gap: 16px; }
 .sidebar-card { background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; padding: 20px; }
-.sidebar-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--charcoal); margin-bottom: 6px; }
+.sidebar-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--charcoal); margin-bottom: 6px; }
 .sidebar-desc { font-size: 12px; color: var(--mid); line-height: 1.6; margin-bottom: 14px; font-weight: 300; }
-.escalate-btn {
-  width: 100%; font-family: 'Jost', sans-serif; font-size: 11px;
-  letter-spacing: 1.5px; text-transform: uppercase; padding: 11px 0;
-  background: transparent; border: 1px solid var(--gold); color: var(--gold-dark);
-  border-radius: 2px; cursor: pointer; transition: all 0.2s; font-weight: 500;
-}
+.escalate-btn { width: 100%; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 11px 0; background: transparent; border: 1px solid var(--gold); color: var(--gold-dark); border-radius: 2px; cursor: pointer; transition: all 0.2s; font-weight: 500; }
 .escalate-btn:hover { background: var(--gold); color: var(--charcoal); }
-.escalated-notice {
-  background: #E8F5EE; border: 1px solid #C5E0D0; border-radius: 4px; padding: 12px 14px;
-  font-size: 12px; color: #1A5C3A; line-height: 1.5;
-}
+.escalated-notice { background: #E8F5EE; border: 1px solid #C5E0D0; border-radius: 4px; padding: 12px 14px; font-size: 12px; color: #1A5C3A; line-height: 1.5; }
 
 /* FEED */
 #feed-page { display: none; }
-.feed-banner {
-  background: var(--charcoal);
-  padding: 48px;
-  border-bottom: 1px solid #333;
-}
-.feed-banner h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 40px; font-weight: 400; color: var(--warm-white); margin-bottom: 6px;
-}
+.feed-banner { background: var(--charcoal); padding: 48px; border-bottom: 1px solid #333; }
+.feed-banner h1 { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 400; color: var(--warm-white); margin-bottom: 6px; }
 .feed-banner p { font-size: 14px; color: #7A7269; font-weight: 300; }
-.feed-grid {
-  max-width: 1280px; margin: 0 auto; padding: 40px 48px 60px;
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-}
-.outfit-card { background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; overflow: hidden; transition: border-color 0.2s; }
-.outfit-card:hover { border-color: var(--gold); }
-.outfit-img-wrap { height: 220px; display: flex; align-items: center; justify-content: center; font-size: 64px; }
+.feed-grid { max-width: 1280px; margin: 0 auto; padding: 40px 48px 60px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.outfit-card { background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+.outfit-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.outfit-img-wrap { height: 260px; overflow: hidden; background: #EEE; }
+.outfit-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+.outfit-card:hover .outfit-img-wrap img { transform: scale(1.04); }
 .outfit-meta { padding: 16px 18px 18px; border-top: 1px solid var(--light-border); }
 .outfit-user { font-size: 13px; font-weight: 500; color: var(--charcoal); margin-bottom: 4px; }
 .outfit-tags { font-size: 12px; color: var(--gold-dark); margin-bottom: 10px; }
 .outfit-footer { display: flex; justify-content: space-between; align-items: center; }
-.outfit-retailer-badge {
-  font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--gold-dark); background: var(--gold-light); padding: 3px 8px; border-radius: 1px;
-}
-.like-btn {
-  background: none; border: none; cursor: pointer; color: var(--mid);
-  font-size: 12px; display: flex; align-items: center; gap: 5px; font-family: 'Jost', sans-serif;
-  transition: color 0.2s;
-}
+.outfit-retailer-badge { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-dark); background: var(--gold-light); padding: 3px 8px; border-radius: 1px; }
+.like-btn { background: none; border: none; cursor: pointer; color: var(--mid); font-size: 13px; display: flex; align-items: center; gap: 5px; font-family: 'Jost', sans-serif; transition: color 0.2s; }
 .like-btn:hover, .like-btn.liked { color: #D4537E; }
 .post-btn-wrap { text-align: center; padding: 0 0 40px; }
-.post-btn {
-  font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-  padding: 13px 32px; background: var(--charcoal); color: var(--gold); border: none;
-  border-radius: 2px; cursor: pointer; transition: background 0.2s; font-weight: 500;
-}
+.post-btn { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 13px 32px; background: var(--charcoal); color: var(--gold); border: none; border-radius: 2px; cursor: pointer; transition: background 0.2s; font-weight: 500; }
 .post-btn:hover { background: var(--charcoal-light); }
 
-/* FOOTER */
-footer {
-  background: var(--charcoal);
-  border-top: 1px solid #333;
-  padding: 40px 48px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+footer { background: var(--charcoal); border-top: 1px solid #333; padding: 36px 48px; display: flex; justify-content: space-between; align-items: center; }
 .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; }
 .footer-copy { font-size: 11px; color: #5A5248; letter-spacing: 0.5px; }
 .footer-links { display: flex; gap: 24px; }
 .footer-links a { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #5A5248; text-decoration: none; }
 .footer-links a:hover { color: var(--gold); }
 
-@keyframes fadeUp { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
-.retailer-card:nth-child(1){animation-delay:.05s}
-.retailer-card:nth-child(2){animation-delay:.1s}
-.retailer-card:nth-child(3){animation-delay:.15s}
-.retailer-card:nth-child(4){animation-delay:.2s}
-.retailer-card:nth-child(5){animation-delay:.25s}
-.retailer-card:nth-child(6){animation-delay:.3s}
+img.loading { opacity: 0; transition: opacity 0.4s; }
+img.loaded { opacity: 1; }
 
-@media (max-width: 900px) {
-  nav { padding: 0 24px; }
-  .hero { padding: 60px 24px; }
-  .hero-title { font-size: 44px; }
-  main { padding: 0 24px; }
-  .retailer-grid { grid-template-columns: repeat(2, 1fr); }
-  .items-grid { grid-template-columns: repeat(2, 1fr); }
-  .chat-layout { grid-template-columns: 1fr; }
-  .feed-grid { grid-template-columns: repeat(2, 1fr); padding: 24px; }
-  .stats-bar { gap: 32px; padding: 20px 24px; }
-  .store-hero { padding: 24px; }
-  .store-content { padding: 24px; }
-  .feed-banner { padding: 32px 24px; }
-  footer { flex-direction: column; gap: 20px; text-align: center; }
+@keyframes fadeUp { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
+.retailer-card:nth-child(1){animation-delay:.05s}.retailer-card:nth-child(2){animation-delay:.1s}.retailer-card:nth-child(3){animation-delay:.15s}
+.retailer-card:nth-child(4){animation-delay:.2s}.retailer-card:nth-child(5){animation-delay:.25s}.retailer-card:nth-child(6){animation-delay:.3s}
+
+@media(max-width:1024px){
+  .items-grid{grid-template-columns:repeat(3,1fr)}
+  .styles-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:768px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .hero{padding:48px 20px 40px}.hero-title{font-size:40px}.hero-bg-text{display:none}
+  main{padding:0 20px}.retailer-grid{grid-template-columns:1fr}
+  .items-grid{grid-template-columns:repeat(2,1fr)}.styles-grid{grid-template-columns:repeat(2,1fr)}
+  .chat-layout{grid-template-columns:1fr}.feed-grid{grid-template-columns:1fr;padding:24px 20px}
+  .stats-bar{gap:24px;padding:16px 20px}.store-hero{padding:24px 20px}
+  .store-content{padding:20px}.store-tabs{padding:0 20px}
+  .results-header{padding:28px 20px 16px}.styles-grid{padding:0 20px 40px}
+  footer{flex-direction:column;gap:16px;text-align:center;padding:28px 20px}
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" class="nav-logo" onclick="showPage('home')">Drape</a>
+  <span class="nav-logo" onclick="showPage('home')">Drape</span>
   <div class="nav-links">
-    <a href="#" class="active" onclick="showPage('home');setActive(this)">Retailers</a>
-    <a href="#" onclick="showPage('feed');setActive(this)">Style feed</a>
-    <a href="#">About</a>
+    <a class="active" onclick="showPage('home');setActive(this)">Retailers</a>
+    <a onclick="showPage('feed');setActive(this)">Style feed</a>
+    <a>About</a>
   </div>
   <div class="nav-actions">
     <button class="nav-btn nav-btn-outline">Sign in</button>
@@ -607,9 +496,25 @@ footer {
       <div class="hero-tag">Curated fashion platform</div>
       <h1 class="hero-title">Your fashion world,<br><em>one destination</em></h1>
       <p class="hero-desc">Shop the world's finest fashion retailers with a personal AI concierge at your side — from inspiration to purchase, seamlessly.</p>
-      <div class="hero-ctas">
-        <a href="#retailers" class="btn-primary">Explore retailers</a>
-        <a href="#" class="btn-ghost" onclick="showPage('feed')">View style feed</a>
+
+      <div class="search-container">
+        <div class="search-bar">
+          <div class="search-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </div>
+          <input type="text" id="main-search" placeholder="Search brands, styles, occasions..." autocomplete="off" oninput="handleSearch(this.value)" onkeydown="if(event.key==='Enter')doSearch()" />
+          <button onclick="doSearch()">Search</button>
+        </div>
+        <div class="search-suggestions" id="suggestions"></div>
+      </div>
+
+      <div class="search-tags">
+        <span class="search-tag" onclick="quickSearch('minimalist')">Minimalist</span>
+        <span class="search-tag" onclick="quickSearch('workwear')">Workwear</span>
+        <span class="search-tag" onclick="quickSearch('occasionwear')">Occasionwear</span>
+        <span class="search-tag" onclick="quickSearch('streetwear')">Streetwear</span>
+        <span class="search-tag" onclick="quickSearch('luxury')">Luxury</span>
+        <span class="search-tag" onclick="quickSearch('capsule')">Capsule</span>
       </div>
     </div>
   </section>
@@ -621,13 +526,19 @@ footer {
     <div class="stat"><div class="stat-num">1K+</div><div class="stat-label">Community looks</div></div>
   </div>
 
-  <main>
-    <div class="section-header" id="retailers">
+  <!-- SEARCH RESULTS -->
+  <div id="search-results-section">
+    <div class="results-header" id="results-header"></div>
+    <div class="styles-grid" id="styles-grid"></div>
+  </div>
+
+  <main id="main-retailers">
+    <div class="section-header">
       <div>
         <div class="section-eyebrow">Our retailers</div>
         <div class="section-title">Discover <em>curated</em> brands</div>
       </div>
-      <a href="#" class="section-link" onclick="showPage('feed')">View style feed &rarr;</a>
+      <span class="section-link" onclick="showPage('feed')">View style feed &rarr;</span>
     </div>
     <div class="retailer-grid" id="retailer-grid"></div>
   </main>
@@ -647,9 +558,7 @@ footer {
     <p>Discover what the Drape community is wearing</p>
   </div>
   <div class="feed-grid" id="feed-grid"></div>
-  <div class="post-btn-wrap">
-    <button class="post-btn">+ Post your look</button>
-  </div>
+  <div class="post-btn-wrap"><button class="post-btn">+ Post your look</button></div>
 </div>
 
 <footer>
@@ -663,62 +572,96 @@ footer {
 </footer>
 
 <script>
+// Unsplash source — free, no key needed, returns a real photo
+function img(keywords, w, h) {
+  return `https://source.unsplash.com/${w}x${h}/?${encodeURIComponent(keywords)},fashion`;
+}
+
 const retailers = [
-  { id:'velour', name:'Velour', tag:'Contemporary essentials', abbr:'VL', tier:'Premium' },
-  { id:'crest', name:'Crest & Co', tag:'Tailored classics', abbr:'CC', tier:'Luxury' },
-  { id:'nordly', name:'Nordly', tag:'Scandi minimalism', abbr:'NR', tier:'Premium' },
-  { id:'harlo', name:'Harlo', tag:'Street & sport', abbr:'HL', tier:'Contemporary' },
-  { id:'mave', name:'Mave Studio', tag:'Premium capsule', abbr:'MS', tier:'Luxury' },
-  { id:'auric', name:'Auric', tag:'Luxe occasionwear', abbr:'AU', tier:'Luxury' },
+  { id:'velour', name:'Velour', tag:'Contemporary essentials', abbr:'VL', tier:'Premium', keywords:'contemporary fashion women', styles:['minimalist','workwear','contemporary','essentials','classic'] },
+  { id:'crest', name:'Crest & Co', tag:'Tailored classics', abbr:'CC', tier:'Luxury', keywords:'tailored suit mens fashion', styles:['tailored','luxury','classic','formal','workwear','smart'] },
+  { id:'nordly', name:'Nordly', tag:'Scandi minimalism', abbr:'NR', tier:'Premium', keywords:'scandinavian minimal fashion', styles:['minimalist','scandi','capsule','neutral','clean'] },
+  { id:'harlo', name:'Harlo', tag:'Street & sport', abbr:'HL', tier:'Contemporary', keywords:'streetwear urban fashion', styles:['streetwear','casual','sport','urban','contemporary'] },
+  { id:'mave', name:'Mave Studio', tag:'Premium capsule', abbr:'MS', tier:'Luxury', keywords:'luxury capsule fashion', styles:['capsule','luxury','minimalist','premium','editorial'] },
+  { id:'auric', name:'Auric', tag:'Luxe occasionwear', abbr:'AU', tier:'Luxury', keywords:'luxury evening fashion gown', styles:['occasionwear','luxury','evening','gala','formal','chic'] },
 ];
 
 const browseItems = {
   velour:[
-    {name:'Silk blend blazer',price:'£189',cat:'Outerwear',emoji:'🧥'},
-    {name:'Wide-leg trousers',price:'£95',cat:'Bottoms',emoji:'👖'},
-    {name:'Merino knit',price:'£75',cat:'Knitwear',emoji:'🧶'},
-    {name:'Linen shirt',price:'£65',cat:'Tops',emoji:'👕'},
+    {name:'Silk blend blazer',price:'£189',cat:'Outerwear',kw:'blazer women fashion'},
+    {name:'Wide-leg trousers',price:'£95',cat:'Bottoms',kw:'wide leg trousers fashion'},
+    {name:'Merino knit',price:'£75',cat:'Knitwear',kw:'knit sweater fashion'},
+    {name:'Linen shirt',price:'£65',cat:'Tops',kw:'linen shirt women'},
   ],
   crest:[
-    {name:'Wool overcoat',price:'£320',cat:'Outerwear',emoji:'🧥'},
-    {name:'Tailored suit',price:'£480',cat:'Sets',emoji:'👔'},
-    {name:'Oxford shirt',price:'£110',cat:'Tops',emoji:'👕'},
-    {name:'Slim chinos',price:'£95',cat:'Bottoms',emoji:'👖'},
+    {name:'Wool overcoat',price:'£320',cat:'Outerwear',kw:'wool overcoat mens fashion'},
+    {name:'Tailored suit',price:'£480',cat:'Sets',kw:'tailored suit mens'},
+    {name:'Oxford shirt',price:'£110',cat:'Tops',kw:'oxford shirt men'},
+    {name:'Slim chinos',price:'£95',cat:'Bottoms',kw:'chinos men fashion'},
   ],
   nordly:[
-    {name:'Linen co-ord',price:'£145',cat:'Sets',emoji:'👗'},
-    {name:'Minimal tee',price:'£45',cat:'Tops',emoji:'👕'},
-    {name:'Straight jeans',price:'£89',cat:'Bottoms',emoji:'👖'},
-    {name:'Canvas tote',price:'£55',cat:'Accessories',emoji:'👜'},
+    {name:'Linen co-ord',price:'£145',cat:'Sets',kw:'linen coord set women'},
+    {name:'Minimal tee',price:'£45',cat:'Tops',kw:'minimal white tee fashion'},
+    {name:'Straight jeans',price:'£89',cat:'Bottoms',kw:'straight jeans women'},
+    {name:'Canvas tote',price:'£55',cat:'Accessories',kw:'canvas tote bag fashion'},
   ],
   harlo:[
-    {name:'Tech tracksuit',price:'£110',cat:'Sets',emoji:'🩳'},
-    {name:'Graphic hoodie',price:'£79',cat:'Tops',emoji:'👕'},
-    {name:'Runner sneakers',price:'£130',cat:'Footwear',emoji:'👟'},
-    {name:'Cap',price:'£35',cat:'Accessories',emoji:'🧢'},
+    {name:'Tech tracksuit',price:'£110',cat:'Sets',kw:'tracksuit streetwear'},
+    {name:'Graphic hoodie',price:'£79',cat:'Tops',kw:'hoodie streetwear urban'},
+    {name:'Runner sneakers',price:'£130',cat:'Footwear',kw:'sneakers running shoes fashion'},
+    {name:'Cap',price:'£35',cat:'Accessories',kw:'cap hat streetwear'},
   ],
   mave:[
-    {name:'Cashmere roll neck',price:'£195',cat:'Knitwear',emoji:'🧶'},
-    {name:'Cigarette trousers',price:'£165',cat:'Bottoms',emoji:'👖'},
-    {name:'Leather belt',price:'£85',cat:'Accessories',emoji:'👝'},
-    {name:'Slip dress',price:'£210',cat:'Dresses',emoji:'👗'},
+    {name:'Cashmere roll neck',price:'£195',cat:'Knitwear',kw:'cashmere turtleneck fashion'},
+    {name:'Cigarette trousers',price:'£165',cat:'Bottoms',kw:'cigarette trousers fashion women'},
+    {name:'Leather belt',price:'£85',cat:'Accessories',kw:'leather belt fashion'},
+    {name:'Slip dress',price:'£210',cat:'Dresses',kw:'slip dress women fashion'},
   ],
   auric:[
-    {name:'Evening gown',price:'£580',cat:'Dresses',emoji:'👗'},
-    {name:'Strappy heels',price:'£245',cat:'Footwear',emoji:'👠'},
-    {name:'Gold clutch',price:'£189',cat:'Accessories',emoji:'👛'},
-    {name:'Silk blouse',price:'£175',cat:'Tops',emoji:'👚'},
+    {name:'Evening gown',price:'£580',cat:'Dresses',kw:'evening gown luxury fashion'},
+    {name:'Strappy heels',price:'£245',cat:'Footwear',kw:'strappy heels luxury shoes'},
+    {name:'Gold clutch',price:'£189',cat:'Accessories',kw:'gold clutch bag fashion'},
+    {name:'Silk blouse',price:'£175',cat:'Tops',kw:'silk blouse women fashion'},
   ],
 };
 
 const outfits = [
-  {user:'@sofiaq',tags:'#minimalist #workwear',retailer:'Velour',emoji:'👗',bg:'#FAF3E0',likes:42},
-  {user:'@tomk',tags:'#streetwear #casual',retailer:'Harlo',emoji:'🧥',bg:'#F5F0E8',likes:18},
-  {user:'@priyam',tags:'#eveningwear #chic',retailer:'Auric',emoji:'👠',bg:'#FAF8F4',likes:87},
-  {user:'@ellab',tags:'#scandi #neutral',retailer:'Nordly',emoji:'🧣',bg:'#F0EDE8',likes:31},
-  {user:'@jakef',tags:'#tailored #smart',retailer:'Crest & Co',emoji:'👔',bg:'#F8F5EE',likes:55},
-  {user:'@lunam',tags:'#capsule #mono',retailer:'Mave Studio',emoji:'🧤',bg:'#F5F2EC',likes:23},
+  {user:'@sofiaq',tags:'#minimalist #workwear',retailer:'Velour',kw:'minimalist outfit women fashion',likes:42},
+  {user:'@tomk',tags:'#streetwear #casual',retailer:'Harlo',kw:'streetwear outfit men urban',likes:18},
+  {user:'@priyam',tags:'#eveningwear #chic',retailer:'Auric',kw:'evening dress luxury fashion',likes:87},
+  {user:'@ellab',tags:'#scandi #neutral',retailer:'Nordly',kw:'scandinavian fashion neutral outfit',likes:31},
+  {user:'@jakef',tags:'#tailored #smart',retailer:'Crest & Co',kw:'tailored suit smart fashion',likes:55},
+  {user:'@lunam',tags:'#capsule #mono',retailer:'Mave Studio',kw:'capsule wardrobe monochrome fashion',likes:23},
 ];
+
+const aiReplies = [
+  {text:"Great taste! Based on that, here are my top picks for you:",products:[
+    {name:'Silk blend blazer',price:'£189',kw:'blazer women fashion'},
+    {name:'Wide-leg trousers',price:'£95',kw:'wide leg trousers'},
+    {name:'Merino knit',price:'£75',kw:'knit sweater fashion'},
+  ]},
+  {text:"Love that direction — very elevated and effortless. These would work perfectly:",products:[
+    {name:'Linen shirt',price:'£65',kw:'linen shirt women'},
+    {name:'Slim chinos',price:'£89',kw:'chinos fashion'},
+    {name:'Canvas tote',price:'£55',kw:'tote bag fashion'},
+  ]},
+  {text:"For that occasion I would suggest something polished. Here are my recommendations:",products:[
+    {name:'Slip dress',price:'£210',kw:'slip dress fashion'},
+    {name:'Strappy heels',price:'£245',kw:'heels luxury fashion'},
+    {name:'Gold clutch',price:'£189',kw:'clutch bag gold fashion'},
+  ]},
+];
+
+// Unsplash source with unique seed to avoid repeats
+let imgCounter = 0;
+function uImg(kw, w, h) {
+  imgCounter++;
+  return `https://source.unsplash.com/${w}x${h}/?${encodeURIComponent(kw)}&sig=${imgCounter}`;
+}
+
+function lazyImg(src, alt, cls) {
+  return `<img src="${src}" alt="${alt}" class="${cls} loading" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />`;
+}
 
 let chatState = {};
 let storeTab = {};
@@ -726,29 +669,118 @@ let likedOutfits = new Set();
 let replyIdx = 0;
 let activeRetailerId = null;
 
-const aiReplies = [
-  {text:"Great taste! Based on that, here are my top picks for you:",products:[
-    {name:'Silk blend blazer',price:'£189',emoji:'🧥'},
-    {name:'Wide-leg trousers',price:'£95',emoji:'👖'},
-    {name:'Merino knit',price:'£75',emoji:'🧶'},
-  ]},
-  {text:"Love that direction — very elevated and effortless. These would work perfectly:",products:[
-    {name:'Linen shirt',price:'£65',emoji:'👕'},
-    {name:'Slim chinos',price:'£89',emoji:'👖'},
-    {name:'Canvas tote',price:'£55',emoji:'👜'},
-  ]},
-  {text:"For that occasion I would suggest something polished. Here are my recommendations:",products:[
-    {name:'Slip dress',price:'£210',emoji:'👗'},
-    {name:'Strappy heels',price:'£245',emoji:'👠'},
-    {name:'Gold clutch',price:'£189',emoji:'👛'},
-  ]},
+// SEARCH
+const allSearchTerms = [
+  'minimalist','workwear','occasionwear','streetwear','luxury','capsule',
+  'Velour','Crest & Co','Nordly','Harlo','Mave Studio','Auric',
+  'tailored','scandi','evening','casual','formal','knitwear','blazer','dresses'
 ];
 
+function handleSearch(val) {
+  const sugEl = document.getElementById('suggestions');
+  if (!val.trim()) { sugEl.classList.remove('open'); return; }
+  const matches = allSearchTerms.filter(t => t.toLowerCase().includes(val.toLowerCase())).slice(0,6);
+  if (!matches.length) { sugEl.classList.remove('open'); return; }
+  sugEl.innerHTML = matches.map(m => {
+    const isRetailer = retailers.find(r => r.name.toLowerCase() === m.toLowerCase());
+    const tag = isRetailer ? 'Retailer' : 'Style';
+    return `<div class="suggestion-item" onclick="quickSearch('${m}')">${m}<span class="suggestion-tag">${tag}</span></div>`;
+  }).join('');
+  sugEl.classList.add('open');
+}
+
+function quickSearch(term) {
+  document.getElementById('main-search').value = term;
+  document.getElementById('suggestions').classList.remove('open');
+  doSearch();
+}
+
+function doSearch() {
+  const val = document.getElementById('main-search').value.trim().toLowerCase();
+  document.getElementById('suggestions').classList.remove('open');
+  if (!val) { clearSearch(); return; }
+
+  // Find matching retailers
+  const matchedRetailers = retailers.filter(r =>
+    r.name.toLowerCase().includes(val) ||
+    r.tag.toLowerCase().includes(val) ||
+    r.tier.toLowerCase().includes(val) ||
+    r.styles.some(s => s.includes(val))
+  );
+
+  // Find matching items across all retailers
+  const matchedItems = [];
+  retailers.forEach(r => {
+    (browseItems[r.id] || []).forEach(item => {
+      if (item.name.toLowerCase().includes(val) || item.cat.toLowerCase().includes(val) || r.name.toLowerCase().includes(val) || r.styles.some(s=>s.includes(val))) {
+        matchedItems.push({...item, retailer: r.name, retailerId: r.id});
+      }
+    });
+  });
+
+  const resultsSection = document.getElementById('search-results-section');
+  const mainRetailers = document.getElementById('main-retailers');
+  const header = document.getElementById('results-header');
+  const grid = document.getElementById('styles-grid');
+
+  const total = matchedRetailers.length + matchedItems.length;
+
+  if (total === 0) {
+    header.innerHTML = `<div class="results-title">No results for "${val}"</div><div class="results-sub">Try a brand name, style, or occasion</div>`;
+    grid.innerHTML = '';
+    resultsSection.style.display = 'block';
+    mainRetailers.style.display = 'none';
+    return;
+  }
+
+  header.innerHTML = `<div class="results-title">Results for "<em style="font-style:italic;color:var(--gold-dark)">${val}</em>"</div><div class="results-sub">${total} result${total!==1?'s':''} found</div>`;
+
+  let cards = '';
+  matchedRetailers.forEach(r => {
+    cards += `<div class="style-card" onclick="openStore('${r.id}','browse')">
+      <div class="style-card-img">${lazyImg(uImg(r.keywords,400,300), r.name, '')}</div>
+      <div class="style-card-info">
+        <div class="style-card-name">${r.name}</div>
+        <div class="style-card-retailer">${r.tier} · ${r.tag}</div>
+        <div class="style-card-price">Shop now &rarr;</div>
+      </div>
+    </div>`;
+  });
+  matchedItems.forEach(item => {
+    cards += `<div class="style-card" onclick="openStore('${item.retailerId}','browse')">
+      <div class="style-card-img">${lazyImg(uImg(item.kw,400,300), item.name, '')}</div>
+      <div class="style-card-info">
+        <div class="style-card-name">${item.name}</div>
+        <div class="style-card-retailer">${item.retailer} · ${item.cat}</div>
+        <div class="style-card-price">${item.price}</div>
+      </div>
+    </div>`;
+  });
+
+  grid.innerHTML = cards;
+  resultsSection.style.display = 'block';
+  mainRetailers.style.display = 'none';
+  window.scrollTo({top: 200, behavior:'smooth'});
+}
+
+function clearSearch() {
+  document.getElementById('search-results-section').style.display = 'none';
+  document.getElementById('main-retailers').style.display = 'block';
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-container')) {
+    document.getElementById('suggestions').classList.remove('open');
+  }
+});
+
+// PAGES
 function showPage(page) {
   document.getElementById('home-page').style.display = page==='home' ? 'block' : 'none';
   document.getElementById('store-page').style.display = page==='store' ? 'block' : 'none';
   document.getElementById('feed-page').style.display = page==='feed' ? 'block' : 'none';
   if (page==='feed') renderFeed();
+  if (page==='home') { clearSearch(); document.getElementById('main-search').value=''; }
   window.scrollTo(0,0);
 }
 
@@ -757,11 +789,14 @@ function setActive(el) {
   el.classList.add('active');
 }
 
+// RETAILER GRID
 function renderRetailerGrid() {
   document.getElementById('retailer-grid').innerHTML = retailers.map(r => `
     <div class="retailer-card">
-      <div class="retailer-card-banner">
-        <div class="retailer-abbr">${r.abbr}</div>
+      <div class="retailer-card-img">
+        ${lazyImg(uImg(r.keywords, 600, 300), r.name, '')}
+        <div class="img-overlay"></div>
+        <div class="img-abbr">${r.abbr}</div>
       </div>
       <div class="retailer-info">
         <div class="retailer-tier">${r.tier}</div>
@@ -775,6 +810,7 @@ function renderRetailerGrid() {
     </div>`).join('');
 }
 
+// STORE
 function openStore(retailerId, tab) {
   activeRetailerId = retailerId;
   storeTab[retailerId] = tab || storeTab[retailerId] || 'browse';
@@ -792,13 +828,13 @@ function renderStoreHeader(retailerId) {
   const r = retailers.find(x => x.id === retailerId);
   document.getElementById('store-hero').innerHTML = `
     <button class="store-back" onclick="showPage('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       Back to retailers
     </button>
-    <div class="store-hero-abbr">${r.abbr}</div>
+    <div class="store-hero-img">${lazyImg(uImg(r.keywords,128,128), r.name, '')}</div>
     <div>
       <div class="store-hero-name">${r.name}</div>
-      <div class="store-hero-tag">${r.tag}</div>
+      <div class="store-hero-tag">${r.tag} &bull; ${r.tier}</div>
     </div>`;
 }
 
@@ -809,10 +845,10 @@ function renderStoreTabs(retailerId) {
     <button class="store-tab ${tab==='chat'?'active':''}" onclick="switchStoreTab('${retailerId}','chat')">AI concierge</button>`;
 }
 
-function switchStoreTab(retailerId, tab) {
-  storeTab[retailerId] = tab;
-  renderStoreTabs(retailerId);
-  renderStoreContent(retailerId);
+function switchStoreTab(rid, tab) {
+  storeTab[rid] = tab;
+  renderStoreTabs(rid);
+  renderStoreContent(rid);
 }
 
 function renderStoreContent(retailerId) {
@@ -822,7 +858,7 @@ function renderStoreContent(retailerId) {
     const items = browseItems[retailerId] || [];
     el.innerHTML = `<div class="items-grid">${items.map(item => `
       <div class="item-card">
-        <div class="item-img-wrap">${item.emoji}</div>
+        <div class="item-img-wrap">${lazyImg(uImg(item.kw, 400, 400), item.name, '')}</div>
         <div class="item-details">
           <div class="item-cat-label">${item.cat}</div>
           <div class="item-name">${item.name}</div>
@@ -839,7 +875,7 @@ function renderStoreContent(retailerId) {
         if (m.products) {
           prods = `<div class="product-recs">${m.products.map(p => `
             <div class="rec-card">
-              <div class="rec-img">${p.emoji}</div>
+              <div class="rec-img">${lazyImg(uImg(p.kw, 240, 180), p.name, '')}</div>
               <div class="rec-info">
                 <div class="rec-name">${p.name}</div>
                 <div class="rec-price">${p.price}</div>
@@ -855,7 +891,10 @@ function renderStoreContent(retailerId) {
     const escalated = chatState[retailerId + '_esc'];
     const sidebar = escalated
       ? `<div class="sidebar-card"><div class="sidebar-title">Connected</div><div class="escalated-notice">A ${r.name} stylist has your full conversation history and will be with you shortly.</div></div>`
-      : `<div class="sidebar-card"><div class="sidebar-title">Need more help?</div><div class="sidebar-desc">Our human stylists are available to provide personalised advice and deeper product expertise.</div><button class="escalate-btn" onclick="escalate('${retailerId}')">Talk to a ${r.name} stylist</button></div>`;
+      : `<div class="sidebar-card"><div class="sidebar-title">Need more help?</div><div class="sidebar-desc">Our human stylists are available to provide personalised advice and deeper product expertise.</div><button class="escalate-btn" onclick="escalate('${retailerId}')">Talk to a ${r.name} stylist</button></div>
+         <div class="sidebar-card"><div class="sidebar-title" style="font-size:15px;margin-bottom:8px">Quick prompts</div>
+           ${['I need a work outfit','Something for a wedding','What goes with black trousers?','Show me new arrivals'].map(p=>`<div style="font-size:12px;color:var(--mid);padding:7px 0;border-bottom:1px solid var(--light-border);cursor:pointer;" onclick="quickPrompt('${retailerId}','${p}')">${p} &rarr;</div>`).join('')}
+         </div>`;
 
     el.innerHTML = `<div class="chat-layout">
       <div class="chat-window">
@@ -872,9 +911,19 @@ function renderStoreContent(retailerId) {
       </div>
       <div class="chat-sidebar">${sidebar}</div>
     </div>`;
-    const msgs_el = document.getElementById('msgs');
-    if (msgs_el) msgs_el.scrollTop = msgs_el.scrollHeight;
+    const msgsEl = document.getElementById('msgs');
+    if (msgsEl) msgsEl.scrollTop = msgsEl.scrollHeight;
   }
+}
+
+function quickPrompt(rid, text) {
+  chatState[rid].push({role:'user', text});
+  renderStoreContent(rid);
+  setTimeout(() => {
+    const reply = aiReplies[replyIdx % aiReplies.length]; replyIdx++;
+    chatState[rid].push({role:'ai', text: reply.text, products: reply.products});
+    renderStoreContent(rid);
+  }, 1200);
 }
 
 function sendMsg(retailerId) {
@@ -883,39 +932,36 @@ function sendMsg(retailerId) {
   if (!text) return;
   input.value = '';
   chatState[retailerId].push({role:'user', text});
-  const msgs_el = document.getElementById('msgs');
+  const msgsEl = document.getElementById('msgs');
   const typDiv = document.createElement('div');
-  typDiv.className = 'typing-row';
-  typDiv.id = 'typing';
+  typDiv.className = 'typing-row'; typDiv.id = 'typing';
   typDiv.innerHTML = `<div class="msg-avatar">AI</div><div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
-  msgs_el.appendChild(typDiv);
-  msgs_el.scrollTop = msgs_el.scrollHeight;
+  msgsEl.appendChild(typDiv);
+  msgsEl.scrollTop = msgsEl.scrollHeight;
   setTimeout(() => {
-    const reply = aiReplies[replyIdx % aiReplies.length];
-    replyIdx++;
-    chatState[retailerId].push({role:'ai', text:reply.text, products:reply.products});
+    const reply = aiReplies[replyIdx % aiReplies.length]; replyIdx++;
+    chatState[retailerId].push({role:'ai', text: reply.text, products: reply.products});
     renderStoreContent(retailerId);
   }, 1300);
 }
 
-function escalate(retailerId) {
-  chatState[retailerId + '_esc'] = true;
-  renderStoreContent(retailerId);
+function escalate(rid) {
+  chatState[rid + '_esc'] = true;
+  renderStoreContent(rid);
 }
 
+// FEED
 function renderFeed() {
   document.getElementById('feed-grid').innerHTML = outfits.map((o,i) => {
     const liked = likedOutfits.has(i);
     return `<div class="outfit-card">
-      <div class="outfit-img-wrap" style="background:${o.bg}">${o.emoji}</div>
+      <div class="outfit-img-wrap">${lazyImg(uImg(o.kw, 600, 500), o.user, '')}</div>
       <div class="outfit-meta">
         <div class="outfit-user">${o.user}</div>
         <div class="outfit-tags">${o.tags}</div>
         <div class="outfit-footer">
           <div class="outfit-retailer-badge">${o.retailer}</div>
-          <button class="like-btn ${liked?'liked':''}" onclick="toggleLike(${i})">
-            &#9825; ${liked ? o.likes+1 : o.likes}
-          </button>
+          <button class="like-btn ${liked?'liked':''}" onclick="toggleLike(${i})">&#9825; ${liked?o.likes+1:o.likes}</button>
         </div>
       </div>
     </div>`;
@@ -923,8 +969,7 @@ function renderFeed() {
 }
 
 function toggleLike(i) {
-  if (likedOutfits.has(i)) likedOutfits.delete(i);
-  else likedOutfits.add(i);
+  if (likedOutfits.has(i)) likedOutfits.delete(i); else likedOutfits.add(i);
   renderFeed();
 }
 
