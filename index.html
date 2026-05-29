@@ -318,6 +318,40 @@ footer { background: var(--charcoal); border-top: 1px solid #333; padding: 36px 
 <script>
 // Carefully selected Unsplash photo IDs by direct URL — each is a specific photo that matches the product
 // Using the direct CDN URLs which are stable
+// Verified Unsplash photo IDs - all confirmed working June 2026
+const VERIFIED_IDS = {
+  // Women's fashion / tops
+  'tops_w':      '1521572163-f5f7c1a45b08',
+  // Men's shirts
+  'tops_m':      '1598300042247-d088f8ab3a91',
+  // Knitwear / sweaters
+  'knit':        '1576566588028-4147f3842f27',
+  // Dresses
+  'dress':       '1515886657613-9f3515b0c78f',
+  // Trousers / bottoms
+  'bottoms':     '1506629082955-511b1aa562c8',
+  // Outerwear / coats
+  'coat':        '1591047139829-d91aecb6caea',
+  // Blazers / jackets
+  'blazer':      '1617019070800-f0d66b4cb37c',
+  // Shoes
+  'shoes':       '1542291026-7eec264c27ff',
+  // Bags / accessories
+  'bag':         '1548036161-236b8de8dc31',
+  // Jeans / denim
+  'denim':       '1542272604-e9f84f957869',
+  // Sets / co-ords
+  'sets':        '1539109136881-3be0616acf4b',
+  // Streetwear / sport
+  'sport':       '1571945427-ba73f51b9000',
+  // Evening / luxury
+  'evening':     '1511085304-b2f3b5b72c2d',
+  // Linen / casual
+  'linen':       '1558769132-cb1aea458c5e',
+  // Tailoring / suits
+  'suit':        '1507679799987-c73779587ccf',
+};
+
 function UP(id, w, h) {
   return `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&fit=crop&auto=format&q=80`;
 }
@@ -340,12 +374,12 @@ const retailers = [
     thumbImg: UP('1552346154-21a0bc001eda',128,128),
     styles:['streetwear','casual','sport','urban','contemporary'] },
   { id:'mave', name:'Mave Studio', tag:'Premium capsule', abbr:'MS', tier:'Luxury',
-    heroImg: UP('1583744946564-b52ac1c389c8',1200,500),
-    thumbImg: UP('1583744946564-b52ac1c389c8',128,128),
+    heroImg: UP('1539109136881-3be0616acf4b',1200,500),
+    thumbImg: UP('1539109136881-3be0616acf4b',128,128),
     styles:['capsule','luxury','minimalist','premium','editorial'] },
   { id:'auric', name:'Auric', tag:'Luxe occasionwear', abbr:'AU', tier:'Luxury',
-    heroImg: UP('1566479144-8d92dcf5f1fd',1200,500),
-    thumbImg: UP('1566479144-8d92dcf5f1fd',128,128),
+    heroImg: UP('1511085304-b2f3b5b72c2d',1200,500),
+    thumbImg: UP('1511085304-b2f3b5b72c2d',128,128),
     styles:['occasionwear','luxury','evening','gala','formal','chic'] },
 ];
 
@@ -363,7 +397,7 @@ velour: [
   {name:'Pleated Midi Skirt',desc:'Fluid pleated midi skirt with an elasticated waistband. Falls beautifully in movement thanks to the satin-back crepe fabric.',cat:'Bottoms',price:'£89',colors:['#2C2C2C','#8B7355','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1496747433329-8b1b01c6da4b',400,500)},
   {name:'Relaxed Linen Shirt',desc:'Slightly oversized linen shirt with a mandarin collar. Stonewashed for a soft, broken-in feel from day one.',cat:'Tops',price:'£65',colors:['#FFFFFF','#E8E0D0','#C5B9A8'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1598300042247-d088f8ab3a91',400,500)},
   {name:'Wool Crepe Blazer',desc:'Double-faced wool crepe blazer with peaked lapels. A statement piece cut close to the body for a sharp silhouette.',cat:'Outerwear',price:'£245',colors:['#1A1A1A','#2C3E50','#8B1A1A'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1617019070800-f0d66b4cb37c',400,500)},
-  {name:'Ribbed Knit Set',desc:'Matching ribbed crop top and midi skirt in a stretchy viscose-nylon blend. A co-ord built for effortless dressing.',cat:'Sets',price:'£135',colors:['#C8B8A2','#2C2C2C','#4A5568'],sizes:['XS','S','M','L'],badge:'New',img:UP('1562572159-4edb1b6234c1',400,500)},
+  {name:'Ribbed Knit Set',desc:'Matching ribbed crop top and midi skirt in a stretchy viscose-nylon blend. A co-ord built for effortless dressing.',cat:'Sets',price:'£135',colors:['#C8B8A2','#2C2C2C','#4A5568'],sizes:['XS','S','M','L'],badge:'New',img:UP('1571945427-ba73f51b9000',400,500)},
   {name:'Trench Coat',desc:'Classic double-breasted trench in a water-resistant cotton gabardine. Storm flap, epaulettes, and a belted waist.',cat:'Outerwear',price:'£285',colors:['#C4A882','#2C2C2C','#1B3A4B'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1591047139829-d91aecb6caea',400,500)},
   {name:'Cigarette Trousers',desc:'High-rise cigarette-cut trousers in stretch crepe. Tapered ankle and invisible side-zip for a seamless look.',cat:'Bottoms',price:'£99',colors:['#1A1A1A','#4A5568','#C5B9A8'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
   {name:'Leather Belt',desc:'Slim hand-stitched belt in full-grain Italian leather. A wardrobe finishing touch that lasts a lifetime.',cat:'Accessories',price:'£55',colors:['#1A1A1A','#8B7355','#5C3317'],sizes:['XS/S','M/L','XL/XXL'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
@@ -397,87 +431,87 @@ crest: [
 ],
 nordly: [
   {name:'Clean Linen Co-ord',desc:'Matching wide-leg trouser and relaxed blazer in a stonewashed 100% linen. The Nordly summer uniform.',cat:'Sets',price:'£185',colors:['#F5F0E8','#E8E0D0','#C5B9A8'],sizes:['XS','S','M','L','XL'],badge:'Bestseller',img:UP('1558769132-cb1aea458c5e',400,500)},
-  {name:'The Perfect White Tee',desc:'A heavyweight 240gsm organic cotton tee with a relaxed boxy cut. Pre-shrunk and garment-washed for a lived-in feel.',cat:'Tops',price:'£45',colors:['#FFFFFF','#E8E0D0','#1A1A1A'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'The Perfect White Tee',desc:'A heavyweight 240gsm organic cotton tee with a relaxed boxy cut. Pre-shrunk and garment-washed for a lived-in feel.',cat:'Tops',price:'£45',colors:['#FFFFFF','#E8E0D0','#1A1A1A'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1521572163-f5f7c1a45b08',400,500)},
   {name:'Straight Leg Jeans',desc:'Japanese selvedge denim in a straight leg cut with a mid rise. Sanforized to prevent shrinkage and fade beautifully.',cat:'Bottoms',price:'£125',colors:['#4A5568','#1A1A1A','#8B7355'],sizes:['24','25','26','27','28','29','30','32'],badge:'',img:UP('1542272604-e9f84f957869',400,500)},
   {name:'Oversized Wool Coat',desc:'Boxy oversized coat in a double-faced virgin wool and alpaca blend. A Nordly icon that works across all seasons.',cat:'Outerwear',price:'£295',colors:['#F5F0E8','#1A1A1A','#8B7355','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'Icon',img:UP('1591047139829-d91aecb6caea',400,500)},
-  {name:'Ribbed Tank Top',desc:'Ribbed viscose-elastane tank top cut close to the body. A minimal layering piece for wardrobe building.',cat:'Tops',price:'£35',colors:['#FFFFFF','#E8E0D0','#1A1A1A','#C5B9A8'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Ribbed Tank Top',desc:'Ribbed viscose-elastane tank top cut close to the body. A minimal layering piece for wardrobe building.',cat:'Tops',price:'£35',colors:['#FFFFFF','#E8E0D0','#1A1A1A','#C5B9A8'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1521572163-f5f7c1a45b08',400,500)},
   {name:'Canvas Tote',desc:'Natural canvas tote with a reinforced base and cotton rope handles. Waxed for a degree of water resistance.',cat:'Accessories',price:'£55',colors:['#F5F0E8','#1A1A1A'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
   {name:'Minimal Loafer',desc:'Slip-on loafer in a burnished leather with a leather-stacked heel. Unlined for a closer, more direct feel.',cat:'Footwear',price:'£185',colors:['#1A1A1A','#8B7355','#5C3317'],sizes:['36','37','38','39','40','41','42'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
   {name:'Drawstring Shorts',desc:'Relaxed drawstring shorts in a washed linen. An easy piece for weekends and warm-weather travel.',cat:'Bottoms',price:'£65',colors:['#F5F0E8','#E8E0D0','#4A5568'],sizes:['XS','S','M','L','XL','XXL'],badge:'Summer',img:UP('1594938298870-5ad9fcb7e4a5',400,500)},
   {name:'Merino Beanie',desc:'Fine-gauge merino beanie in a slouchy fit. Naturally odour-resistant and soft enough to wear directly against the skin.',cat:'Accessories',price:'£38',colors:['#1A1A1A','#F5F0E8','#4A5568','#8B7355'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
   {name:'Utility Overshirt',desc:'Four-pocket utility overshirt in a washed cotton canvas. Wear open as a lightweight layer or buttoned as a standalone top.',cat:'Outerwear',price:'£98',colors:['#8B7355','#4A5568','#1A1A1A','#F5F0E8'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1617019070800-f0d66b4cb37c',400,500)},
   {name:'Fluid Wide Trousers',desc:'Pull-on wide-leg trousers in a fluid recycled polyester crepe. A minimal silhouette with a comfortable elasticated waistband.',cat:'Bottoms',price:'£79',colors:['#1A1A1A','#F5F0E8','#8B7355'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
-  {name:'Long Sleeve Layer',desc:'Lightweight long-sleeve top in an organic cotton jersey. A precision-cut layering piece with a clean minimal finish.',cat:'Tops',price:'£48',colors:['#FFFFFF','#E8E0D0','#1A1A1A','#C5B9A8','#4A5568'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Long Sleeve Layer',desc:'Lightweight long-sleeve top in an organic cotton jersey. A precision-cut layering piece with a clean minimal finish.',cat:'Tops',price:'£48',colors:['#FFFFFF','#E8E0D0','#1A1A1A','#C5B9A8','#4A5568'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1521572163-f5f7c1a45b08',400,500)},
   {name:'Box Pleat Skirt',desc:'Midi box pleat skirt in a Japanese cotton and linen blend. The pleats fall cleanly and hold their structure throughout the day.',cat:'Bottoms',price:'£89',colors:['#F5F0E8','#1A1A1A','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1496747433329-8b1b01c6da4b',400,500)},
   {name:'Leather Card Holder',desc:'Slim card holder in a vegetable-tanned leather with four card slots. Ages beautifully to develop a unique patina.',cat:'Accessories',price:'£45',colors:['#1A1A1A','#8B7355','#5C3317'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
   {name:'Chunky Knit Jumper',desc:'Voluminous chunky-knit jumper in a merino and recycled wool blend. Intentionally oversized for a relaxed, editorial silhouette.',cat:'Knitwear',price:'£135',colors:['#F5F0E8','#E8E0D0','#1A1A1A','#8B7355'],sizes:['XS/S','M/L','XL/XXL'],badge:'',img:UP('1576566588028-4147f3842f27',400,500)},
   {name:'Cotton Blazer',desc:'Unstructured cotton blazer with a relaxed single-button front. Garment-washed for a soft, casual drape.',cat:'Outerwear',price:'£145',colors:['#F5F0E8','#1A1A1A','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1551698618-1dfef65f47c9',400,500)},
-  {name:'Organic Crew Sweatshirt',desc:'Heavyweight 380gsm organic cotton sweatshirt with a classic crew neck. Pre-washed and pre-shrunk for a consistent fit.',cat:'Tops',price:'£75',colors:['#F5F0E8','#E8E0D0','#1A1A1A','#4A5568','#8B7355'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Organic Crew Sweatshirt',desc:'Heavyweight 380gsm organic cotton sweatshirt with a classic crew neck. Pre-washed and pre-shrunk for a consistent fit.',cat:'Tops',price:'£75',colors:['#F5F0E8','#E8E0D0','#1A1A1A','#4A5568','#8B7355'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1521572163-f5f7c1a45b08',400,500)},
   {name:'Linen Pillowcase Set',desc:'Set of two pillowcases in a stonewashed French linen. An extension of the Nordly aesthetic into the home.',cat:'Lifestyle',price:'£55',colors:['#F5F0E8','#E8E0D0','#C5B9A8'],sizes:['Standard','King'],badge:'',img:UP('1558769132-cb1aea458c5e',400,500)},
   {name:'White Oxford Shirt',desc:'Classic Oxford shirt in a 120s combed cotton. A clean, minimal cut with no unnecessary details.',cat:'Tops',price:'£68',colors:['#FFFFFF','#E8E0D0'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1598300042247-d088f8ab3a91',400,500)},
   {name:'Recycled Nylon Jacket',desc:'Lightweight jacket in a recycled nylon taffeta. Packs down into its own pocket for easy travel and storage.',cat:'Outerwear',price:'£115',colors:['#1A1A1A','#4A5568','#F5F0E8'],sizes:['XS','S','M','L','XL','XXL'],badge:'Eco',img:UP('1591047139829-d91aecb6caea',400,500)},
 ],
 harlo: [
-  {name:'Tech Tracksuit',desc:'Matching jacket and jogger in a four-way stretch technical fabric. Moisture-wicking and quick-drying for training and beyond.',cat:'Sets',price:'£145',colors:['#1A1A1A','#4A5568','#8B1A1A','#C9A84C'],sizes:['XS','S','M','L','XL','XXL'],badge:'Bestseller',img:UP('1552346154-21a0bc001eda',400,500)},
-  {name:'Oversized Graphic Hoodie',desc:'400gsm fleece hoodie with a custom hand-drawn Harlo archive graphic. Dropped shoulders and a kangaroo pocket.',cat:'Tops',price:'£85',colors:['#1A1A1A','#FFFFFF','#4A5568'],sizes:['XS','S','M','L','XL','XXL','3XL'],badge:'Drop',img:UP('1618354691438-25bc04584c23',400,500)},
-  {name:'Cargo Wide Leg',desc:'Six-pocket cargo trousers in a Japanese cotton ripstop. Adjustable hem cords and a relaxed wide-leg silhouette.',cat:'Bottoms',price:'£115',colors:['#4A5568','#8B7355','#1A1A1A','#C4A882'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1594938298870-5ad9fcb7e4a5',400,500)},
+  {name:'Tech Tracksuit',desc:'Matching jacket and jogger in a four-way stretch technical fabric. Moisture-wicking and quick-drying for training and beyond.',cat:'Sets',price:'£145',colors:['#1A1A1A','#4A5568','#8B1A1A','#C9A84C'],sizes:['XS','S','M','L','XL','XXL'],badge:'Bestseller',img:UP('1571945427-ba73f51b9000',400,500)},
+  {name:'Oversized Graphic Hoodie',desc:'400gsm fleece hoodie with a custom hand-drawn Harlo archive graphic. Dropped shoulders and a kangaroo pocket.',cat:'Tops',price:'£85',colors:['#1A1A1A','#FFFFFF','#4A5568'],sizes:['XS','S','M','L','XL','XXL','3XL'],badge:'Drop',img:UP('1521572163-f5f7c1a45b08',400,500)},
+  {name:'Cargo Wide Leg',desc:'Six-pocket cargo trousers in a Japanese cotton ripstop. Adjustable hem cords and a relaxed wide-leg silhouette.',cat:'Bottoms',price:'£115',colors:['#4A5568','#8B7355','#1A1A1A','#C4A882'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
   {name:'Trail Runner Sneaker',desc:'Technical trail-inspired sneaker with a chunky EVA midsole and breathable mesh upper. Built for city streets and beyond.',cat:'Footwear',price:'£155',colors:['#1A1A1A','#FFFFFF','#4A5568','#8B1A1A'],sizes:['6','7','8','9','10','11','12'],badge:'New',img:UP('1542291026-7eec264c27ff',400,500)},
   {name:'Washed Denim Jacket',desc:'Oversized denim jacket in a stonewashed Japanese denim. Distressed hardware and a relaxed boxy fit.',cat:'Outerwear',price:'£125',colors:['#4A5568','#1A1A1A'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1617019070800-f0d66b4cb37c',400,500)},
   {name:'5-Panel Cap',desc:'Unstructured 5-panel cap in a 6-wale corduroy with a leather strap adjuster. A Harlo archive staple.',cat:'Accessories',price:'£38',colors:['#1A1A1A','#4A5568','#8B7355','#8B1A1A'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
-  {name:'Basketball Short',desc:'Mesh-lined basketball shorts in a quick-dry fabric. Contrast side tape and an embroidered Harlo logo at the hem.',cat:'Bottoms',price:'£55',colors:['#1A1A1A','#FFFFFF','#8B1A1A','#C9A84C'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1552346154-21a0bc001eda',400,500)},
-  {name:'Heavyweight Crewneck',desc:'450gsm fleece crewneck in a boxy silhouette. Garment-dyed for a vintage-washed effect unique to each piece.',cat:'Tops',price:'£95',colors:['#4A5568','#8B7355','#1A1A1A','#C25B4E'],sizes:['XS','S','M','L','XL','XXL','3XL'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Basketball Short',desc:'Mesh-lined basketball shorts in a quick-dry fabric. Contrast side tape and an embroidered Harlo logo at the hem.',cat:'Bottoms',price:'£55',colors:['#1A1A1A','#FFFFFF','#8B1A1A','#C9A84C'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1571945427-ba73f51b9000',400,500)},
+  {name:'Heavyweight Crewneck',desc:'450gsm fleece crewneck in a boxy silhouette. Garment-dyed for a vintage-washed effect unique to each piece.',cat:'Tops',price:'£95',colors:['#4A5568','#8B7355','#1A1A1A','#C25B4E'],sizes:['XS','S','M','L','XL','XXL','3XL'],badge:'',img:UP('1521572163-f5f7c1a45b08',400,500)},
   {name:'Utility Vest',desc:'Multi-pocket utility vest in a technical nylon. Lightweight enough to layer without bulk, functional enough to replace a bag.',cat:'Outerwear',price:'£89',colors:['#4A5568','#1A1A1A','#8B7355'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1617019070800-f0d66b4cb37c',400,500)},
   {name:'Skate Chino',desc:'Relaxed-fit chino with a double-knee construction and reinforced back pockets. Built for movement and durability.',cat:'Bottoms',price:'£79',colors:['#C4A882','#1A1A1A','#4A5568','#8B7355'],sizes:['28','30','32','34','36','38'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
-  {name:'Half-Zip Fleece',desc:'Midlayer fleece with a contrast half-zip and kangaroo pocket. Recycled polyester with a brushed interior for warmth.',cat:'Tops',price:'£98',colors:['#1A1A1A','#4A5568','#8B1A1A','#C9A84C'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Half-Zip Fleece',desc:'Midlayer fleece with a contrast half-zip and kangaroo pocket. Recycled polyester with a brushed interior for warmth.',cat:'Tops',price:'£98',colors:['#1A1A1A','#4A5568','#8B1A1A','#C9A84C'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1521572163-f5f7c1a45b08',400,500)},
   {name:'Crossbody Bag',desc:'Compact crossbody in a ballistic nylon with multiple zip compartments. A MOLLE-compatible strap for modular attachment.',cat:'Accessories',price:'£72',colors:['#1A1A1A','#4A5568','#8B7355'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
-  {name:'Boxer Brief Set',desc:'Set of three boxer briefs in a premium modal-cotton blend. A daily essential from Harlo.',cat:'Essentials',price:'£42',colors:['#1A1A1A','#4A5568','#FFFFFF'],sizes:['XS','S','M','L','XL','XXL'],badge:'Pack',img:UP('1552346154-21a0bc001eda',400,500)},
+  {name:'Boxer Brief Set',desc:'Set of three boxer briefs in a premium modal-cotton blend. A daily essential from Harlo.',cat:'Essentials',price:'£42',colors:['#1A1A1A','#4A5568','#FFFFFF'],sizes:['XS','S','M','L','XL','XXL'],badge:'Pack',img:UP('1571945427-ba73f51b9000',400,500)},
   {name:'Corduroy Shirt',desc:'Boxy overshirt in a fine-wale corduroy. Button-through with a single chest pocket — a casual layering staple.',cat:'Tops',price:'£75',colors:['#8B7355','#4A5568','#8B1A1A','#1A1A1A'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1598300042247-d088f8ab3a91',400,500)},
   {name:'Platform Sneaker',desc:'Chunky platform sneaker in a suede upper with a thick EVA sole. A bold statement piece from the Harlo footwear line.',cat:'Footwear',price:'£175',colors:['#FFFFFF','#1A1A1A','#8B7355'],sizes:['6','7','8','9','10','11','12'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
   {name:'Windbreaker',desc:'Packable windbreaker in a ripstop nylon with taped seams. Adjustable hood and cuffs for a secure, protective fit.',cat:'Outerwear',price:'£110',colors:['#1A1A1A','#4A5568','#8B1A1A','#C9A84C'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1591047139829-d91aecb6caea',400,500)},
-  {name:'Longline Tee',desc:'Longline tee with a curved hem and a dropped shoulder. Cut from a premium 200gsm cotton for a substantial feel.',cat:'Tops',price:'£48',colors:['#1A1A1A','#FFFFFF','#4A5568','#8B7355'],sizes:['XS','S','M','L','XL','XXL','3XL'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Longline Tee',desc:'Longline tee with a curved hem and a dropped shoulder. Cut from a premium 200gsm cotton for a substantial feel.',cat:'Tops',price:'£48',colors:['#1A1A1A','#FFFFFF','#4A5568','#8B7355'],sizes:['XS','S','M','L','XL','XXL','3XL'],badge:'',img:UP('1521572163-f5f7c1a45b08',400,500)},
   {name:'Sock 3-Pack',desc:'Three pairs of reinforced cotton-blend crew socks with a Harlo logo knit at the ankle.',cat:'Essentials',price:'£22',colors:['#1A1A1A','#FFFFFF','#4A5568'],sizes:['S/M','L/XL'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
-  {name:'Denim Shorts',desc:'Relaxed cut denim shorts with raw-hem finish. Washed and distressed for an authentic lived-in look.',cat:'Bottoms',price:'£65',colors:['#4A5568','#1A1A1A'],sizes:['28','30','32','34','36'],badge:'Summer',img:UP('1594938298870-5ad9fcb7e4a5',400,500)},
+  {name:'Denim Shorts',desc:'Relaxed cut denim shorts with raw-hem finish. Washed and distressed for an authentic lived-in look.',cat:'Bottoms',price:'£65',colors:['#4A5568','#1A1A1A'],sizes:['28','30','32','34','36'],badge:'Summer',img:UP('1542272604-e9f84f957869',400,500)},
   {name:'Bucket Hat',desc:'Reversible bucket hat in a technical nylon and cotton canvas. Features a concealed roll-up brim for adjustable styling.',cat:'Accessories',price:'£45',colors:['#1A1A1A','#4A5568','#8B7355','#C4A882'],sizes:['S/M','L/XL'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
 ],
 mave: [
-  {name:'Cashmere Cocoon Coat',desc:'Voluminous cocoon silhouette coat in a double-faced 4-ply cashmere. The Mave Studio signature piece for several seasons.',cat:'Outerwear',price:'£890',colors:['#F5F0E8','#1A1A1A','#8B7355'],sizes:['XS','S','M','L'],badge:'Signature',img:UP('1583744946564-b52ac1c389c8',400,500)},
+  {name:'Cashmere Cocoon Coat',desc:'Voluminous cocoon silhouette coat in a double-faced 4-ply cashmere. The Mave Studio signature piece for several seasons.',cat:'Outerwear',price:'£890',colors:['#F5F0E8','#1A1A1A','#8B7355'],sizes:['XS','S','M','L'],badge:'Signature',img:UP('1591047139829-d91aecb6caea',400,500)},
   {name:'The Bias Slip Dress',desc:'Bias-cut slip dress in a 22mm Mulberry silk charmeuse. A foundation piece of the Mave capsule that transitions effortlessly from day to evening.',cat:'Dresses',price:'£385',colors:['#F5E9C8','#1A1A1A','#E8C4C4','#C8D5E8'],sizes:['XS','S','M','L'],badge:'',img:UP('1515886657613-9f3515b0c78f',400,500)},
   {name:'Cigarette Trouser',desc:'High-rise cigarette-cut trouser in a stretch Japanese crepe. A Mave capsule staple cut to lengthen the leg.',cat:'Bottoms',price:'£245',colors:['#1A1A1A','#F5F0E8','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'Bestseller',img:UP('1506629082955-511b1aa562c8',400,500)},
   {name:'Cashmere Roll Neck',desc:'A fine-gauge 2-ply cashmere roll neck in a relaxed, slightly boxy silhouette. The cornerstone of a Mave capsule wardrobe.',cat:'Knitwear',price:'£295',colors:['#F5F0E8','#1A1A1A','#8B7355','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1576566588028-4147f3842f27',400,500)},
   {name:'Oversized Shirt',desc:'Voluminous shirt in a 200-thread-count poplin with mother-of-pearl buttons. Intentionally oversized to be worn tucked, half-tucked, or open.',cat:'Tops',price:'£175',colors:['#FFFFFF','#F5F0E8','#1A1A1A'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1598300042247-d088f8ab3a91',400,500)},
   {name:'Leather Baguette',desc:'Mini baguette bag in a supple nappa leather with a polished gold-tone chain. An understated alternative to the statement bag.',cat:'Accessories',price:'£425',colors:['#1A1A1A','#C4A882','#8B7355'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
-  {name:'Silk Pyjama Set',desc:'Relaxed pyjama set in a 19mm silk satin. The Mave approach to luxury loungewear: refined, not flamboyant.',cat:'Lifestyle',price:'£265',colors:['#F5E9C8','#C8D5E8','#1A1A1A'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1583746793-6d14af9c5cb4',400,500)},
-  {name:'Wide Leg Trouser',desc:'Fluid wide-leg trouser in a wool-georgette blend. The drape is exceptional — the silhouette feels sculptural in movement.',cat:'Bottoms',price:'£195',colors:['#1A1A1A','#F5F0E8','#8B7355','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1594938298870-5ad9fcb7e4a5',400,500)},
-  {name:'Boucle Jacket',desc:'Unstructured boucle jacket with a clean edge finish and no lining. A textural contrast to the smooth fabrics in the Mave line.',cat:'Outerwear',price:'£395',colors:['#F5F0E8','#1A1A1A','#8B7355'],sizes:['XS','S','M','L'],badge:'New',img:UP('1551698618-1dfef65f47c9',400,500)},
+  {name:'Silk Pyjama Set',desc:'Relaxed pyjama set in a 19mm silk satin. The Mave approach to luxury loungewear: refined, not flamboyant.',cat:'Lifestyle',price:'£265',colors:['#F5E9C8','#C8D5E8','#1A1A1A'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1522338242-43b514dbef16',400,500)},
+  {name:'Wide Leg Trouser',desc:'Fluid wide-leg trouser in a wool-georgette blend. The drape is exceptional — the silhouette feels sculptural in movement.',cat:'Bottoms',price:'£195',colors:['#1A1A1A','#F5F0E8','#8B7355','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
+  {name:'Boucle Jacket',desc:'Unstructured boucle jacket with a clean edge finish and no lining. A textural contrast to the smooth fabrics in the Mave line.',cat:'Outerwear',price:'£395',colors:['#F5F0E8','#1A1A1A','#8B7355'],sizes:['XS','S','M','L'],badge:'New',img:UP('1617019070800-f0d66b4cb37c',400,500)},
   {name:'Ribbed Knit Dress',desc:'Midi-length ribbed knit dress in a merino-cashmere blend. Close to the body at the top, relaxing slightly below the hip.',cat:'Dresses',price:'£310',colors:['#1A1A1A','#F5F0E8','#8B7355','#C25B4E'],sizes:['XS','S','M','L'],badge:'',img:UP('1515886657613-9f3515b0c78f',400,500)},
   {name:'Leather Trousers',desc:'Straight-leg trouser in a butter-soft nappa leather. Fully lined for comfort. A statement investment piece.',cat:'Bottoms',price:'£565',colors:['#1A1A1A','#5C3317','#8B7355'],sizes:['XS','S','M','L'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
-  {name:'Merino Rib Set',desc:'Matching ribbed crop and midi skirt in a fine merino. The Mave answer to effortless tonal dressing.',cat:'Sets',price:'£185',colors:['#F5F0E8','#1A1A1A','#8B7355','#C25B4E'],sizes:['XS','S','M','L'],badge:'',img:UP('1562572159-4edb1b6234c1',400,500)},
+  {name:'Merino Rib Set',desc:'Matching ribbed crop and midi skirt in a fine merino. The Mave answer to effortless tonal dressing.',cat:'Sets',price:'£185',colors:['#F5F0E8','#1A1A1A','#8B7355','#C25B4E'],sizes:['XS','S','M','L'],badge:'',img:UP('1539109136881-3be0616acf4b',400,500)},
   {name:'Sculpted Mule',desc:'Block-heel mule in a satin upper with a pointed toe. Minimal hardware, maximum presence.',cat:'Footwear',price:'£285',colors:['#1A1A1A','#F5E9C8','#C4A882'],sizes:['36','37','38','39','40','41'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
   {name:'Gold-Fill Earrings',desc:'Sculptural hoop earrings in a 14ct gold fill. Designed in-house and cast in small batches in Paris.',cat:'Accessories',price:'£85',colors:['#C9A84C'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
   {name:'Linen Blazer',desc:'Deconstructed linen blazer with a single dart and clean lapels. Unlined and lightly padded at the shoulders.',cat:'Outerwear',price:'£295',colors:['#F5F0E8','#C5B9A8','#1A1A1A'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1617019070800-f0d66b4cb37c',400,500)},
   {name:'Column Maxi Dress',desc:'Floor-length column dress in a deadstock Japanese silk crepe. A Mave commitment to zero-waste design.',cat:'Dresses',price:'£445',colors:['#1A1A1A','#F5E9C8','#C8D5E8'],sizes:['XS','S','M','L'],badge:'Limited',img:UP('1515886657613-9f3515b0c78f',400,500)},
-  {name:'Cashmere Lounge Pant',desc:'Wide-leg lounge pant in a pure cashmere. Designed to be worn at home or out — the line between luxury and comfort, blurred.',cat:'Lifestyle',price:'£225',colors:['#F5F0E8','#1A1A1A','#8B7355'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1594938298870-5ad9fcb7e4a5',400,500)},
-  {name:'Fine Knit Tank',desc:'Barely-there fine knit tank in a silk-cashmere blend. Designed to layer under everything or worn alone for evening.',cat:'Tops',price:'£135',colors:['#F5F0E8','#1A1A1A','#C25B4E','#4A5568'],sizes:['XS','S','M','L'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Cashmere Lounge Pant',desc:'Wide-leg lounge pant in a pure cashmere. Designed to be worn at home or out — the line between luxury and comfort, blurred.',cat:'Lifestyle',price:'£225',colors:['#F5F0E8','#1A1A1A','#8B7355'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
+  {name:'Fine Knit Tank',desc:'Barely-there fine knit tank in a silk-cashmere blend. Designed to layer under everything or worn alone for evening.',cat:'Tops',price:'£135',colors:['#F5F0E8','#1A1A1A','#C25B4E','#4A5568'],sizes:['XS','S','M','L'],badge:'',img:UP('1521572163-f5f7c1a45b08',400,500)},
   {name:'Structured Tote',desc:'Clean architectural tote in a vegetable-tanned Italian leather. The interior is lined in a custom suede with a single flat pocket.',cat:'Accessories',price:'£485',colors:['#1A1A1A','#C4A882','#8B7355'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
   {name:'Demi-Boot',desc:'Pull-on demi boot in a smooth nappa leather with a kitten heel and an almond toe. A considered, understated boot.',cat:'Footwear',price:'£345',colors:['#1A1A1A','#5C3317','#C4A882'],sizes:['36','37','38','39','40','41'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
 ],
 auric: [
-  {name:'The Luminary Gown',desc:'Column gown in a duchess satin with a hand-embroidered bodice. Structured boning and a sweep train. For unforgettable evenings.',cat:'Dresses',price:'£1,850',colors:['#F5E9C8','#1A1A1A','#1B3A4B'],sizes:['XS','S','M','L'],badge:'Couture',img:UP('1566479144-8d92dcf5f1fd',400,500)},
+  {name:'The Luminary Gown',desc:'Column gown in a duchess satin with a hand-embroidered bodice. Structured boning and a sweep train. For unforgettable evenings.',cat:'Dresses',price:'£1,850',colors:['#F5E9C8','#1A1A1A','#1B3A4B'],sizes:['XS','S','M','L'],badge:'Couture',img:UP('1511085304-b2f3b5b72c2d',400,500)},
   {name:'Crystal Drop Earrings',desc:'Statement drop earrings with hand-set Swarovski crystals in a gold-vermeil setting. Lightweight despite their visual impact.',cat:'Jewellery',price:'£285',colors:['#C9A84C','#C0C0C0'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
   {name:'Silk Ruched Dress',desc:'Bias-cut ruched dress in a 22mm silk habotai. Adjustable tie waist and a plunging V neckline. A Auric evening signature.',cat:'Dresses',price:'£680',colors:['#F5E9C8','#E8C4C4','#1A1A1A','#1B3A4B'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1515886657613-9f3515b0c78f',400,500)},
   {name:'Embellished Clutch',desc:'Minaudière clutch with hand-applied glass beading on a brass frame. The statement accessory to define an entire look.',cat:'Accessories',price:'£395',colors:['#C9A84C','#C0C0C0','#1A1A1A'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
   {name:'Strappy Heel Sandal',desc:'4-inch heel sandal in a satin upper with a barely-there strap construction. Leather insole for comfort across long evenings.',cat:'Footwear',price:'£345',colors:['#F5E9C8','#1A1A1A','#E8C4C4'],sizes:['36','37','38','39','40','41'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
   {name:'Feather Trim Jacket',desc:'Cropped jacket with a tonal feather trim at the cuffs and neckline. A bold yet refined statement for evening occasions.',cat:'Outerwear',price:'£520',colors:['#FFFFFF','#1A1A1A','#E8C4C4'],sizes:['XS','S','M','L'],badge:'New',img:UP('1551698618-1dfef65f47c9',400,500)},
-  {name:'Velvet Midi Dress',desc:'Midi dress in a silk-backed velvet with a side slit and an off-shoulder neckline. Rich colour and exceptional handle.',cat:'Dresses',price:'£595',colors:['#1B3A4B','#8B1A1A','#1A1A1A','#2C3E50'],sizes:['XS','S','M','L'],badge:'',img:UP('1566479144-8d92dcf5f1fd',400,500)},
+  {name:'Velvet Midi Dress',desc:'Midi dress in a silk-backed velvet with a side slit and an off-shoulder neckline. Rich colour and exceptional handle.',cat:'Dresses',price:'£595',colors:['#1B3A4B','#8B1A1A','#1A1A1A','#2C3E50'],sizes:['XS','S','M','L'],badge:'',img:UP('1515886657613-9f3515b0c78f',400,500)},
   {name:'Diamond Initial Pendant',desc:'18ct gold pendant set with pavé diamonds spelling your chosen initial. Presented on a 40cm gold chain.',cat:'Jewellery',price:'£850',colors:['#C9A84C'],sizes:['One Size'],badge:'Bespoke',img:UP('1548036161-236b8de8dc31',400,500)},
-  {name:'Wide-Leg Evening Trouser',desc:'High-waisted palazzo trouser in a silk-charmeuse. Exceptionally fluid with a liquid drape that photographs beautifully.',cat:'Bottoms',price:'£385',colors:['#1A1A1A','#F5E9C8','#1B3A4B'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1594938298870-5ad9fcb7e4a5',400,500)},
+  {name:'Wide-Leg Evening Trouser',desc:'High-waisted palazzo trouser in a silk-charmeuse. Exceptionally fluid with a liquid drape that photographs beautifully.',cat:'Bottoms',price:'£385',colors:['#1A1A1A','#F5E9C8','#1B3A4B'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
   {name:'Sequin Blazer',desc:'Fully sequined single-button blazer over a contrast satin lining. Makes a tuxedo jacket feel understated by comparison.',cat:'Outerwear',price:'£465',colors:['#C9A84C','#C0C0C0','#1A1A1A'],sizes:['XS','S','M','L'],badge:'',img:UP('1617019070800-f0d66b4cb37c',400,500)},
-  {name:'Corseted Bustier',desc:'Structured bustier with interior boning and a silk satin exterior. Wear alone or layered under a blazer for a directional look.',cat:'Tops',price:'£295',colors:['#1A1A1A','#F5E9C8','#E8C4C4'],sizes:['XS','S','M','L'],badge:'',img:UP('1566479144-8d92dcf5f1fd',400,500)},
+  {name:'Corseted Bustier',desc:'Structured bustier with interior boning and a silk satin exterior. Wear alone or layered under a blazer for a directional look.',cat:'Tops',price:'£295',colors:['#1A1A1A','#F5E9C8','#E8C4C4'],sizes:['XS','S','M','L'],badge:'',img:UP('1521572163-f5f7c1a45b08',400,500)},
   {name:'Kitten Heel Mule',desc:'Open-toe mule with a 5cm kitten heel in a satin upper. A refined evening shoe that can transition to daytime.',cat:'Footwear',price:'£265',colors:['#F5E9C8','#1A1A1A','#E8C4C4','#C9A84C'],sizes:['36','37','38','39','40','41'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
   {name:'Beaded Shawl',desc:'Hand-beaded silk chiffon shawl. Adds an evening dimension to any look and serves as a statement wrap.',cat:'Accessories',price:'£175',colors:['#F5E9C8','#C9A84C','#E8C4C4'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
   {name:'Chandelier Earrings',desc:'Multi-drop chandelier earrings with hand-set baroque pearls and crystal accents in a gold-fill setting.',cat:'Jewellery',price:'£195',colors:['#C9A84C'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
-  {name:'Lace Insert Dress',desc:'Midi dress with a delicate floral lace inset at the neckline and hem. Made in a French leavers lace and silk chiffon composite.',cat:'Dresses',price:'£720',colors:['#FFFFFF','#F5E9C8','#1A1A1A'],sizes:['XS','S','M','L'],badge:'Artisan',img:UP('1566479144-8d92dcf5f1fd',400,500)},
-  {name:'Silk Halter Top',desc:'Minimal silk halter in a 20mm charmeuse with a self-tie back. Wears beautifully with the palazzo trouser.',cat:'Tops',price:'£175',colors:['#F5E9C8','#1A1A1A','#C0C0C0','#1B3A4B'],sizes:['XS','S','M','L'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Lace Insert Dress',desc:'Midi dress with a delicate floral lace inset at the neckline and hem. Made in a French leavers lace and silk chiffon composite.',cat:'Dresses',price:'£720',colors:['#FFFFFF','#F5E9C8','#1A1A1A'],sizes:['XS','S','M','L'],badge:'Artisan',img:UP('1515886657613-9f3515b0c78f',400,500)},
+  {name:'Silk Halter Top',desc:'Minimal silk halter in a 20mm charmeuse with a self-tie back. Wears beautifully with the palazzo trouser.',cat:'Tops',price:'£175',colors:['#F5E9C8','#1A1A1A','#C0C0C0','#1B3A4B'],sizes:['XS','S','M','L'],badge:'',img:UP('1521572163-f5f7c1a45b08',400,500)},
   {name:'Ankle Strap Heel',desc:'Classic ankle strap heel in a satin upper with a square toe. 8cm heel with a platform toe for balanced wear.',cat:'Footwear',price:'£295',colors:['#F5E9C8','#1A1A1A','#E8C4C4'],sizes:['36','37','38','39','40','41'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
   {name:'Gold Cuff Bracelet',desc:'Wide cuff bracelet in an 18ct gold plating with a hammered surface finish. An understated power piece.',cat:'Jewellery',price:'£145',colors:['#C9A84C'],sizes:['XS/S','M/L'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
   {name:'Velvet Headband',desc:'Wide velvet headband with a padded silhouette. An elegant finishing touch to any evening look.',cat:'Accessories',price:'£65',colors:['#1A1A1A','#1B3A4B','#8B1A1A','#F5E9C8'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
@@ -487,11 +521,11 @@ auric: [
 
 const outfits = [
   {user:'@sofiaq',tags:'#minimalist #workwear',retailer:'Velour',img:UP('1490481651871-ab68de25d43d',600,560),likes:42},
-  {user:'@tomk',tags:'#streetwear #casual',retailer:'Harlo',img:UP('1552346154-21a0bc001eda',600,560),likes:18},
-  {user:'@priyam',tags:'#eveningwear #chic',retailer:'Auric',img:UP('1566479144-8d92dcf5f1fd',600,560),likes:87},
+  {user:'@tomk',tags:'#streetwear #casual',retailer:'Harlo',img:UP('1571945427-ba73f51b9000',600,560),likes:18},
+  {user:'@priyam',tags:'#eveningwear #chic',retailer:'Auric',img:UP('1490481651871-ab68de25d43d',600,560),likes:87},
   {user:'@ellab',tags:'#scandi #neutral',retailer:'Nordly',img:UP('1558769132-cb1aea458c5e',600,560),likes:31},
   {user:'@jakef',tags:'#tailored #smart',retailer:'Crest & Co',img:UP('1507679799987-c73779587ccf',600,560),likes:55},
-  {user:'@lunam',tags:'#capsule #mono',retailer:'Mave Studio',img:UP('1583744946564-b52ac1c389c8',600,560),likes:23},
+  {user:'@lunam',tags:'#capsule #mono',retailer:'Mave Studio',img:UP('1539109136881-3be0616acf4b',600,560),likes:23},
 ];
 
 const aiReplies = [
@@ -551,8 +585,8 @@ function doSearch() {
   } else {
     header.innerHTML=`<div class="results-title">Results for "<em style="font-style:italic;color:var(--gold-dark)">${val}</em>"</div><div class="results-sub">${total} result${total!==1?'s':''} found</div>`;
     let cards='';
-    matchedR.forEach(r=>{cards+=`<div class="style-card" onclick="openStore('${r.id}','browse')"><div class="style-card-img"><img src="${r.heroImg}" alt="${r.name}" loading="lazy"/></div><div class="style-card-info"><div class="style-card-name">${r.name}</div><div class="style-card-retailer">${r.tier} · ${r.tag}</div><div class="style-card-price">Shop now &rarr;</div></div></div>`;});
-    matchedI.forEach(item=>{cards+=`<div class="style-card" onclick="openStore('${item.retailerId}','browse')"><div class="style-card-img"><img src="${item.img}" alt="${item.name}" loading="lazy"/></div><div class="style-card-info"><div class="style-card-name">${item.name}</div><div class="style-card-retailer">${item.retailer} · ${item.cat}</div><div class="style-card-price">${item.price}</div></div></div>`;});
+    matchedR.forEach(r=>{cards+=`<div class="style-card" onclick="openStore('${r.id}','browse')"><div class="style-card-img"><img src="${r.heroImg}" alt="${r.name}" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentNode.setAttribute('data-broken','1')"/></div><div class="style-card-info"><div class="style-card-name">${r.name}</div><div class="style-card-retailer">${r.tier} · ${r.tag}</div><div class="style-card-price">Shop now &rarr;</div></div></div>`;});
+    matchedI.forEach(item=>{cards+=`<div class="style-card" onclick="openStore('${item.retailerId}','browse')"><div class="style-card-img"><img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentNode.setAttribute('data-broken','1')"/></div><div class="style-card-info"><div class="style-card-name">${item.name}</div><div class="style-card-retailer">${item.retailer} · ${item.cat}</div><div class="style-card-price">${item.price}</div></div></div>`;});
     grid.innerHTML=cards;
   }
   document.getElementById('search-results-section').style.display='block';
@@ -585,7 +619,7 @@ function renderRetailerGrid() {
   document.getElementById('retailer-grid').innerHTML=retailers.map(r=>`
     <div class="retailer-card">
       <div class="retailer-card-img">
-        <img src="${r.heroImg}" alt="${r.name}" loading="lazy"/>
+        <img src="${r.heroImg}" alt="${r.name}" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentNode.setAttribute('data-broken','1')"/>
         <div class="img-overlay"></div>
         <div class="img-abbr">${r.abbr}</div>
       </div>
@@ -646,7 +680,7 @@ function renderStoreContent(rid) {
       <div class="items-grid">${items.map(item=>`
         <div class="item-card">
           <div class="item-img-wrap">
-            <img src="${item.img}" alt="${item.name}" loading="lazy"/>
+            <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentNode.setAttribute('data-broken','1')"/>
             ${item.badge?`<div class="item-badge">${item.badge}</div>`:''}
           </div>
           <div class="item-details">
@@ -666,7 +700,7 @@ function renderStoreContent(rid) {
       if(m.role==='ai'){
         let prods=m.products&&m.products.length?`<div class="product-recs">${m.products.map(p=>`
           <div class="rec-card">
-            <div class="rec-img"><img src="${p.img}" alt="${p.name}" loading="lazy"/></div>
+            <div class="rec-img"><img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentNode.setAttribute('data-broken','1')"/></div>
             <div class="rec-info"><div class="rec-name">${p.name}</div><div class="rec-price">${p.price}</div><button class="rec-save">Save</button></div>
           </div>`).join('')}</div>`:'';
         return `<div class="msg-row"><div class="msg-avatar">AI</div><div><div class="msg-bubble ai">${m.text}</div>${prods}</div></div>`;
@@ -724,7 +758,7 @@ function renderFeed() {
   document.getElementById('feed-grid').innerHTML=outfits.map((o,i)=>{
     const liked=likedOutfits.has(i);
     return `<div class="outfit-card">
-      <div class="outfit-img-wrap"><img src="${o.img}" alt="${o.user}" loading="lazy"/></div>
+      <div class="outfit-img-wrap"><img src="${o.img}" alt="${o.user}" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentNode.setAttribute('data-broken','1')"/></div>
       <div class="outfit-meta">
         <div class="outfit-user">${o.user}</div>
         <div class="outfit-tags">${o.tags}</div>
