@@ -1,276 +1,925 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drape — Curated Fashion, One Destination</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  #drape-root { max-width: 390px; margin: 0 auto; background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: 24px; overflow: hidden; min-height: 700px; display: flex; flex-direction: column; font-family: var(--font-sans); }
-  .screen { flex: 1; display: flex; flex-direction: column; }
-  .top-bar { padding: 18px 16px 12px; border-bottom: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); }
-  .top-bar h1 { font-size: 22px; font-weight: 500; color: #3C3489; letter-spacing: -0.5px; }
-  .top-bar p { font-size: 13px; color: var(--color-text-secondary); margin-top: 2px; }
-  .search-bar { display: flex; align-items: center; gap: 8px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 8px 12px; margin: 10px 16px 0; }
-  .search-bar input { border: none; background: transparent; font-size: 14px; color: var(--color-text-primary); flex: 1; outline: none; }
-  .search-bar i { color: var(--color-text-secondary); font-size: 16px; }
-  .scroll-area { flex: 1; overflow-y: auto; padding: 16px; }
-  .retailer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .retailer-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 16px 12px; cursor: pointer; transition: border-color 0.15s; }
-  .retailer-card:hover { border-color: var(--color-border-secondary); }
-  .brand-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 500; margin-bottom: 10px; }
-  .brand-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
-  .brand-tag { font-size: 11px; color: var(--color-text-secondary); margin-top: 3px; }
-  .nav-bar { display: flex; border-top: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); }
-  .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 10px 0 14px; cursor: pointer; gap: 3px; font-size: 11px; color: var(--color-text-secondary); }
-  .nav-item.active { color: #534AB7; }
-  .nav-item i { font-size: 20px; }
-  .chat-header { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 0.5px solid var(--color-border-tertiary); }
-  .chat-header .back-btn { background: none; border: none; cursor: pointer; color: #534AB7; font-size: 20px; padding: 0; }
-  .brand-avatar { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; }
-  .chat-brand-name { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
-  .chat-brand-sub { font-size: 12px; color: var(--color-text-secondary); }
-  .messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
-  .msg { max-width: 85%; }
-  .msg.ai { align-self: flex-start; }
-  .msg.user { align-self: flex-end; }
-  .msg-bubble { padding: 10px 14px; border-radius: 16px; font-size: 14px; line-height: 1.5; }
-  .msg.ai .msg-bubble { background: var(--color-background-secondary); color: var(--color-text-primary); border-bottom-left-radius: 4px; }
-  .msg.user .msg-bubble { background: #534AB7; color: #EEEDFE; border-bottom-right-radius: 4px; }
-  .product-row { display: flex; gap: 8px; margin-top: 8px; overflow-x: auto; padding-bottom: 4px; }
-  .product-card { min-width: 110px; background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden; flex-shrink: 0; }
-  .product-img { height: 80px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
-  .product-info { padding: 6px 8px; }
-  .product-name { font-size: 11px; font-weight: 500; color: var(--color-text-primary); }
-  .product-price { font-size: 11px; color: var(--color-text-secondary); margin-top: 1px; }
-  .product-save { width: 100%; margin-top: 5px; font-size: 11px; padding: 4px 0; background: #EEEDFE; color: #3C3489; border: none; border-radius: 4px; cursor: pointer; font-weight: 500; }
-  .escalate-btn { margin: 0 16px 12px; padding: 10px; border: 0.5px solid #534AB7; border-radius: var(--border-radius-md); background: transparent; color: #534AB7; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
-  .escalate-btn i { font-size: 16px; }
-  .chat-input-row { display: flex; gap: 8px; padding: 10px 16px 16px; border-top: 0.5px solid var(--color-border-tertiary); }
-  .chat-input-row input { flex: 1; padding: 9px 12px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); background: var(--color-background-secondary); font-size: 14px; color: var(--color-text-primary); outline: none; }
-  .send-btn { width: 36px; height: 36px; border-radius: 50%; background: #534AB7; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #EEEDFE; font-size: 16px; flex-shrink: 0; }
-  .feed-header { padding: 18px 16px 12px; border-bottom: 0.5px solid var(--color-border-tertiary); }
-  .feed-header h2 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
-  .feed-header p { font-size: 13px; color: var(--color-text-secondary); margin-top: 2px; }
-  .feed-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 14px; }
-  .outfit-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
-  .outfit-img { height: 140px; display: flex; align-items: center; justify-content: center; font-size: 40px; }
-  .outfit-info { padding: 8px 10px 10px; }
-  .outfit-user { font-size: 12px; font-weight: 500; color: var(--color-text-primary); }
-  .outfit-tags { font-size: 11px; color: #534AB7; margin-top: 3px; line-height: 1.4; }
-  .outfit-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
-  .outfit-retailer { font-size: 10px; color: var(--color-text-secondary); }
-  .like-btn { background: none; border: none; cursor: pointer; color: var(--color-text-secondary); font-size: 15px; display: flex; align-items: center; gap: 3px; font-size: 11px; }
-  .like-btn.liked { color: #D4537E; }
-  .fab { position: sticky; bottom: 16px; left: 100%; margin-right: 16px; width: 44px; height: 44px; border-radius: 50%; background: #534AB7; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #EEEDFE; font-size: 20px; }
-  .escalated-msg { background: #E1F5EE; border-radius: 10px; padding: 10px 12px; font-size: 13px; color: #085041; display: flex; align-items: center; gap: 8px; margin: 0 16px 12px; }
-  .typing { display: flex; gap: 4px; align-items: center; padding: 10px 14px; }
-  .typing span { width: 6px; height: 6px; background: var(--color-text-secondary); border-radius: 50%; animation: blink 1.2s infinite; }
-  .typing span:nth-child(2) { animation-delay: 0.2s; }
-  .typing span:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes blink { 0%,80%,100%{opacity:0.2} 40%{opacity:1} }
+:root {
+  --gold: #C9A84C;
+  --gold-light: #F5E9C8;
+  --gold-mid: #E8D49A;
+  --gold-dark: #8B6914;
+  --charcoal: #1A1A1A;
+  --charcoal-mid: #2A2A2A;
+  --charcoal-light: #3A3A3A;
+  --off-white: #FAF8F4;
+  --warm-white: #FFFFFF;
+  --mid: #7A7269;
+  --light-border: #E8E0D0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Jost', sans-serif; background: var(--off-white); color: var(--charcoal); min-height: 100vh; }
+
+/* NAV */
+nav {
+  background: var(--charcoal);
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #2A2A2A;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #9A9088;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-actions { display: flex; align-items: center; gap: 16px; }
+.nav-btn {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.nav-btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
+.nav-btn-outline:hover { background: var(--gold); color: var(--charcoal); }
+.nav-btn-fill { background: var(--gold); border: 1px solid var(--gold); color: var(--charcoal); font-weight: 500; }
+.nav-btn-fill:hover { background: var(--gold-dark); border-color: var(--gold-dark); color: var(--warm-white); }
+
+/* HERO */
+.hero {
+  background: var(--charcoal);
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 48px;
+}
+.hero-bg-text {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 220px;
+  font-weight: 300;
+  color: #222;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: -8px;
+}
+.hero-content { position: relative; z-index: 2; max-width: 580px; }
+.hero-tag {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  font-weight: 300;
+  color: var(--warm-white);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+.hero-title em { font-style: italic; color: var(--gold); }
+.hero-desc {
+  font-size: 15px;
+  color: #9A9088;
+  line-height: 1.7;
+  max-width: 420px;
+  margin-bottom: 36px;
+  font-weight: 300;
+}
+.hero-ctas { display: flex; gap: 14px; align-items: center; }
+.btn-primary {
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  background: var(--gold);
+  color: var(--charcoal);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-primary:hover { background: #B8943E; }
+.btn-ghost {
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--warm-white);
+  border: 1px solid #444;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* STATS BAR */
+.stats-bar {
+  background: var(--charcoal-mid);
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  padding: 20px 48px;
+  display: flex;
+  justify-content: center;
+  gap: 64px;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--gold);
+}
+.stat-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #6A6058;
+  margin-top: 2px;
+}
+
+/* MAIN CONTENT */
+main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+
+/* SECTION HEADER */
+.section-header { padding: 60px 0 32px; display: flex; align-items: flex-end; justify-content: space-between; }
+.section-eyebrow {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--charcoal);
+  line-height: 1.2;
+}
+.section-title em { font-style: italic; }
+.section-link {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-mid);
+  padding-bottom: 2px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.section-link:hover { color: var(--gold); }
+
+/* RETAILER GRID */
+.retailer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding-bottom: 60px; }
+.retailer-card {
+  background: var(--warm-white);
+  border: 1px solid var(--light-border);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+  animation: fadeUp 0.4s ease both;
+}
+.retailer-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+.retailer-card-banner {
+  background: var(--charcoal);
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.retailer-card-banner::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+}
+.retailer-abbr {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 4px;
+  opacity: 0.8;
+}
+.retailer-info { padding: 20px; }
+.retailer-tier {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  background: var(--gold-light);
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 1px;
+  margin-bottom: 8px;
+}
+.retailer-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-bottom: 4px;
+}
+.retailer-tag { font-size: 13px; color: var(--mid); font-weight: 300; margin-bottom: 16px; }
+.retailer-actions { display: flex; gap: 8px; }
+.card-btn {
+  flex: 1;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 9px 0;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.card-btn-dark { background: var(--charcoal); color: var(--gold); border: 1px solid var(--charcoal); }
+.card-btn-dark:hover { background: var(--charcoal-light); }
+.card-btn-outline { background: transparent; color: var(--charcoal); border: 1px solid var(--light-border); }
+.card-btn-outline:hover { border-color: var(--gold); color: var(--gold-dark); }
+
+/* STORE PAGE */
+#store-page { display: none; }
+.store-hero {
+  background: var(--charcoal);
+  padding: 48px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border-bottom: 1px solid #333;
+}
+.store-back {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: none;
+  border: 1px solid #444;
+  border-radius: 2px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.store-back:hover { border-color: var(--gold); }
+.store-back svg { width: 14px; height: 14px; }
+.store-hero-abbr {
+  width: 60px; height: 60px;
+  background: var(--charcoal-mid);
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+.store-hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--warm-white);
+}
+.store-hero-tag { font-size: 13px; color: #7A7269; font-weight: 300; }
+
+.store-tabs {
+  background: var(--warm-white);
+  border-bottom: 1px solid var(--light-border);
+  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.store-tab {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 16px 0;
+  margin-right: 36px;
+  cursor: pointer;
+  color: var(--mid);
+  border-bottom: 2px solid transparent;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.store-tab.active { color: var(--gold-dark); border-bottom-color: var(--gold); }
+
+.store-content { max-width: 1280px; margin: 0 auto; padding: 40px 48px 60px; }
+
+/* BROWSE GRID */
+.items-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.item-card {
+  background: var(--warm-white);
+  border: 1px solid var(--light-border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.item-card:hover { border-color: var(--gold); }
+.item-img-wrap {
+  height: 180px;
+  background: var(--off-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  border-bottom: 1px solid var(--light-border);
+}
+.item-details { padding: 14px 16px 16px; }
+.item-cat-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 5px;
+}
+.item-name { font-size: 15px; color: var(--charcoal); margin-bottom: 4px; font-weight: 400; }
+.item-price { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold-dark); margin-bottom: 12px; }
+.item-add-btn {
+  width: 100%;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 9px 0;
+  background: var(--charcoal);
+  color: var(--gold);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.item-add-btn:hover { background: var(--charcoal-light); }
+
+/* CHAT */
+.chat-layout { display: grid; grid-template-columns: 1fr 380px; gap: 32px; align-items: start; }
+.chat-window {
+  background: var(--warm-white);
+  border: 1px solid var(--light-border);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  height: 520px;
+}
+.chat-header-bar {
+  background: var(--charcoal);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 4px 4px 0 0;
+}
+.chat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+.chat-header-title { font-size: 13px; color: var(--warm-white); font-weight: 400; }
+.chat-header-sub { font-size: 11px; color: #7A7269; margin-left: auto; }
+.messages-area { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 14px; background: var(--off-white); }
+.msg-row { display: flex; gap: 10px; align-items: flex-end; }
+.msg-row.user { flex-direction: row-reverse; }
+.msg-avatar {
+  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  background: var(--charcoal);
+  border: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--gold); font-weight: 500;
+}
+.msg-avatar.user-av { background: var(--gold-light); border-color: var(--gold-mid); color: var(--gold-dark); }
+.msg-bubble {
+  max-width: 75%;
+  padding: 11px 15px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.msg-bubble.ai { background: var(--warm-white); color: var(--charcoal); border: 1px solid var(--light-border); border-bottom-left-radius: 3px; }
+.msg-bubble.user { background: var(--charcoal); color: var(--gold-light); border-bottom-right-radius: 3px; }
+.product-recs { display: flex; gap: 10px; margin-top: 10px; overflow-x: auto; padding-bottom: 4px; }
+.rec-card {
+  min-width: 120px; background: var(--warm-white);
+  border: 1px solid var(--light-border); border-radius: 4px; overflow: hidden; flex-shrink: 0;
+}
+.rec-img { height: 80px; background: var(--off-white); display: flex; align-items: center; justify-content: center; font-size: 30px; }
+.rec-info { padding: 8px; }
+.rec-name { font-size: 11px; color: var(--charcoal); }
+.rec-price { font-size: 11px; color: var(--gold-dark); font-weight: 500; margin-top: 2px; }
+.rec-save { width: 100%; margin-top: 5px; font-size: 10px; padding: 4px; background: var(--charcoal); color: var(--gold); border: none; border-radius: 2px; cursor: pointer; font-family: 'Jost', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+.typing-row { display: flex; gap: 10px; align-items: flex-end; }
+.typing-bubble { background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 12px; border-bottom-left-radius: 3px; padding: 14px 16px; display: flex; gap: 5px; }
+.typing-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: tdot 1.2s infinite; }
+.typing-dot:nth-child(2){animation-delay:.2s}.typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes tdot{0%,80%,100%{opacity:.2}40%{opacity:1}}
+.chat-input-area { padding: 14px 16px; border-top: 1px solid var(--light-border); background: var(--warm-white); display: flex; gap: 10px; border-radius: 0 0 4px 4px; }
+.chat-input-area input {
+  flex: 1; padding: 10px 14px; border: 1px solid var(--light-border); border-radius: 2px;
+  font-family: 'Jost', sans-serif; font-size: 13px; color: var(--charcoal); background: var(--off-white);
+  outline: none; transition: border-color 0.2s;
+}
+.chat-input-area input:focus { border-color: var(--gold); }
+.chat-send-btn {
+  padding: 10px 18px; background: var(--charcoal); color: var(--gold); border: none;
+  border-radius: 2px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 11px;
+  letter-spacing: 1.5px; text-transform: uppercase; transition: background 0.2s;
+}
+.chat-send-btn:hover { background: var(--charcoal-light); }
+
+.chat-sidebar { display: flex; flex-direction: column; gap: 16px; }
+.sidebar-card { background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; padding: 20px; }
+.sidebar-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--charcoal); margin-bottom: 6px; }
+.sidebar-desc { font-size: 12px; color: var(--mid); line-height: 1.6; margin-bottom: 14px; font-weight: 300; }
+.escalate-btn {
+  width: 100%; font-family: 'Jost', sans-serif; font-size: 11px;
+  letter-spacing: 1.5px; text-transform: uppercase; padding: 11px 0;
+  background: transparent; border: 1px solid var(--gold); color: var(--gold-dark);
+  border-radius: 2px; cursor: pointer; transition: all 0.2s; font-weight: 500;
+}
+.escalate-btn:hover { background: var(--gold); color: var(--charcoal); }
+.escalated-notice {
+  background: #E8F5EE; border: 1px solid #C5E0D0; border-radius: 4px; padding: 12px 14px;
+  font-size: 12px; color: #1A5C3A; line-height: 1.5;
+}
+
+/* FEED */
+#feed-page { display: none; }
+.feed-banner {
+  background: var(--charcoal);
+  padding: 48px;
+  border-bottom: 1px solid #333;
+}
+.feed-banner h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px; font-weight: 400; color: var(--warm-white); margin-bottom: 6px;
+}
+.feed-banner p { font-size: 14px; color: #7A7269; font-weight: 300; }
+.feed-grid {
+  max-width: 1280px; margin: 0 auto; padding: 40px 48px 60px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.outfit-card { background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; overflow: hidden; transition: border-color 0.2s; }
+.outfit-card:hover { border-color: var(--gold); }
+.outfit-img-wrap { height: 220px; display: flex; align-items: center; justify-content: center; font-size: 64px; }
+.outfit-meta { padding: 16px 18px 18px; border-top: 1px solid var(--light-border); }
+.outfit-user { font-size: 13px; font-weight: 500; color: var(--charcoal); margin-bottom: 4px; }
+.outfit-tags { font-size: 12px; color: var(--gold-dark); margin-bottom: 10px; }
+.outfit-footer { display: flex; justify-content: space-between; align-items: center; }
+.outfit-retailer-badge {
+  font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--gold-dark); background: var(--gold-light); padding: 3px 8px; border-radius: 1px;
+}
+.like-btn {
+  background: none; border: none; cursor: pointer; color: var(--mid);
+  font-size: 12px; display: flex; align-items: center; gap: 5px; font-family: 'Jost', sans-serif;
+  transition: color 0.2s;
+}
+.like-btn:hover, .like-btn.liked { color: #D4537E; }
+.post-btn-wrap { text-align: center; padding: 0 0 40px; }
+.post-btn {
+  font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 13px 32px; background: var(--charcoal); color: var(--gold); border: none;
+  border-radius: 2px; cursor: pointer; transition: background 0.2s; font-weight: 500;
+}
+.post-btn:hover { background: var(--charcoal-light); }
+
+/* FOOTER */
+footer {
+  background: var(--charcoal);
+  border-top: 1px solid #333;
+  padding: 40px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; }
+.footer-copy { font-size: 11px; color: #5A5248; letter-spacing: 0.5px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #5A5248; text-decoration: none; }
+.footer-links a:hover { color: var(--gold); }
+
+@keyframes fadeUp { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
+.retailer-card:nth-child(1){animation-delay:.05s}
+.retailer-card:nth-child(2){animation-delay:.1s}
+.retailer-card:nth-child(3){animation-delay:.15s}
+.retailer-card:nth-child(4){animation-delay:.2s}
+.retailer-card:nth-child(5){animation-delay:.25s}
+.retailer-card:nth-child(6){animation-delay:.3s}
+
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .hero { padding: 60px 24px; }
+  .hero-title { font-size: 44px; }
+  main { padding: 0 24px; }
+  .retailer-grid { grid-template-columns: repeat(2, 1fr); }
+  .items-grid { grid-template-columns: repeat(2, 1fr); }
+  .chat-layout { grid-template-columns: 1fr; }
+  .feed-grid { grid-template-columns: repeat(2, 1fr); padding: 24px; }
+  .stats-bar { gap: 32px; padding: 20px 24px; }
+  .store-hero { padding: 24px; }
+  .store-content { padding: 24px; }
+  .feed-banner { padding: 32px 24px; }
+  footer { flex-direction: column; gap: 20px; text-align: center; }
+}
 </style>
+</head>
+<body>
 
-<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Drape — interactive fashion retail app prototype with retailer hub, AI concierge chat, and social outfit feed</h2>
+<nav>
+  <a href="#" class="nav-logo" onclick="showPage('home')">Drape</a>
+  <div class="nav-links">
+    <a href="#" class="active" onclick="showPage('home');setActive(this)">Retailers</a>
+    <a href="#" onclick="showPage('feed');setActive(this)">Style feed</a>
+    <a href="#">About</a>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-btn nav-btn-outline">Sign in</button>
+    <button class="nav-btn nav-btn-fill">Join free</button>
+  </div>
+</nav>
 
-<div id="drape-root">
-  <div id="screen-home" class="screen"></div>
-  <div id="screen-chat" class="screen" style="display:none"></div>
-  <div id="screen-feed" class="screen" style="display:none"></div>
+<!-- HOME PAGE -->
+<div id="home-page">
+  <section class="hero">
+    <div class="hero-bg-text">Drape</div>
+    <div class="hero-content">
+      <div class="hero-tag">Curated fashion platform</div>
+      <h1 class="hero-title">Your fashion world,<br><em>one destination</em></h1>
+      <p class="hero-desc">Shop the world's finest fashion retailers with a personal AI concierge at your side — from inspiration to purchase, seamlessly.</p>
+      <div class="hero-ctas">
+        <a href="#retailers" class="btn-primary">Explore retailers</a>
+        <a href="#" class="btn-ghost" onclick="showPage('feed')">View style feed</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Curated retailers</div></div>
+    <div class="stat"><div class="stat-num">AI</div><div class="stat-label">Personal concierge</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Always available</div></div>
+    <div class="stat"><div class="stat-num">1K+</div><div class="stat-label">Community looks</div></div>
+  </div>
+
+  <main>
+    <div class="section-header" id="retailers">
+      <div>
+        <div class="section-eyebrow">Our retailers</div>
+        <div class="section-title">Discover <em>curated</em> brands</div>
+      </div>
+      <a href="#" class="section-link" onclick="showPage('feed')">View style feed &rarr;</a>
+    </div>
+    <div class="retailer-grid" id="retailer-grid"></div>
+  </main>
 </div>
+
+<!-- STORE PAGE -->
+<div id="store-page">
+  <div class="store-hero" id="store-hero"></div>
+  <div class="store-tabs" id="store-tabs"></div>
+  <div class="store-content" id="store-content"></div>
+</div>
+
+<!-- FEED PAGE -->
+<div id="feed-page">
+  <div class="feed-banner">
+    <h1>Style feed</h1>
+    <p>Discover what the Drape community is wearing</p>
+  </div>
+  <div class="feed-grid" id="feed-grid"></div>
+  <div class="post-btn-wrap">
+    <button class="post-btn">+ Post your look</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Drape</div>
+  <div class="footer-copy">&copy; 2026 Drape. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
 
 <script>
 const retailers = [
-  { id:'velour', name:'Velour', tag:'Contemporary essentials', color:'#EEEDFE', text:'#3C3489', emoji:'V' },
-  { id:'crest', name:'Crest & Co', tag:'Tailored classics', color:'#E1F5EE', text:'#085041', emoji:'C' },
-  { id:'nordly', name:'Nordly', tag:'Scandi minimalism', color:'#FBEAF0', text:'#72243E', emoji:'N' },
-  { id:'harlo', name:'Harlo', tag:'Street & sport', color:'#FAEEDA', text:'#633806', emoji:'H' },
-  { id:'mave', name:'Mave Studio', tag:'Premium capsule', color:'#F1EFE8', text:'#444441', emoji:'M' },
-  { id:'auric', name:'Auric', tag:'Luxe occasionwear', color:'#E6F1FB', text:'#0C447C', emoji:'A' },
+  { id:'velour', name:'Velour', tag:'Contemporary essentials', abbr:'VL', tier:'Premium' },
+  { id:'crest', name:'Crest & Co', tag:'Tailored classics', abbr:'CC', tier:'Luxury' },
+  { id:'nordly', name:'Nordly', tag:'Scandi minimalism', abbr:'NR', tier:'Premium' },
+  { id:'harlo', name:'Harlo', tag:'Street & sport', abbr:'HL', tier:'Contemporary' },
+  { id:'mave', name:'Mave Studio', tag:'Premium capsule', abbr:'MS', tier:'Luxury' },
+  { id:'auric', name:'Auric', tag:'Luxe occasionwear', abbr:'AU', tier:'Luxury' },
 ];
+
+const browseItems = {
+  velour:[
+    {name:'Silk blend blazer',price:'£189',cat:'Outerwear',emoji:'🧥'},
+    {name:'Wide-leg trousers',price:'£95',cat:'Bottoms',emoji:'👖'},
+    {name:'Merino knit',price:'£75',cat:'Knitwear',emoji:'🧶'},
+    {name:'Linen shirt',price:'£65',cat:'Tops',emoji:'👕'},
+  ],
+  crest:[
+    {name:'Wool overcoat',price:'£320',cat:'Outerwear',emoji:'🧥'},
+    {name:'Tailored suit',price:'£480',cat:'Sets',emoji:'👔'},
+    {name:'Oxford shirt',price:'£110',cat:'Tops',emoji:'👕'},
+    {name:'Slim chinos',price:'£95',cat:'Bottoms',emoji:'👖'},
+  ],
+  nordly:[
+    {name:'Linen co-ord',price:'£145',cat:'Sets',emoji:'👗'},
+    {name:'Minimal tee',price:'£45',cat:'Tops',emoji:'👕'},
+    {name:'Straight jeans',price:'£89',cat:'Bottoms',emoji:'👖'},
+    {name:'Canvas tote',price:'£55',cat:'Accessories',emoji:'👜'},
+  ],
+  harlo:[
+    {name:'Tech tracksuit',price:'£110',cat:'Sets',emoji:'🩳'},
+    {name:'Graphic hoodie',price:'£79',cat:'Tops',emoji:'👕'},
+    {name:'Runner sneakers',price:'£130',cat:'Footwear',emoji:'👟'},
+    {name:'Cap',price:'£35',cat:'Accessories',emoji:'🧢'},
+  ],
+  mave:[
+    {name:'Cashmere roll neck',price:'£195',cat:'Knitwear',emoji:'🧶'},
+    {name:'Cigarette trousers',price:'£165',cat:'Bottoms',emoji:'👖'},
+    {name:'Leather belt',price:'£85',cat:'Accessories',emoji:'👝'},
+    {name:'Slip dress',price:'£210',cat:'Dresses',emoji:'👗'},
+  ],
+  auric:[
+    {name:'Evening gown',price:'£580',cat:'Dresses',emoji:'👗'},
+    {name:'Strappy heels',price:'£245',cat:'Footwear',emoji:'👠'},
+    {name:'Gold clutch',price:'£189',cat:'Accessories',emoji:'👛'},
+    {name:'Silk blouse',price:'£175',cat:'Tops',emoji:'👚'},
+  ],
+};
 
 const outfits = [
-  { user:'@sofiaq', tags:'#minimalist #workwear', retailer:'Velour', emoji:'👗', bg:'#EEEDFE', likes:42 },
-  { user:'@tomk', tags:'#streetwear #casual', retailer:'Harlo', emoji:'🧥', bg:'#FAEEDA', likes:18 },
-  { user:'@priyam', tags:'#eveningwear #chic', retailer:'Auric', emoji:'👠', bg:'#E6F1FB', likes:87 },
-  { user:'@ellab', tags:'#scandi #neutral', retailer:'Nordly', emoji:'🧣', bg:'#FBEAF0', likes:31 },
-  { user:'@jakef', tags:'#tailored #smart', retailer:'Crest & Co', emoji:'👔', bg:'#E1F5EE', likes:55 },
-  { user:'@lunam', tags:'#capsule #mono', retailer:'Mave Studio', emoji:'🧤', bg:'#F1EFE8', likes:23 },
+  {user:'@sofiaq',tags:'#minimalist #workwear',retailer:'Velour',emoji:'👗',bg:'#FAF3E0',likes:42},
+  {user:'@tomk',tags:'#streetwear #casual',retailer:'Harlo',emoji:'🧥',bg:'#F5F0E8',likes:18},
+  {user:'@priyam',tags:'#eveningwear #chic',retailer:'Auric',emoji:'👠',bg:'#FAF8F4',likes:87},
+  {user:'@ellab',tags:'#scandi #neutral',retailer:'Nordly',emoji:'🧣',bg:'#F0EDE8',likes:31},
+  {user:'@jakef',tags:'#tailored #smart',retailer:'Crest & Co',emoji:'👔',bg:'#F8F5EE',likes:55},
+  {user:'@lunam',tags:'#capsule #mono',retailer:'Mave Studio',emoji:'🧤',bg:'#F5F2EC',likes:23},
 ];
 
-let currentTab = 'home';
-let likedOutfits = new Set();
 let chatState = {};
-
-function navBar(active) {
-  return `<div class="nav-bar">
-    <div class="nav-item ${active==='home'?'active':''}" onclick="switchTab('home')"><i class="ti ti-home" aria-hidden="true"></i>Home</div>
-    <div class="nav-item ${active==='feed'?'active':''}" onclick="switchTab('feed')"><i class="ti ti-layout-grid" aria-hidden="true"></i>Feed</div>
-    <div class="nav-item" onclick=""><i class="ti ti-user" aria-hidden="true"></i>Profile</div>
-  </div>`;
-}
-
-function renderHome() {
-  const cards = retailers.map(r => `
-    <div class="retailer-card" onclick="openChat('${r.id}')">
-      <div class="brand-icon" style="background:${r.color}; color:${r.text}">${r.emoji}</div>
-      <div class="brand-name">${r.name}</div>
-      <div class="brand-tag">${r.tag}</div>
-    </div>`).join('');
-  document.getElementById('screen-home').innerHTML = `
-    <div class="top-bar">
-      <h1>Drape</h1>
-      <p>Your fashion world, one place</p>
-    </div>
-    <div class="search-bar">
-      <i class="ti ti-search" aria-hidden="true"></i>
-      <input placeholder="Search retailers, styles, brands..." />
-    </div>
-    <div class="scroll-area"><div class="retailer-grid">${cards}</div></div>
-    ${navBar('home')}`;
-}
-
-function openChat(retailerId) {
-  const r = retailers.find(x => x.id === retailerId);
-  if (!chatState[retailerId]) {
-    chatState[retailerId] = [
-      { role:'ai', text:`Hi, I'm ${r.name}'s style assistant! I'm here to help you find pieces you'll love. What are you looking for today — something casual, a work look, or a special occasion?` }
-    ];
-  }
-  document.getElementById('screen-home').style.display = 'none';
-  document.getElementById('screen-chat').style.display = 'flex';
-  renderChat(r);
-}
-
-function renderChat(r) {
-  const msgs = chatState[r.id];
-  const bubbles = msgs.map(m => {
-    if (m.role === 'ai') {
-      let products = '';
-      if (m.products) {
-        products = `<div class="product-row">${m.products.map(p => `
-          <div class="product-card">
-            <div class="product-img" style="background:${r.color}">${p.emoji}</div>
-            <div class="product-info">
-              <div class="product-name">${p.name}</div>
-              <div class="product-price">${p.price}</div>
-              <button class="product-save">Save</button>
-            </div>
-          </div>`).join('')}</div>`;
-      }
-      return `<div class="msg ai"><div class="msg-bubble">${m.text}</div>${products}</div>`;
-    } else {
-      return `<div class="msg user"><div class="msg-bubble">${m.text}</div></div>`;
-    }
-  }).join('');
-
-  const escalated = chatState[r.id + '_escalated'];
-  const escalateSection = escalated
-    ? `<div class="escalated-msg"><i class="ti ti-user-check" aria-hidden="true"></i> Connecting you to a ${r.name} stylist — they'll have your full conversation history.</div>`
-    : `<button class="escalate-btn" onclick="escalate('${r.id}')"><i class="ti ti-headset" aria-hidden="true"></i>Talk to a ${r.name} stylist</button>`;
-
-  document.getElementById('screen-chat').innerHTML = `
-    <div class="chat-header">
-      <button class="back-btn" onclick="goHome()" aria-label="Back"><i class="ti ti-arrow-left"></i></button>
-      <div class="brand-avatar" style="background:${r.color}; color:${r.text}">${r.emoji}</div>
-      <div>
-        <div class="chat-brand-name">${r.name}</div>
-        <div class="chat-brand-sub">AI style assistant</div>
-      </div>
-    </div>
-    <div class="messages" id="msg-area">${bubbles}</div>
-    ${escalateSection}
-    <div class="chat-input-row">
-      <input id="chat-input" placeholder="Ask your concierge..." onkeydown="if(event.key==='Enter')sendMsg('${r.id}')" />
-      <button class="send-btn" onclick="sendMsg('${r.id}')" aria-label="Send"><i class="ti ti-send"></i></button>
-    </div>`;
-  scrollMsgs();
-}
+let storeTab = {};
+let likedOutfits = new Set();
+let replyIdx = 0;
+let activeRetailerId = null;
 
 const aiReplies = [
-  { text:"Great choice! Based on your style, here are a few pieces I'd recommend:", products:[
-    { name:'Silk blend blazer', price:'£189', emoji:'🧥' },
-    { name:'Wide-leg trousers', price:'£95', emoji:'👖' },
-    { name:'Merino knit', price:'£75', emoji:'🧶' }
+  {text:"Great taste! Based on that, here are my top picks for you:",products:[
+    {name:'Silk blend blazer',price:'£189',emoji:'🧥'},
+    {name:'Wide-leg trousers',price:'£95',emoji:'👖'},
+    {name:'Merino knit',price:'£75',emoji:'🧶'},
   ]},
-  { text:"Love that vibe! These would work perfectly together — very clean and effortless:", products:[
-    { name:'Linen shirt', price:'£65', emoji:'👕' },
-    { name:'Tailored shorts', price:'£79', emoji:'🩳' },
-    { name:'Canvas tote', price:'£45', emoji:'👜' }
+  {text:"Love that direction — very elevated and effortless. These would work perfectly:",products:[
+    {name:'Linen shirt',price:'£65',emoji:'👕'},
+    {name:'Slim chinos',price:'£89',emoji:'👖'},
+    {name:'Canvas tote',price:'£55',emoji:'👜'},
   ]},
-  { text:"For that occasion I'd suggest something elevated but comfortable. Here are my top picks:", products:[
-    { name:'Slip dress', price:'£145', emoji:'👗' },
-    { name:'Strappy heels', price:'£120', emoji:'👠' },
-    { name:'Gold clutch', price:'£89', emoji:'👛' }
+  {text:"For that occasion I would suggest something polished. Here are my recommendations:",products:[
+    {name:'Slip dress',price:'£210',emoji:'👗'},
+    {name:'Strappy heels',price:'£245',emoji:'👠'},
+    {name:'Gold clutch',price:'£189',emoji:'👛'},
   ]},
 ];
-let replyIndex = 0;
+
+function showPage(page) {
+  document.getElementById('home-page').style.display = page==='home' ? 'block' : 'none';
+  document.getElementById('store-page').style.display = page==='store' ? 'block' : 'none';
+  document.getElementById('feed-page').style.display = page==='feed' ? 'block' : 'none';
+  if (page==='feed') renderFeed();
+  window.scrollTo(0,0);
+}
+
+function setActive(el) {
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function renderRetailerGrid() {
+  document.getElementById('retailer-grid').innerHTML = retailers.map(r => `
+    <div class="retailer-card">
+      <div class="retailer-card-banner">
+        <div class="retailer-abbr">${r.abbr}</div>
+      </div>
+      <div class="retailer-info">
+        <div class="retailer-tier">${r.tier}</div>
+        <div class="retailer-name">${r.name}</div>
+        <div class="retailer-tag">${r.tag}</div>
+        <div class="retailer-actions">
+          <button class="card-btn card-btn-dark" onclick="openStore('${r.id}','browse')">Browse items</button>
+          <button class="card-btn card-btn-outline" onclick="openStore('${r.id}','chat')">AI concierge</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function openStore(retailerId, tab) {
+  activeRetailerId = retailerId;
+  storeTab[retailerId] = tab || storeTab[retailerId] || 'browse';
+  if (!chatState[retailerId]) {
+    const r = retailers.find(x => x.id === retailerId);
+    chatState[retailerId] = [{role:'ai', text:`Hi, I'm ${r.name}'s style assistant. I'm here to help you find pieces you'll love. What are you looking for today?`}];
+  }
+  showPage('store');
+  renderStoreHeader(retailerId);
+  renderStoreTabs(retailerId);
+  renderStoreContent(retailerId);
+}
+
+function renderStoreHeader(retailerId) {
+  const r = retailers.find(x => x.id === retailerId);
+  document.getElementById('store-hero').innerHTML = `
+    <button class="store-back" onclick="showPage('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to retailers
+    </button>
+    <div class="store-hero-abbr">${r.abbr}</div>
+    <div>
+      <div class="store-hero-name">${r.name}</div>
+      <div class="store-hero-tag">${r.tag}</div>
+    </div>`;
+}
+
+function renderStoreTabs(retailerId) {
+  const tab = storeTab[retailerId];
+  document.getElementById('store-tabs').innerHTML = `
+    <button class="store-tab ${tab==='browse'?'active':''}" onclick="switchStoreTab('${retailerId}','browse')">Browse items</button>
+    <button class="store-tab ${tab==='chat'?'active':''}" onclick="switchStoreTab('${retailerId}','chat')">AI concierge</button>`;
+}
+
+function switchStoreTab(retailerId, tab) {
+  storeTab[retailerId] = tab;
+  renderStoreTabs(retailerId);
+  renderStoreContent(retailerId);
+}
+
+function renderStoreContent(retailerId) {
+  const tab = storeTab[retailerId];
+  const el = document.getElementById('store-content');
+  if (tab === 'browse') {
+    const items = browseItems[retailerId] || [];
+    el.innerHTML = `<div class="items-grid">${items.map(item => `
+      <div class="item-card">
+        <div class="item-img-wrap">${item.emoji}</div>
+        <div class="item-details">
+          <div class="item-cat-label">${item.cat}</div>
+          <div class="item-name">${item.name}</div>
+          <div class="item-price">${item.price}</div>
+          <button class="item-add-btn">Add to bag</button>
+        </div>
+      </div>`).join('')}</div>`;
+  } else {
+    const r = retailers.find(x => x.id === retailerId);
+    const msgs = chatState[retailerId];
+    const bubbles = msgs.map(m => {
+      if (m.role === 'ai') {
+        let prods = '';
+        if (m.products) {
+          prods = `<div class="product-recs">${m.products.map(p => `
+            <div class="rec-card">
+              <div class="rec-img">${p.emoji}</div>
+              <div class="rec-info">
+                <div class="rec-name">${p.name}</div>
+                <div class="rec-price">${p.price}</div>
+                <button class="rec-save">Save</button>
+              </div>
+            </div>`).join('')}</div>`;
+        }
+        return `<div class="msg-row"><div class="msg-avatar">AI</div><div><div class="msg-bubble ai">${m.text}</div>${prods}</div></div>`;
+      }
+      return `<div class="msg-row user"><div class="msg-avatar user-av">You</div><div class="msg-bubble user">${m.text}</div></div>`;
+    }).join('');
+
+    const escalated = chatState[retailerId + '_esc'];
+    const sidebar = escalated
+      ? `<div class="sidebar-card"><div class="sidebar-title">Connected</div><div class="escalated-notice">A ${r.name} stylist has your full conversation history and will be with you shortly.</div></div>`
+      : `<div class="sidebar-card"><div class="sidebar-title">Need more help?</div><div class="sidebar-desc">Our human stylists are available to provide personalised advice and deeper product expertise.</div><button class="escalate-btn" onclick="escalate('${retailerId}')">Talk to a ${r.name} stylist</button></div>`;
+
+    el.innerHTML = `<div class="chat-layout">
+      <div class="chat-window">
+        <div class="chat-header-bar">
+          <div class="chat-dot"></div>
+          <div class="chat-header-title">${r.name} concierge</div>
+          <div class="chat-header-sub">AI-powered &bull; Always available</div>
+        </div>
+        <div class="messages-area" id="msgs">${bubbles}</div>
+        <div class="chat-input-area">
+          <input id="chat-in" placeholder="Ask your concierge anything..." onkeydown="if(event.key==='Enter')sendMsg('${retailerId}')" />
+          <button class="chat-send-btn" onclick="sendMsg('${retailerId}')">Send</button>
+        </div>
+      </div>
+      <div class="chat-sidebar">${sidebar}</div>
+    </div>`;
+    const msgs_el = document.getElementById('msgs');
+    if (msgs_el) msgs_el.scrollTop = msgs_el.scrollHeight;
+  }
+}
 
 function sendMsg(retailerId) {
-  const input = document.getElementById('chat-input');
+  const input = document.getElementById('chat-in');
   const text = input.value.trim();
   if (!text) return;
   input.value = '';
-  const r = retailers.find(x => x.id === retailerId);
-  chatState[retailerId].push({ role:'user', text });
-
-  const typingDiv = document.createElement('div');
-  typingDiv.className = 'msg ai';
-  typingDiv.id = 'typing-indicator';
-  typingDiv.innerHTML = `<div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
-  document.getElementById('msg-area').appendChild(typingDiv);
-  scrollMsgs();
-
+  chatState[retailerId].push({role:'user', text});
+  const msgs_el = document.getElementById('msgs');
+  const typDiv = document.createElement('div');
+  typDiv.className = 'typing-row';
+  typDiv.id = 'typing';
+  typDiv.innerHTML = `<div class="msg-avatar">AI</div><div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+  msgs_el.appendChild(typDiv);
+  msgs_el.scrollTop = msgs_el.scrollHeight;
   setTimeout(() => {
-    const reply = aiReplies[replyIndex % aiReplies.length];
-    replyIndex++;
-    chatState[retailerId].push({ role:'ai', text: reply.text, products: reply.products });
-    renderChat(r);
-    scrollMsgs();
-  }, 1200);
+    const reply = aiReplies[replyIdx % aiReplies.length];
+    replyIdx++;
+    chatState[retailerId].push({role:'ai', text:reply.text, products:reply.products});
+    renderStoreContent(retailerId);
+  }, 1300);
 }
 
 function escalate(retailerId) {
-  chatState[retailerId + '_escalated'] = true;
-  const r = retailers.find(x => x.id === retailerId);
-  renderChat(r);
-}
-
-function scrollMsgs() {
-  const area = document.getElementById('msg-area');
-  if (area) area.scrollTop = area.scrollHeight;
-}
-
-function goHome() {
-  document.getElementById('screen-chat').style.display = 'none';
-  document.getElementById('screen-home').style.display = 'flex';
+  chatState[retailerId + '_esc'] = true;
+  renderStoreContent(retailerId);
 }
 
 function renderFeed() {
-  const cards = outfits.map((o, i) => {
+  document.getElementById('feed-grid').innerHTML = outfits.map((o,i) => {
     const liked = likedOutfits.has(i);
     return `<div class="outfit-card">
-      <div class="outfit-img" style="background:${o.bg}">${o.emoji}</div>
-      <div class="outfit-info">
+      <div class="outfit-img-wrap" style="background:${o.bg}">${o.emoji}</div>
+      <div class="outfit-meta">
         <div class="outfit-user">${o.user}</div>
         <div class="outfit-tags">${o.tags}</div>
         <div class="outfit-footer">
-          <div class="outfit-retailer">${o.retailer}</div>
+          <div class="outfit-retailer-badge">${o.retailer}</div>
           <button class="like-btn ${liked?'liked':''}" onclick="toggleLike(${i})">
-            <i class="ti ti-heart" aria-hidden="true"></i> ${liked ? o.likes+1 : o.likes}
+            &#9825; ${liked ? o.likes+1 : o.likes}
           </button>
         </div>
       </div>
     </div>`;
   }).join('');
-
-  document.getElementById('screen-feed').innerHTML = `
-    <div class="feed-header">
-      <h2>Style feed</h2>
-      <p>See what the community is wearing</p>
-    </div>
-    <div class="scroll-area">
-      <div class="feed-grid">${cards}</div>
-      <div style="text-align:center; padding: 8px 0 4px;">
-        <button class="fab" aria-label="Post outfit"><i class="ti ti-plus"></i></button>
-      </div>
-    </div>
-    ${navBar('feed')}`;
 }
 
 function toggleLike(i) {
@@ -279,14 +928,8 @@ function toggleLike(i) {
   renderFeed();
 }
 
-function switchTab(tab) {
-  currentTab = tab;
-  document.getElementById('screen-home').style.display = tab==='home' ? 'flex' : 'none';
-  document.getElementById('screen-feed').style.display = tab==='feed' ? 'flex' : 'none';
-  document.getElementById('screen-chat').style.display = 'none';
-  if (tab==='feed') renderFeed();
-  if (tab==='home') renderHome();
-}
-
-renderHome();
+renderRetailerGrid();
+showPage('home');
 </script>
+</body>
+</html>
