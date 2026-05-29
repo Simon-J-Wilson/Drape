@@ -16,8 +16,9 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Jost', sans-serif; background: var(--off-white); color: var(--charcoal); }
+
 nav { background: var(--charcoal); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #2A2A2A; }
-.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; cursor: pointer; }
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; cursor: pointer; }
 .nav-links { display: flex; gap: 32px; }
 .nav-links a { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #9A9088; text-decoration: none; cursor: pointer; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--gold); }
@@ -43,15 +44,14 @@ nav { background: var(--charcoal); padding: 0 48px; display: flex; align-items: 
 .search-icon { padding: 0 14px; color: var(--gold); display: flex; align-items: center; }
 .search-bar input { flex: 1; background: none; border: none; outline: none; font-family: 'Jost', sans-serif; font-size: 14px; color: #fff; padding: 14px 0; }
 .search-bar input::placeholder { color: #5A5248; }
-.search-bar button { padding: 14px 20px; background: var(--gold); border: none; color: var(--charcoal); font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; cursor: pointer; transition: background 0.2s; }
-.search-bar button:hover { background: #B8943E; }
+.search-bar button { padding: 14px 20px; background: var(--gold); border: none; color: var(--charcoal); font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; cursor: pointer; }
 .search-suggestions { position: absolute; top: 100%; left: 0; right: 0; background: var(--charcoal-mid); border: 1px solid #3A3A3A; border-top: none; border-radius: 0 0 3px 3px; z-index: 50; display: none; }
 .search-suggestions.open { display: block; }
 .suggestion-item { padding: 11px 16px; font-size: 13px; color: #CCC; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: background 0.15s; }
 .suggestion-item:hover { background: #333; color: var(--gold); }
 .suggestion-tag { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-dark); background: #333; padding: 2px 7px; border-radius: 1px; margin-left: auto; }
 .search-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-.search-tag { font-size: 11px; letter-spacing: 1px; color: #7A7269; background: #252525; border: 1px solid #333; border-radius: 20px; padding: 5px 13px; cursor: pointer; transition: all 0.2s; }
+.search-tag { font-size: 11px; color: #7A7269; background: #252525; border: 1px solid #333; border-radius: 20px; padding: 5px 13px; cursor: pointer; transition: all 0.2s; }
 .search-tag:hover { border-color: var(--gold); color: var(--gold); }
 
 .stats-bar { background: var(--charcoal-mid); border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 20px 48px; display: flex; justify-content: center; gap: 64px; }
@@ -67,18 +67,17 @@ nav { background: var(--charcoal); padding: 0 48px; display: flex; align-items: 
 main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
 .section-header { padding: 56px 0 28px; display: flex; align-items: flex-end; justify-content: space-between; }
 .section-eyebrow { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-.section-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; color: var(--charcoal); }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--charcoal); }
 .section-title em { font-style: italic; }
 .section-link { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-dark); text-decoration: none; border-bottom: 1px solid var(--gold-mid); padding-bottom: 2px; cursor: pointer; }
-.section-link:hover { color: var(--gold); }
 
 .retailer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding-bottom: 60px; }
 .retailer-card { background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; overflow: hidden; cursor: pointer; transition: border-color 0.2s, transform 0.2s; }
 .retailer-card:hover { border-color: var(--gold); transform: translateY(-3px); }
-.retailer-card-img { height: 180px; overflow: hidden; position: relative; background: #ddd; }
+.retailer-card-img { height: 180px; overflow: hidden; position: relative; }
 .retailer-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
 .retailer-card:hover .retailer-card-img img { transform: scale(1.05); }
-.img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.5) 100%); }
+.img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.55) 100%); }
 .img-abbr { position: absolute; bottom: 12px; left: 16px; font-family: 'Cormorant Garamond', serif; font-size: 22px; color: rgba(255,255,255,0.9); letter-spacing: 2px; }
 .retailer-info { padding: 18px; }
 .retailer-tier { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dark); background: var(--gold-light); display: inline-block; padding: 3px 8px; border-radius: 1px; margin-bottom: 8px; }
@@ -94,7 +93,7 @@ main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
 .styles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 0 48px 60px; max-width: 1280px; margin: 0 auto; }
 .style-card { background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; overflow: hidden; cursor: pointer; transition: border-color 0.2s, transform 0.2s; }
 .style-card:hover { border-color: var(--gold); transform: translateY(-2px); }
-.style-card-img { height: 200px; overflow: hidden; background: #ddd; }
+.style-card-img { height: 200px; overflow: hidden; }
 .style-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
 .style-card:hover .style-card-img img { transform: scale(1.04); }
 .style-card-info { padding: 12px 14px 14px; }
@@ -102,11 +101,12 @@ main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
 .style-card-retailer { font-size: 11px; color: var(--mid); }
 .style-card-price { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--gold-dark); margin-top: 6px; }
 
+/* STORE */
 #store-page { display: none; }
 .store-hero { background: var(--charcoal); padding: 40px 48px; display: flex; align-items: center; gap: 24px; border-bottom: 1px solid #333; }
 .store-back { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); background: none; border: 1px solid #444; border-radius: 2px; padding: 9px 16px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
 .store-back:hover { border-color: var(--gold); }
-.store-hero-img { width: 64px; height: 64px; border-radius: 4px; overflow: hidden; border: 1px solid var(--gold); flex-shrink: 0; background: #333; }
+.store-hero-img { width: 64px; height: 64px; border-radius: 4px; overflow: hidden; border: 1px solid var(--gold); flex-shrink: 0; }
 .store-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .store-hero-name { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: #fff; }
 .store-hero-tag { font-size: 13px; color: #7A7269; font-weight: 300; margin-top: 2px; }
@@ -115,19 +115,34 @@ main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
 .store-tab.active { color: var(--gold-dark); border-bottom-color: var(--gold); }
 .store-content { max-width: 1280px; margin: 0 auto; padding: 36px 48px 60px; }
 
+/* FILTER BAR */
+.filter-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+.filter-btn { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--light-border); background: transparent; color: var(--mid); cursor: pointer; transition: all 0.2s; }
+.filter-btn:hover, .filter-btn.active { border-color: var(--gold); color: var(--gold-dark); background: var(--gold-light); }
+.filter-label { font-size: 11px; color: var(--mid); letter-spacing: 1px; text-transform: uppercase; margin-right: 4px; }
+
 .items-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .item-card { background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
 .item-card:hover { border-color: var(--gold); transform: translateY(-2px); }
-.item-img-wrap { height: 220px; overflow: hidden; background: #ddd; }
+.item-img-wrap { height: 240px; overflow: hidden; position: relative; }
 .item-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
 .item-card:hover .item-img-wrap img { transform: scale(1.04); }
+.item-badge { position: absolute; top: 10px; left: 10px; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; background: var(--charcoal); color: var(--gold); padding: 3px 8px; border-radius: 1px; }
 .item-details { padding: 14px 16px 16px; }
-.item-cat-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--mid); margin-bottom: 5px; }
-.item-name { font-size: 15px; color: var(--charcoal); margin-bottom: 4px; }
-.item-price { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold-dark); margin-bottom: 12px; }
+.item-cat-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--mid); margin-bottom: 4px; }
+.item-name { font-size: 15px; color: var(--charcoal); margin-bottom: 4px; font-weight: 400; }
+.item-desc { font-size: 12px; color: var(--mid); line-height: 1.5; margin-bottom: 8px; font-weight: 300; }
+.item-colors { display: flex; gap: 5px; margin-bottom: 8px; align-items: center; }
+.color-dot { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.15); cursor: pointer; transition: transform 0.15s; }
+.color-dot:hover { transform: scale(1.2); }
+.item-sizes { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px; }
+.size-btn { font-family: 'Jost', sans-serif; font-size: 10px; padding: 3px 8px; border: 1px solid var(--light-border); border-radius: 2px; cursor: pointer; color: var(--mid); background: transparent; transition: all 0.15s; }
+.size-btn:hover { border-color: var(--charcoal); color: var(--charcoal); }
+.item-price { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold-dark); margin-bottom: 10px; }
 .item-add-btn { width: 100%; font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 9px 0; background: var(--charcoal); color: var(--gold); border: none; border-radius: 2px; cursor: pointer; font-weight: 500; transition: background 0.2s; }
 .item-add-btn:hover { background: var(--charcoal-light); }
 
+/* CHAT */
 .chat-layout { display: grid; grid-template-columns: 1fr 360px; gap: 28px; }
 .chat-window { background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; display: flex; flex-direction: column; height: 540px; }
 .chat-header-bar { background: var(--charcoal); padding: 14px 20px; display: flex; align-items: center; gap: 12px; border-radius: 4px 4px 0 0; }
@@ -144,7 +159,7 @@ main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
 .msg-bubble.user { background: var(--charcoal); color: var(--gold-light); border-bottom-right-radius: 3px; }
 .product-recs { display: flex; gap: 10px; margin-top: 10px; overflow-x: auto; padding-bottom: 4px; }
 .rec-card { min-width: 130px; background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; overflow: hidden; flex-shrink: 0; }
-.rec-img { height: 100px; overflow: hidden; background: #ddd; }
+.rec-img { height: 100px; overflow: hidden; }
 .rec-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .rec-info { padding: 8px; }
 .rec-name { font-size: 11px; color: var(--charcoal); }
@@ -158,8 +173,7 @@ main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
 .chat-input-area { padding: 14px 16px; border-top: 1px solid var(--light-border); background: var(--warm-white); display: flex; gap: 10px; border-radius: 0 0 4px 4px; }
 .chat-input-area input { flex: 1; padding: 10px 14px; border: 1px solid var(--light-border); border-radius: 2px; font-family: 'Jost', sans-serif; font-size: 13px; color: var(--charcoal); background: var(--off-white); outline: none; transition: border-color 0.2s; }
 .chat-input-area input:focus { border-color: var(--gold); }
-.chat-send-btn { padding: 10px 18px; background: var(--charcoal); color: var(--gold); border: none; border-radius: 2px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; transition: background 0.2s; }
-.chat-send-btn:hover { background: var(--charcoal-light); }
+.chat-send-btn { padding: 10px 18px; background: var(--charcoal); color: var(--gold); border: none; border-radius: 2px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; }
 .chat-sidebar { display: flex; flex-direction: column; gap: 16px; }
 .sidebar-card { background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; padding: 20px; }
 .sidebar-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--charcoal); margin-bottom: 6px; }
@@ -168,8 +182,10 @@ main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
 .escalate-btn:hover { background: var(--gold); color: var(--charcoal); }
 .escalated-notice { background: #E8F5EE; border: 1px solid #C5E0D0; border-radius: 4px; padding: 12px 14px; font-size: 12px; color: #1A5C3A; line-height: 1.5; }
 .quick-prompt { font-size: 12px; color: var(--mid); padding: 8px 0; border-bottom: 1px solid var(--light-border); cursor: pointer; transition: color 0.15s; }
+.quick-prompt:last-child { border-bottom: none; }
 .quick-prompt:hover { color: var(--gold-dark); }
 
+/* FEED */
 #feed-page { display: none; }
 .feed-banner { background: var(--charcoal); padding: 48px; border-bottom: 1px solid #333; }
 .feed-banner h1 { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: #fff; margin-bottom: 6px; }
@@ -177,7 +193,7 @@ main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
 .feed-grid { max-width: 1280px; margin: 0 auto; padding: 40px 48px 60px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .outfit-card { background: var(--warm-white); border: 1px solid var(--light-border); border-radius: 4px; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
 .outfit-card:hover { border-color: var(--gold); transform: translateY(-2px); }
-.outfit-img-wrap { height: 280px; overflow: hidden; background: #ddd; }
+.outfit-img-wrap { height: 280px; overflow: hidden; }
 .outfit-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
 .outfit-card:hover .outfit-img-wrap img { transform: scale(1.04); }
 .outfit-meta { padding: 16px 18px 18px; border-top: 1px solid var(--light-border); }
@@ -188,17 +204,20 @@ main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
 .like-btn { background: none; border: none; cursor: pointer; color: var(--mid); font-size: 13px; display: flex; align-items: center; gap: 5px; font-family: 'Jost', sans-serif; transition: color 0.2s; }
 .like-btn:hover, .like-btn.liked { color: #D4537E; }
 .post-btn-wrap { text-align: center; padding: 0 0 48px; }
-.post-btn { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 13px 32px; background: var(--charcoal); color: var(--gold); border: none; border-radius: 2px; cursor: pointer; transition: background 0.2s; font-weight: 500; }
-.post-btn:hover { background: var(--charcoal-light); }
+.post-btn { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 13px 32px; background: var(--charcoal); color: var(--gold); border: none; border-radius: 2px; cursor: pointer; font-weight: 500; }
 
 footer { background: var(--charcoal); border-top: 1px solid #333; padding: 36px 48px; display: flex; justify-content: space-between; align-items: center; }
 .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; }
 .footer-copy { font-size: 11px; color: #5A5248; }
 .footer-links { display: flex; gap: 24px; }
-.footer-links a { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #5A5248; text-decoration: none; }
+.footer-links a { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #5A5248; text-decoration: none; cursor: pointer; }
 .footer-links a:hover { color: var(--gold); }
 
-img { transition: opacity 0.4s; }
+.loading-overlay { position: fixed; inset: 0; background: var(--charcoal); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 999; transition: opacity 0.4s; }
+.loading-logo { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: var(--gold); letter-spacing: 6px; text-transform: uppercase; margin-bottom: 16px; }
+.loading-bar-wrap { width: 200px; height: 1px; background: #333; }
+.loading-bar { height: 1px; background: var(--gold); width: 0%; transition: width 0.3s; }
+.loading-text { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #5A5248; margin-top: 12px; }
 
 @media(max-width:900px){
   nav{padding:0 20px}.nav-links{display:none}
@@ -214,6 +233,12 @@ img { transition: opacity 0.4s; }
 </style>
 </head>
 <body>
+
+<div class="loading-overlay" id="loader">
+  <div class="loading-logo">Drape</div>
+  <div class="loading-bar-wrap"><div class="loading-bar" id="loader-bar"></div></div>
+  <div class="loading-text">Curating your experience</div>
+</div>
 
 <nav>
   <span class="nav-logo" onclick="showPage('home')">Drape</span>
@@ -238,7 +263,7 @@ img { transition: opacity 0.4s; }
       <div class="search-container">
         <div class="search-bar">
           <div class="search-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
-          <input type="text" id="main-search" placeholder="Search brands, styles, occasions..." autocomplete="off" oninput="handleSearch(this.value)" onkeydown="if(event.key==='Enter')doSearch()" />
+          <input type="text" id="main-search" placeholder="Search brands, styles, occasions..." autocomplete="off" oninput="handleSearch(this.value)" onkeydown="if(event.key==='Enter')doSearch()"/>
           <button onclick="doSearch()">Search</button>
         </div>
         <div class="search-suggestions" id="suggestions"></div>
@@ -253,19 +278,16 @@ img { transition: opacity 0.4s; }
       </div>
     </div>
   </section>
-
   <div class="stats-bar">
     <div class="stat"><div class="stat-num">6</div><div class="stat-label">Curated retailers</div></div>
     <div class="stat"><div class="stat-num">AI</div><div class="stat-label">Personal concierge</div></div>
     <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Always available</div></div>
     <div class="stat"><div class="stat-num">1K+</div><div class="stat-label">Community looks</div></div>
   </div>
-
   <div id="search-results-section">
     <div class="results-header" id="results-header"></div>
     <div class="styles-grid" id="styles-grid"></div>
   </div>
-
   <main id="main-retailers">
     <div class="section-header">
       <div><div class="section-eyebrow">Our retailers</div><div class="section-title">Discover <em>curated</em> brands</div></div>
@@ -294,103 +316,217 @@ img { transition: opacity 0.4s; }
 </footer>
 
 <script>
-// Picsum Photos — stable, reliable, free real photos. Each ID is a consistent beautiful image.
-// IDs chosen to look like fashion/lifestyle/editorial photography
-const PICSUM = (id, w, h) => `https://picsum.photos/id/${id}/${w}/${h}`;
+// Carefully selected Unsplash photo IDs by direct URL — each is a specific photo that matches the product
+// Using the direct CDN URLs which are stable
+function UP(id, w, h) {
+  return `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&fit=crop&auto=format&q=80`;
+}
 
 const retailers = [
-  { id:'velour',  name:'Velour',       tag:'Contemporary essentials', abbr:'VL', tier:'Premium',      imgId:64,  styles:['minimalist','workwear','contemporary','essentials','classic'] },
-  { id:'crest',   name:'Crest & Co',   tag:'Tailored classics',       abbr:'CC', tier:'Luxury',        imgId:1011,styles:['tailored','luxury','classic','formal','workwear','smart'] },
-  { id:'nordly',  name:'Nordly',        tag:'Scandi minimalism',       abbr:'NR', tier:'Premium',      imgId:433, styles:['minimalist','scandi','capsule','neutral','clean'] },
-  { id:'harlo',   name:'Harlo',         tag:'Street & sport',          abbr:'HL', tier:'Contemporary', imgId:488, styles:['streetwear','casual','sport','urban','contemporary'] },
-  { id:'mave',    name:'Mave Studio',   tag:'Premium capsule',         abbr:'MS', tier:'Luxury',        imgId:823, styles:['capsule','luxury','minimalist','premium','editorial'] },
-  { id:'auric',   name:'Auric',         tag:'Luxe occasionwear',       abbr:'AU', tier:'Luxury',        imgId:347, styles:['occasionwear','luxury','evening','gala','formal','chic'] },
+  { id:'velour', name:'Velour', tag:'Contemporary essentials', abbr:'VL', tier:'Premium',
+    heroImg: UP('1490481651871-ab68de25d43d',1200,500),
+    thumbImg: UP('1490481651871-ab68de25d43d',128,128),
+    styles:['minimalist','workwear','contemporary','essentials','classic'] },
+  { id:'crest', name:'Crest & Co', tag:'Tailored classics', abbr:'CC', tier:'Luxury',
+    heroImg: UP('1507679799987-c73779587ccf',1200,500),
+    thumbImg: UP('1507679799987-c73779587ccf',128,128),
+    styles:['tailored','luxury','classic','formal','workwear','smart'] },
+  { id:'nordly', name:'Nordly', tag:'Scandi minimalism', abbr:'NR', tier:'Premium',
+    heroImg: UP('1558769132-cb1aea458c5e',1200,500),
+    thumbImg: UP('1558769132-cb1aea458c5e',128,128),
+    styles:['minimalist','scandi','capsule','neutral','clean'] },
+  { id:'harlo', name:'Harlo', tag:'Street & sport', abbr:'HL', tier:'Contemporary',
+    heroImg: UP('1552346154-21a0bc001eda',1200,500),
+    thumbImg: UP('1552346154-21a0bc001eda',128,128),
+    styles:['streetwear','casual','sport','urban','contemporary'] },
+  { id:'mave', name:'Mave Studio', tag:'Premium capsule', abbr:'MS', tier:'Luxury',
+    heroImg: UP('1583744946564-b52ac1c389c8',1200,500),
+    thumbImg: UP('1583744946564-b52ac1c389c8',128,128),
+    styles:['capsule','luxury','minimalist','premium','editorial'] },
+  { id:'auric', name:'Auric', tag:'Luxe occasionwear', abbr:'AU', tier:'Luxury',
+    heroImg: UP('1566479144-8d92dcf5f1fd',1200,500),
+    thumbImg: UP('1566479144-8d92dcf5f1fd',128,128),
+    styles:['occasionwear','luxury','evening','gala','formal','chic'] },
 ];
 
 const browseItems = {
-  velour:[
-    {name:'Silk blend blazer',   price:'£189', cat:'Outerwear', imgId:625},
-    {name:'Wide-leg trousers',   price:'£95',  cat:'Bottoms',   imgId:669},
-    {name:'Merino knit',         price:'£75',  cat:'Knitwear',  imgId:399},
-    {name:'Linen shirt',         price:'£65',  cat:'Tops',      imgId:453},
-  ],
-  crest:[
-    {name:'Wool overcoat',       price:'£320', cat:'Outerwear', imgId:326},
-    {name:'Tailored suit',       price:'£480', cat:'Sets',      imgId:659},
-    {name:'Oxford shirt',        price:'£110', cat:'Tops',      imgId:334},
-    {name:'Slim chinos',         price:'£95',  cat:'Bottoms',   imgId:584},
-  ],
-  nordly:[
-    {name:'Linen co-ord',        price:'£145', cat:'Sets',         imgId:247},
-    {name:'Minimal tee',         price:'£45',  cat:'Tops',         imgId:219},
-    {name:'Straight jeans',      price:'£89',  cat:'Bottoms',      imgId:317},
-    {name:'Canvas tote',         price:'£55',  cat:'Accessories',  imgId:137},
-  ],
-  harlo:[
-    {name:'Tech tracksuit',      price:'£110', cat:'Sets',         imgId:392},
-    {name:'Graphic hoodie',      price:'£79',  cat:'Tops',         imgId:535},
-    {name:'Runner sneakers',     price:'£130', cat:'Footwear',     imgId:212},
-    {name:'Cap',                 price:'£35',  cat:'Accessories',  imgId:157},
-  ],
-  mave:[
-    {name:'Cashmere roll neck',  price:'£195', cat:'Knitwear',     imgId:826},
-    {name:'Cigarette trousers',  price:'£165', cat:'Bottoms',      imgId:774},
-    {name:'Leather belt',        price:'£85',  cat:'Accessories',  imgId:175},
-    {name:'Slip dress',          price:'£210', cat:'Dresses',      imgId:972},
-  ],
-  auric:[
-    {name:'Evening gown',        price:'£580', cat:'Dresses',      imgId:355},
-    {name:'Strappy heels',       price:'£245', cat:'Footwear',     imgId:447},
-    {name:'Gold clutch',         price:'£189', cat:'Accessories',  imgId:250},
-    {name:'Silk blouse',         price:'£175', cat:'Tops',         imgId:868},
-  ],
+velour: [
+  {name:'Silk Blend Blazer',desc:'Structured single-button blazer in a fluid silk-viscose blend. Slightly oversized for an effortlessly polished silhouette.',cat:'Outerwear',price:'£189',colors:['#2C2C2C','#D4C5B0','#1B3A4B'],sizes:['XS','S','M','L','XL'],badge:'Bestseller',img:UP('1551698618-1dfef65f47c9',400,500)},
+  {name:'Wide-Leg Trousers',desc:'High-waisted wide-leg trousers in a crisp Japanese cotton blend. A wardrobe anchor for polished everyday dressing.',cat:'Bottoms',price:'£95',colors:['#1A1A1A','#C5B9A8','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1594938298870-5ad9fcb7e4a5',400,500)},
+  {name:'Merino V-Neck',desc:'Superfine merino wool knit with a classic V-neck. Naturally temperature-regulating and incredibly soft against the skin.',cat:'Knitwear',price:'£75',colors:['#E8E0D0','#8B7355','#C25B4E'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1576566588028-4147f3842f27',400,500)},
+  {name:'Linen Column Dress',desc:'Fluid column dress in garment-dyed 100% linen. Effortless from desk to dinner with minimal styling.',cat:'Dresses',price:'£145',colors:['#F5E9C8','#A0856C','#2C3E50'],sizes:['XS','S','M','L'],badge:'New',img:UP('1515886657613-9f3515b0c78f',400,500)},
+  {name:'Tailored Slim Trousers',desc:'Clean-lined tailored trousers with a slim silhouette and pressed crease. Made in Portugal from recycled wool blend.',cat:'Bottoms',price:'£110',colors:['#2C2C2C','#4A5568','#8B7355'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
+  {name:'Cotton Shirt Dress',desc:'Relaxed midi shirt dress in organic cotton poplin. Features a subtle self-stripe and a belted waist for shape.',cat:'Dresses',price:'£125',colors:['#FFFFFF','#E8D5B7','#C8B8A2'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1539109136881-3be0616acf4b',400,500)},
+  {name:'Structured Tote',desc:'Top-handle tote in pebbled Italian leather. Spacious enough for daily essentials with internal suede lining.',cat:'Accessories',price:'£195',colors:['#1A1A1A','#8B7355','#C4A882'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Cashmere Crewneck',desc:'100% Grade-A Mongolian cashmere in a relaxed crewneck fit. Pill-resistant and grows softer with every wash.',cat:'Knitwear',price:'£165',colors:['#F5E9C8','#C8B8A2','#4A5568','#2C2C2C'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1434389189428-a0ebaf6c8fd9',400,500)},
+  {name:'Silk Camisole',desc:'Bias-cut camisole in 100% Mulberry silk. Adjustable spaghetti straps and a delicate lace trim at the hem.',cat:'Tops',price:'£85',colors:['#F5E9C8','#E8C4C4','#C8D5E8'],sizes:['XS','S','M','L'],badge:'',img:UP('1583846783066-7af50cf21bf0',400,500)},
+  {name:'Pleated Midi Skirt',desc:'Fluid pleated midi skirt with an elasticated waistband. Falls beautifully in movement thanks to the satin-back crepe fabric.',cat:'Bottoms',price:'£89',colors:['#2C2C2C','#8B7355','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1496747433329-8b1b01c6da4b',400,500)},
+  {name:'Relaxed Linen Shirt',desc:'Slightly oversized linen shirt with a mandarin collar. Stonewashed for a soft, broken-in feel from day one.',cat:'Tops',price:'£65',colors:['#FFFFFF','#E8E0D0','#C5B9A8'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1598300042247-d088f8ab3a91',400,500)},
+  {name:'Wool Crepe Blazer',desc:'Double-faced wool crepe blazer with peaked lapels. A statement piece cut close to the body for a sharp silhouette.',cat:'Outerwear',price:'£245',colors:['#1A1A1A','#2C3E50','#8B1A1A'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1617019070800-f0d66b4cb37c',400,500)},
+  {name:'Ribbed Knit Set',desc:'Matching ribbed crop top and midi skirt in a stretchy viscose-nylon blend. A co-ord built for effortless dressing.',cat:'Sets',price:'£135',colors:['#C8B8A2','#2C2C2C','#4A5568'],sizes:['XS','S','M','L'],badge:'New',img:UP('1562572159-4edb1b6234c1',400,500)},
+  {name:'Trench Coat',desc:'Classic double-breasted trench in a water-resistant cotton gabardine. Storm flap, epaulettes, and a belted waist.',cat:'Outerwear',price:'£285',colors:['#C4A882','#2C2C2C','#1B3A4B'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1591047139829-d91aecb6caea',400,500)},
+  {name:'Cigarette Trousers',desc:'High-rise cigarette-cut trousers in stretch crepe. Tapered ankle and invisible side-zip for a seamless look.',cat:'Bottoms',price:'£99',colors:['#1A1A1A','#4A5568','#C5B9A8'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
+  {name:'Leather Belt',desc:'Slim hand-stitched belt in full-grain Italian leather. A wardrobe finishing touch that lasts a lifetime.',cat:'Accessories',price:'£55',colors:['#1A1A1A','#8B7355','#5C3317'],sizes:['XS/S','M/L','XL/XXL'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Knit Polo Shirt',desc:'Merino blend polo shirt with a ribbed collar and placket. Sits neatly at the hip for a smart-casual finish.',cat:'Tops',price:'£79',colors:['#E8E0D0','#4A5568','#2C2C2C','#8B1A1A'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1490481651871-ab68de25d43d',400,500)},
+  {name:'Tailored Shorts',desc:'Sharply tailored mid-thigh shorts in a lightweight wool blend. Lined for comfort and pressed to a knife-edge crease.',cat:'Bottoms',price:'£75',colors:['#C5B9A8','#2C2C2C','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1594938298870-5ad9fcb7e4a5',400,500)},
+  {name:'Oversized Blazer Dress',desc:'An architectural blazer worn as a dress. Double-breasted with bold gold buttons and patch pockets.',cat:'Dresses',price:'£175',colors:['#1A1A1A','#2C3E50'],sizes:['XS','S','M','L'],badge:'Bestseller',img:UP('1515886657613-9f3515b0c78f',400,500)},
+  {name:'Scarf in Modal Silk',desc:'Lightweight modal-silk scarf with a fine rolled edge. Wears beautifully as a neckerchief, headband, or bag accessory.',cat:'Accessories',price:'£45',colors:['#F5E9C8','#E8C4C4','#C8D5E8','#A8C5A8'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+],
+crest: [
+  {name:'Bespoke Wool Suit',desc:'Two-piece suit in 130s Super wool from a renowned Yorkshire mill. Canvassed chest for a natural drape that improves with wear.',cat:'Sets',price:'£895',colors:['#1A1A1A','#2C3E50','#4A5568','#8B6914'],sizes:['36R','38R','40R','42R','44R','46R'],badge:'Signature',img:UP('1507679799987-c73779587ccf',400,500)},
+  {name:'Cashmere Overcoat',desc:'Single-breasted overcoat in 100% Scottish cashmere. Fully lined in Bemberg silk for a weightless, luxurious wearing experience.',cat:'Outerwear',price:'£680',colors:['#1A1A1A','#C4A882','#4A5568'],sizes:['S','M','L','XL','XXL'],badge:'',img:UP('1591047139829-d91aecb6caea',400,500)},
+  {name:'Oxford Dress Shirt',desc:'Classic Oxford shirt in a 100% Sea Island cotton two-fold twill. Made to order with your choice of collar and cuff.',cat:'Tops',price:'£165',colors:['#FFFFFF','#E8F0FF','#F5E9C8'],sizes:['14.5','15','15.5','16','16.5','17','17.5'],badge:'',img:UP('1598300042247-d088f8ab3a91',400,500)},
+  {name:'Slim Wool Trousers',desc:'Slim-cut formal trousers in a finely woven pure wool. Side adjusters and a full lining for uncompromising comfort.',cat:'Bottoms',price:'£195',colors:['#1A1A1A','#2C3E50','#4A5568','#C4A882'],sizes:['28','30','32','34','36','38'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
+  {name:'Silk Pocket Square',desc:'Hand-rolled silk pocket square in a classic houndstooth print. Cut from 12mm silk satin for a crisp fold.',cat:'Accessories',price:'£45',colors:['#1A1A1A','#8B6914','#1B3A4B'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Suede Chelsea Boot',desc:'Classic Chelsea boot in a supple suede upper with an elasticated gusset. Leather-lined for breathability and comfort.',cat:'Footwear',price:'£345',colors:['#1A1A1A','#5C3317','#8B7355'],sizes:['7','8','9','10','11','12'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
+  {name:'Merino Rollneck',desc:'Fine-gauge merino rollneck in a classic silhouette. Ideal under a suit or worn alone on smarter casual days.',cat:'Knitwear',price:'£145',colors:['#1A1A1A','#FFFFFF','#8B7355','#1B3A4B'],sizes:['S','M','L','XL','XXL'],badge:'',img:UP('1576566588028-4147f3842f27',400,500)},
+  {name:'Tailored Waistcoat',desc:'Five-button waistcoat in a worsted wool and silk blend. Cut to complement the Bespoke Wool Suit for a three-piece look.',cat:'Sets',price:'£185',colors:['#1A1A1A','#2C3E50','#4A5568'],sizes:['36R','38R','40R','42R','44R'],badge:'',img:UP('1617019070800-f0d66b4cb37c',400,500)},
+  {name:'Leather Derby Shoe',desc:'Goodyear-welted derby in a smooth calf leather. A cornerstone of any formal wardrobe, resoleable for decades of wear.',cat:'Footwear',price:'£295',colors:['#1A1A1A','#5C3317'],sizes:['7','8','9','10','11','12'],badge:'Bestseller',img:UP('1542291026-7eec264c27ff',400,500)},
+  {name:'Double Cuff Shirt',desc:'Formal double-cuff shirt in a 140s Swiss cotton poplin. Slim spread collar and a single-needle stitched front placket.',cat:'Tops',price:'£195',colors:['#FFFFFF','#E8F0FF','#F5F5DC'],sizes:['14.5','15','15.5','16','16.5','17'],badge:'',img:UP('1598300042247-d088f8ab3a91',400,500)},
+  {name:'Braces in Silk',desc:'Formal Y-back braces with silk front panels and leather button fittings. An elegant alternative to a belt with a tailored suit.',cat:'Accessories',price:'£85',colors:['#1A1A1A','#8B6914','#1B3A4B','#8B1A1A'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Linen Safari Jacket',desc:'Four-pocket safari jacket in a washed Irish linen. A relaxed yet refined take on the tailored jacket for warmer months.',cat:'Outerwear',price:'£285',colors:['#C4A882','#8B7355','#4A5568'],sizes:['S','M','L','XL','XXL'],badge:'Summer',img:UP('1617019070800-f0d66b4cb37c',400,500)},
+  {name:'Cashmere Scarf',desc:'Generously sized scarf in a double-faced cashmere twill. Finished with hand-fringed ends and a subtle tonal stripe.',cat:'Accessories',price:'£145',colors:['#1A1A1A','#C4A882','#1B3A4B','#8B1A1A'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Formal Cufflinks',desc:'Hand-crafted engine-turned cufflinks in sterling silver with a gold vermeil finish. Presented in a Crest & Co gift box.',cat:'Accessories',price:'£125',colors:['#C9A84C','#C0C0C0'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Worsted Blazer',desc:'Single-breasted blazer in a lightweight worsted wool and mohair blend. Patch pockets and a ticket pocket for distinction.',cat:'Outerwear',price:'£395',colors:['#1A1A1A','#2C3E50','#4A5568','#8B6914'],sizes:['36R','38R','40R','42R','44R'],badge:'',img:UP('1507679799987-c73779587ccf',400,500)},
+  {name:'Slim Chinos',desc:'Five-pocket chinos in a Portuguese stretch cotton twill. A more relaxed option from the Crest tailoring house.',cat:'Bottoms',price:'£135',colors:['#C4A882','#4A5568','#2C2C2C','#8B7355'],sizes:['28','30','32','34','36','38'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
+  {name:'Grosgrain Tie',desc:'Classic grosgrain tie in a rich silk-cotton blend. A subtle texture that reads well in person and on camera.',cat:'Accessories',price:'£65',colors:['#1A1A1A','#8B6914','#1B3A4B','#8B1A1A'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Flannel Shirt',desc:'Heavyweight Portuguese flannel shirt in a classic check. Wears as a light outerwear layer or tucked for smart casual.',cat:'Tops',price:'£95',colors:['#1B3A4B','#8B1A1A','#4A5568'],sizes:['S','M','L','XL','XXL','3XL'],badge:'',img:UP('1598300042247-d088f8ab3a91',400,500)},
+  {name:'Loafer in Calf',desc:'Penny loafer in a smooth calf leather upper with a leather sole. The definitive casual alternative to a formal shoe.',cat:'Footwear',price:'£265',colors:['#5C3317','#1A1A1A','#C4A882'],sizes:['7','8','9','10','11','12'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
+  {name:'Lambswool V-Neck',desc:'Traditional V-neck jumper in a lambswool and cashmere blend. A soft, warm layer for the transition between seasons.',cat:'Knitwear',price:'£125',colors:['#8B7355','#1B3A4B','#1A1A1A','#8B1A1A'],sizes:['S','M','L','XL','XXL'],badge:'',img:UP('1576566588028-4147f3842f27',400,500)},
+  {name:'Tattersall Handkerchief',desc:'Traditional tattersall check handkerchief in a fine combed cotton. Presented in a set of three in coordinating colourways.',cat:'Accessories',price:'£35',colors:['#FFFFFF'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+],
+nordly: [
+  {name:'Clean Linen Co-ord',desc:'Matching wide-leg trouser and relaxed blazer in a stonewashed 100% linen. The Nordly summer uniform.',cat:'Sets',price:'£185',colors:['#F5F0E8','#E8E0D0','#C5B9A8'],sizes:['XS','S','M','L','XL'],badge:'Bestseller',img:UP('1558769132-cb1aea458c5e',400,500)},
+  {name:'The Perfect White Tee',desc:'A heavyweight 240gsm organic cotton tee with a relaxed boxy cut. Pre-shrunk and garment-washed for a lived-in feel.',cat:'Tops',price:'£45',colors:['#FFFFFF','#E8E0D0','#1A1A1A'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Straight Leg Jeans',desc:'Japanese selvedge denim in a straight leg cut with a mid rise. Sanforized to prevent shrinkage and fade beautifully.',cat:'Bottoms',price:'£125',colors:['#4A5568','#1A1A1A','#8B7355'],sizes:['24','25','26','27','28','29','30','32'],badge:'',img:UP('1542272604-e9f84f957869',400,500)},
+  {name:'Oversized Wool Coat',desc:'Boxy oversized coat in a double-faced virgin wool and alpaca blend. A Nordly icon that works across all seasons.',cat:'Outerwear',price:'£295',colors:['#F5F0E8','#1A1A1A','#8B7355','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'Icon',img:UP('1591047139829-d91aecb6caea',400,500)},
+  {name:'Ribbed Tank Top',desc:'Ribbed viscose-elastane tank top cut close to the body. A minimal layering piece for wardrobe building.',cat:'Tops',price:'£35',colors:['#FFFFFF','#E8E0D0','#1A1A1A','#C5B9A8'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Canvas Tote',desc:'Natural canvas tote with a reinforced base and cotton rope handles. Waxed for a degree of water resistance.',cat:'Accessories',price:'£55',colors:['#F5F0E8','#1A1A1A'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Minimal Loafer',desc:'Slip-on loafer in a burnished leather with a leather-stacked heel. Unlined for a closer, more direct feel.',cat:'Footwear',price:'£185',colors:['#1A1A1A','#8B7355','#5C3317'],sizes:['36','37','38','39','40','41','42'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
+  {name:'Drawstring Shorts',desc:'Relaxed drawstring shorts in a washed linen. An easy piece for weekends and warm-weather travel.',cat:'Bottoms',price:'£65',colors:['#F5F0E8','#E8E0D0','#4A5568'],sizes:['XS','S','M','L','XL','XXL'],badge:'Summer',img:UP('1594938298870-5ad9fcb7e4a5',400,500)},
+  {name:'Merino Beanie',desc:'Fine-gauge merino beanie in a slouchy fit. Naturally odour-resistant and soft enough to wear directly against the skin.',cat:'Accessories',price:'£38',colors:['#1A1A1A','#F5F0E8','#4A5568','#8B7355'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Utility Overshirt',desc:'Four-pocket utility overshirt in a washed cotton canvas. Wear open as a lightweight layer or buttoned as a standalone top.',cat:'Outerwear',price:'£98',colors:['#8B7355','#4A5568','#1A1A1A','#F5F0E8'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1617019070800-f0d66b4cb37c',400,500)},
+  {name:'Fluid Wide Trousers',desc:'Pull-on wide-leg trousers in a fluid recycled polyester crepe. A minimal silhouette with a comfortable elasticated waistband.',cat:'Bottoms',price:'£79',colors:['#1A1A1A','#F5F0E8','#8B7355'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
+  {name:'Long Sleeve Layer',desc:'Lightweight long-sleeve top in an organic cotton jersey. A precision-cut layering piece with a clean minimal finish.',cat:'Tops',price:'£48',colors:['#FFFFFF','#E8E0D0','#1A1A1A','#C5B9A8','#4A5568'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Box Pleat Skirt',desc:'Midi box pleat skirt in a Japanese cotton and linen blend. The pleats fall cleanly and hold their structure throughout the day.',cat:'Bottoms',price:'£89',colors:['#F5F0E8','#1A1A1A','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1496747433329-8b1b01c6da4b',400,500)},
+  {name:'Leather Card Holder',desc:'Slim card holder in a vegetable-tanned leather with four card slots. Ages beautifully to develop a unique patina.',cat:'Accessories',price:'£45',colors:['#1A1A1A','#8B7355','#5C3317'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Chunky Knit Jumper',desc:'Voluminous chunky-knit jumper in a merino and recycled wool blend. Intentionally oversized for a relaxed, editorial silhouette.',cat:'Knitwear',price:'£135',colors:['#F5F0E8','#E8E0D0','#1A1A1A','#8B7355'],sizes:['XS/S','M/L','XL/XXL'],badge:'',img:UP('1576566588028-4147f3842f27',400,500)},
+  {name:'Cotton Blazer',desc:'Unstructured cotton blazer with a relaxed single-button front. Garment-washed for a soft, casual drape.',cat:'Outerwear',price:'£145',colors:['#F5F0E8','#1A1A1A','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1551698618-1dfef65f47c9',400,500)},
+  {name:'Organic Crew Sweatshirt',desc:'Heavyweight 380gsm organic cotton sweatshirt with a classic crew neck. Pre-washed and pre-shrunk for a consistent fit.',cat:'Tops',price:'£75',colors:['#F5F0E8','#E8E0D0','#1A1A1A','#4A5568','#8B7355'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Linen Pillowcase Set',desc:'Set of two pillowcases in a stonewashed French linen. An extension of the Nordly aesthetic into the home.',cat:'Lifestyle',price:'£55',colors:['#F5F0E8','#E8E0D0','#C5B9A8'],sizes:['Standard','King'],badge:'',img:UP('1558769132-cb1aea458c5e',400,500)},
+  {name:'White Oxford Shirt',desc:'Classic Oxford shirt in a 120s combed cotton. A clean, minimal cut with no unnecessary details.',cat:'Tops',price:'£68',colors:['#FFFFFF','#E8E0D0'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1598300042247-d088f8ab3a91',400,500)},
+  {name:'Recycled Nylon Jacket',desc:'Lightweight jacket in a recycled nylon taffeta. Packs down into its own pocket for easy travel and storage.',cat:'Outerwear',price:'£115',colors:['#1A1A1A','#4A5568','#F5F0E8'],sizes:['XS','S','M','L','XL','XXL'],badge:'Eco',img:UP('1591047139829-d91aecb6caea',400,500)},
+],
+harlo: [
+  {name:'Tech Tracksuit',desc:'Matching jacket and jogger in a four-way stretch technical fabric. Moisture-wicking and quick-drying for training and beyond.',cat:'Sets',price:'£145',colors:['#1A1A1A','#4A5568','#8B1A1A','#C9A84C'],sizes:['XS','S','M','L','XL','XXL'],badge:'Bestseller',img:UP('1552346154-21a0bc001eda',400,500)},
+  {name:'Oversized Graphic Hoodie',desc:'400gsm fleece hoodie with a custom hand-drawn Harlo archive graphic. Dropped shoulders and a kangaroo pocket.',cat:'Tops',price:'£85',colors:['#1A1A1A','#FFFFFF','#4A5568'],sizes:['XS','S','M','L','XL','XXL','3XL'],badge:'Drop',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Cargo Wide Leg',desc:'Six-pocket cargo trousers in a Japanese cotton ripstop. Adjustable hem cords and a relaxed wide-leg silhouette.',cat:'Bottoms',price:'£115',colors:['#4A5568','#8B7355','#1A1A1A','#C4A882'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1594938298870-5ad9fcb7e4a5',400,500)},
+  {name:'Trail Runner Sneaker',desc:'Technical trail-inspired sneaker with a chunky EVA midsole and breathable mesh upper. Built for city streets and beyond.',cat:'Footwear',price:'£155',colors:['#1A1A1A','#FFFFFF','#4A5568','#8B1A1A'],sizes:['6','7','8','9','10','11','12'],badge:'New',img:UP('1542291026-7eec264c27ff',400,500)},
+  {name:'Washed Denim Jacket',desc:'Oversized denim jacket in a stonewashed Japanese denim. Distressed hardware and a relaxed boxy fit.',cat:'Outerwear',price:'£125',colors:['#4A5568','#1A1A1A'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1617019070800-f0d66b4cb37c',400,500)},
+  {name:'5-Panel Cap',desc:'Unstructured 5-panel cap in a 6-wale corduroy with a leather strap adjuster. A Harlo archive staple.',cat:'Accessories',price:'£38',colors:['#1A1A1A','#4A5568','#8B7355','#8B1A1A'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Basketball Short',desc:'Mesh-lined basketball shorts in a quick-dry fabric. Contrast side tape and an embroidered Harlo logo at the hem.',cat:'Bottoms',price:'£55',colors:['#1A1A1A','#FFFFFF','#8B1A1A','#C9A84C'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1552346154-21a0bc001eda',400,500)},
+  {name:'Heavyweight Crewneck',desc:'450gsm fleece crewneck in a boxy silhouette. Garment-dyed for a vintage-washed effect unique to each piece.',cat:'Tops',price:'£95',colors:['#4A5568','#8B7355','#1A1A1A','#C25B4E'],sizes:['XS','S','M','L','XL','XXL','3XL'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Utility Vest',desc:'Multi-pocket utility vest in a technical nylon. Lightweight enough to layer without bulk, functional enough to replace a bag.',cat:'Outerwear',price:'£89',colors:['#4A5568','#1A1A1A','#8B7355'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1617019070800-f0d66b4cb37c',400,500)},
+  {name:'Skate Chino',desc:'Relaxed-fit chino with a double-knee construction and reinforced back pockets. Built for movement and durability.',cat:'Bottoms',price:'£79',colors:['#C4A882','#1A1A1A','#4A5568','#8B7355'],sizes:['28','30','32','34','36','38'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
+  {name:'Half-Zip Fleece',desc:'Midlayer fleece with a contrast half-zip and kangaroo pocket. Recycled polyester with a brushed interior for warmth.',cat:'Tops',price:'£98',colors:['#1A1A1A','#4A5568','#8B1A1A','#C9A84C'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Crossbody Bag',desc:'Compact crossbody in a ballistic nylon with multiple zip compartments. A MOLLE-compatible strap for modular attachment.',cat:'Accessories',price:'£72',colors:['#1A1A1A','#4A5568','#8B7355'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Boxer Brief Set',desc:'Set of three boxer briefs in a premium modal-cotton blend. A daily essential from Harlo.',cat:'Essentials',price:'£42',colors:['#1A1A1A','#4A5568','#FFFFFF'],sizes:['XS','S','M','L','XL','XXL'],badge:'Pack',img:UP('1552346154-21a0bc001eda',400,500)},
+  {name:'Corduroy Shirt',desc:'Boxy overshirt in a fine-wale corduroy. Button-through with a single chest pocket — a casual layering staple.',cat:'Tops',price:'£75',colors:['#8B7355','#4A5568','#8B1A1A','#1A1A1A'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1598300042247-d088f8ab3a91',400,500)},
+  {name:'Platform Sneaker',desc:'Chunky platform sneaker in a suede upper with a thick EVA sole. A bold statement piece from the Harlo footwear line.',cat:'Footwear',price:'£175',colors:['#FFFFFF','#1A1A1A','#8B7355'],sizes:['6','7','8','9','10','11','12'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
+  {name:'Windbreaker',desc:'Packable windbreaker in a ripstop nylon with taped seams. Adjustable hood and cuffs for a secure, protective fit.',cat:'Outerwear',price:'£110',colors:['#1A1A1A','#4A5568','#8B1A1A','#C9A84C'],sizes:['XS','S','M','L','XL','XXL'],badge:'',img:UP('1591047139829-d91aecb6caea',400,500)},
+  {name:'Longline Tee',desc:'Longline tee with a curved hem and a dropped shoulder. Cut from a premium 200gsm cotton for a substantial feel.',cat:'Tops',price:'£48',colors:['#1A1A1A','#FFFFFF','#4A5568','#8B7355'],sizes:['XS','S','M','L','XL','XXL','3XL'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Sock 3-Pack',desc:'Three pairs of reinforced cotton-blend crew socks with a Harlo logo knit at the ankle.',cat:'Essentials',price:'£22',colors:['#1A1A1A','#FFFFFF','#4A5568'],sizes:['S/M','L/XL'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Denim Shorts',desc:'Relaxed cut denim shorts with raw-hem finish. Washed and distressed for an authentic lived-in look.',cat:'Bottoms',price:'£65',colors:['#4A5568','#1A1A1A'],sizes:['28','30','32','34','36'],badge:'Summer',img:UP('1594938298870-5ad9fcb7e4a5',400,500)},
+  {name:'Bucket Hat',desc:'Reversible bucket hat in a technical nylon and cotton canvas. Features a concealed roll-up brim for adjustable styling.',cat:'Accessories',price:'£45',colors:['#1A1A1A','#4A5568','#8B7355','#C4A882'],sizes:['S/M','L/XL'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+],
+mave: [
+  {name:'Cashmere Cocoon Coat',desc:'Voluminous cocoon silhouette coat in a double-faced 4-ply cashmere. The Mave Studio signature piece for several seasons.',cat:'Outerwear',price:'£890',colors:['#F5F0E8','#1A1A1A','#8B7355'],sizes:['XS','S','M','L'],badge:'Signature',img:UP('1583744946564-b52ac1c389c8',400,500)},
+  {name:'The Bias Slip Dress',desc:'Bias-cut slip dress in a 22mm Mulberry silk charmeuse. A foundation piece of the Mave capsule that transitions effortlessly from day to evening.',cat:'Dresses',price:'£385',colors:['#F5E9C8','#1A1A1A','#E8C4C4','#C8D5E8'],sizes:['XS','S','M','L'],badge:'',img:UP('1515886657613-9f3515b0c78f',400,500)},
+  {name:'Cigarette Trouser',desc:'High-rise cigarette-cut trouser in a stretch Japanese crepe. A Mave capsule staple cut to lengthen the leg.',cat:'Bottoms',price:'£245',colors:['#1A1A1A','#F5F0E8','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'Bestseller',img:UP('1506629082955-511b1aa562c8',400,500)},
+  {name:'Cashmere Roll Neck',desc:'A fine-gauge 2-ply cashmere roll neck in a relaxed, slightly boxy silhouette. The cornerstone of a Mave capsule wardrobe.',cat:'Knitwear',price:'£295',colors:['#F5F0E8','#1A1A1A','#8B7355','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1576566588028-4147f3842f27',400,500)},
+  {name:'Oversized Shirt',desc:'Voluminous shirt in a 200-thread-count poplin with mother-of-pearl buttons. Intentionally oversized to be worn tucked, half-tucked, or open.',cat:'Tops',price:'£175',colors:['#FFFFFF','#F5F0E8','#1A1A1A'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1598300042247-d088f8ab3a91',400,500)},
+  {name:'Leather Baguette',desc:'Mini baguette bag in a supple nappa leather with a polished gold-tone chain. An understated alternative to the statement bag.',cat:'Accessories',price:'£425',colors:['#1A1A1A','#C4A882','#8B7355'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Silk Pyjama Set',desc:'Relaxed pyjama set in a 19mm silk satin. The Mave approach to luxury loungewear: refined, not flamboyant.',cat:'Lifestyle',price:'£265',colors:['#F5E9C8','#C8D5E8','#1A1A1A'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1583746793-6d14af9c5cb4',400,500)},
+  {name:'Wide Leg Trouser',desc:'Fluid wide-leg trouser in a wool-georgette blend. The drape is exceptional — the silhouette feels sculptural in movement.',cat:'Bottoms',price:'£195',colors:['#1A1A1A','#F5F0E8','#8B7355','#4A5568'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1594938298870-5ad9fcb7e4a5',400,500)},
+  {name:'Boucle Jacket',desc:'Unstructured boucle jacket with a clean edge finish and no lining. A textural contrast to the smooth fabrics in the Mave line.',cat:'Outerwear',price:'£395',colors:['#F5F0E8','#1A1A1A','#8B7355'],sizes:['XS','S','M','L'],badge:'New',img:UP('1551698618-1dfef65f47c9',400,500)},
+  {name:'Ribbed Knit Dress',desc:'Midi-length ribbed knit dress in a merino-cashmere blend. Close to the body at the top, relaxing slightly below the hip.',cat:'Dresses',price:'£310',colors:['#1A1A1A','#F5F0E8','#8B7355','#C25B4E'],sizes:['XS','S','M','L'],badge:'',img:UP('1515886657613-9f3515b0c78f',400,500)},
+  {name:'Leather Trousers',desc:'Straight-leg trouser in a butter-soft nappa leather. Fully lined for comfort. A statement investment piece.',cat:'Bottoms',price:'£565',colors:['#1A1A1A','#5C3317','#8B7355'],sizes:['XS','S','M','L'],badge:'',img:UP('1506629082955-511b1aa562c8',400,500)},
+  {name:'Merino Rib Set',desc:'Matching ribbed crop and midi skirt in a fine merino. The Mave answer to effortless tonal dressing.',cat:'Sets',price:'£185',colors:['#F5F0E8','#1A1A1A','#8B7355','#C25B4E'],sizes:['XS','S','M','L'],badge:'',img:UP('1562572159-4edb1b6234c1',400,500)},
+  {name:'Sculpted Mule',desc:'Block-heel mule in a satin upper with a pointed toe. Minimal hardware, maximum presence.',cat:'Footwear',price:'£285',colors:['#1A1A1A','#F5E9C8','#C4A882'],sizes:['36','37','38','39','40','41'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
+  {name:'Gold-Fill Earrings',desc:'Sculptural hoop earrings in a 14ct gold fill. Designed in-house and cast in small batches in Paris.',cat:'Accessories',price:'£85',colors:['#C9A84C'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Linen Blazer',desc:'Deconstructed linen blazer with a single dart and clean lapels. Unlined and lightly padded at the shoulders.',cat:'Outerwear',price:'£295',colors:['#F5F0E8','#C5B9A8','#1A1A1A'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1617019070800-f0d66b4cb37c',400,500)},
+  {name:'Column Maxi Dress',desc:'Floor-length column dress in a deadstock Japanese silk crepe. A Mave commitment to zero-waste design.',cat:'Dresses',price:'£445',colors:['#1A1A1A','#F5E9C8','#C8D5E8'],sizes:['XS','S','M','L'],badge:'Limited',img:UP('1515886657613-9f3515b0c78f',400,500)},
+  {name:'Cashmere Lounge Pant',desc:'Wide-leg lounge pant in a pure cashmere. Designed to be worn at home or out — the line between luxury and comfort, blurred.',cat:'Lifestyle',price:'£225',colors:['#F5F0E8','#1A1A1A','#8B7355'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1594938298870-5ad9fcb7e4a5',400,500)},
+  {name:'Fine Knit Tank',desc:'Barely-there fine knit tank in a silk-cashmere blend. Designed to layer under everything or worn alone for evening.',cat:'Tops',price:'£135',colors:['#F5F0E8','#1A1A1A','#C25B4E','#4A5568'],sizes:['XS','S','M','L'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Structured Tote',desc:'Clean architectural tote in a vegetable-tanned Italian leather. The interior is lined in a custom suede with a single flat pocket.',cat:'Accessories',price:'£485',colors:['#1A1A1A','#C4A882','#8B7355'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Demi-Boot',desc:'Pull-on demi boot in a smooth nappa leather with a kitten heel and an almond toe. A considered, understated boot.',cat:'Footwear',price:'£345',colors:['#1A1A1A','#5C3317','#C4A882'],sizes:['36','37','38','39','40','41'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
+],
+auric: [
+  {name:'The Luminary Gown',desc:'Column gown in a duchess satin with a hand-embroidered bodice. Structured boning and a sweep train. For unforgettable evenings.',cat:'Dresses',price:'£1,850',colors:['#F5E9C8','#1A1A1A','#1B3A4B'],sizes:['XS','S','M','L'],badge:'Couture',img:UP('1566479144-8d92dcf5f1fd',400,500)},
+  {name:'Crystal Drop Earrings',desc:'Statement drop earrings with hand-set Swarovski crystals in a gold-vermeil setting. Lightweight despite their visual impact.',cat:'Jewellery',price:'£285',colors:['#C9A84C','#C0C0C0'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Silk Ruched Dress',desc:'Bias-cut ruched dress in a 22mm silk habotai. Adjustable tie waist and a plunging V neckline. A Auric evening signature.',cat:'Dresses',price:'£680',colors:['#F5E9C8','#E8C4C4','#1A1A1A','#1B3A4B'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1515886657613-9f3515b0c78f',400,500)},
+  {name:'Embellished Clutch',desc:'Minaudière clutch with hand-applied glass beading on a brass frame. The statement accessory to define an entire look.',cat:'Accessories',price:'£395',colors:['#C9A84C','#C0C0C0','#1A1A1A'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Strappy Heel Sandal',desc:'4-inch heel sandal in a satin upper with a barely-there strap construction. Leather insole for comfort across long evenings.',cat:'Footwear',price:'£345',colors:['#F5E9C8','#1A1A1A','#E8C4C4'],sizes:['36','37','38','39','40','41'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
+  {name:'Feather Trim Jacket',desc:'Cropped jacket with a tonal feather trim at the cuffs and neckline. A bold yet refined statement for evening occasions.',cat:'Outerwear',price:'£520',colors:['#FFFFFF','#1A1A1A','#E8C4C4'],sizes:['XS','S','M','L'],badge:'New',img:UP('1551698618-1dfef65f47c9',400,500)},
+  {name:'Velvet Midi Dress',desc:'Midi dress in a silk-backed velvet with a side slit and an off-shoulder neckline. Rich colour and exceptional handle.',cat:'Dresses',price:'£595',colors:['#1B3A4B','#8B1A1A','#1A1A1A','#2C3E50'],sizes:['XS','S','M','L'],badge:'',img:UP('1566479144-8d92dcf5f1fd',400,500)},
+  {name:'Diamond Initial Pendant',desc:'18ct gold pendant set with pavé diamonds spelling your chosen initial. Presented on a 40cm gold chain.',cat:'Jewellery',price:'£850',colors:['#C9A84C'],sizes:['One Size'],badge:'Bespoke',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Wide-Leg Evening Trouser',desc:'High-waisted palazzo trouser in a silk-charmeuse. Exceptionally fluid with a liquid drape that photographs beautifully.',cat:'Bottoms',price:'£385',colors:['#1A1A1A','#F5E9C8','#1B3A4B'],sizes:['XS','S','M','L','XL'],badge:'',img:UP('1594938298870-5ad9fcb7e4a5',400,500)},
+  {name:'Sequin Blazer',desc:'Fully sequined single-button blazer over a contrast satin lining. Makes a tuxedo jacket feel understated by comparison.',cat:'Outerwear',price:'£465',colors:['#C9A84C','#C0C0C0','#1A1A1A'],sizes:['XS','S','M','L'],badge:'',img:UP('1617019070800-f0d66b4cb37c',400,500)},
+  {name:'Corseted Bustier',desc:'Structured bustier with interior boning and a silk satin exterior. Wear alone or layered under a blazer for a directional look.',cat:'Tops',price:'£295',colors:['#1A1A1A','#F5E9C8','#E8C4C4'],sizes:['XS','S','M','L'],badge:'',img:UP('1566479144-8d92dcf5f1fd',400,500)},
+  {name:'Kitten Heel Mule',desc:'Open-toe mule with a 5cm kitten heel in a satin upper. A refined evening shoe that can transition to daytime.',cat:'Footwear',price:'£265',colors:['#F5E9C8','#1A1A1A','#E8C4C4','#C9A84C'],sizes:['36','37','38','39','40','41'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
+  {name:'Beaded Shawl',desc:'Hand-beaded silk chiffon shawl. Adds an evening dimension to any look and serves as a statement wrap.',cat:'Accessories',price:'£175',colors:['#F5E9C8','#C9A84C','#E8C4C4'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Chandelier Earrings',desc:'Multi-drop chandelier earrings with hand-set baroque pearls and crystal accents in a gold-fill setting.',cat:'Jewellery',price:'£195',colors:['#C9A84C'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Lace Insert Dress',desc:'Midi dress with a delicate floral lace inset at the neckline and hem. Made in a French leavers lace and silk chiffon composite.',cat:'Dresses',price:'£720',colors:['#FFFFFF','#F5E9C8','#1A1A1A'],sizes:['XS','S','M','L'],badge:'Artisan',img:UP('1566479144-8d92dcf5f1fd',400,500)},
+  {name:'Silk Halter Top',desc:'Minimal silk halter in a 20mm charmeuse with a self-tie back. Wears beautifully with the palazzo trouser.',cat:'Tops',price:'£175',colors:['#F5E9C8','#1A1A1A','#C0C0C0','#1B3A4B'],sizes:['XS','S','M','L'],badge:'',img:UP('1618354691438-25bc04584c23',400,500)},
+  {name:'Ankle Strap Heel',desc:'Classic ankle strap heel in a satin upper with a square toe. 8cm heel with a platform toe for balanced wear.',cat:'Footwear',price:'£295',colors:['#F5E9C8','#1A1A1A','#E8C4C4'],sizes:['36','37','38','39','40','41'],badge:'',img:UP('1542291026-7eec264c27ff',400,500)},
+  {name:'Gold Cuff Bracelet',desc:'Wide cuff bracelet in an 18ct gold plating with a hammered surface finish. An understated power piece.',cat:'Jewellery',price:'£145',colors:['#C9A84C'],sizes:['XS/S','M/L'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Velvet Headband',desc:'Wide velvet headband with a padded silhouette. An elegant finishing touch to any evening look.',cat:'Accessories',price:'£65',colors:['#1A1A1A','#1B3A4B','#8B1A1A','#F5E9C8'],sizes:['One Size'],badge:'',img:UP('1548036161-236b8de8dc31',400,500)},
+  {name:'Embroidered Opera Coat',desc:'Floor-length opera coat in a duchess satin with hand-embroidered floral panels. A collectible outerwear piece.',cat:'Outerwear',price:'£2,200',colors:['#FFFFFF','#1A1A1A','#1B3A4B'],sizes:['XS','S','M','L'],badge:'Masterpiece',img:UP('1591047139829-d91aecb6caea',400,500)},
+],
 };
 
 const outfits = [
-  {user:'@sofiaq', tags:'#minimalist #workwear',   retailer:'Velour',      imgId:180,  likes:42},
-  {user:'@tomk',   tags:'#streetwear #casual',     retailer:'Harlo',       imgId:288,  likes:18},
-  {user:'@priyam', tags:'#eveningwear #chic',      retailer:'Auric',       imgId:1066, likes:87},
-  {user:'@ellab',  tags:'#scandi #neutral',        retailer:'Nordly',      imgId:145,  likes:31},
-  {user:'@jakef',  tags:'#tailored #smart',        retailer:'Crest & Co',  imgId:461,  likes:55},
-  {user:'@lunam',  tags:'#capsule #mono',          retailer:'Mave Studio', imgId:532,  likes:23},
+  {user:'@sofiaq',tags:'#minimalist #workwear',retailer:'Velour',img:UP('1490481651871-ab68de25d43d',600,560),likes:42},
+  {user:'@tomk',tags:'#streetwear #casual',retailer:'Harlo',img:UP('1552346154-21a0bc001eda',600,560),likes:18},
+  {user:'@priyam',tags:'#eveningwear #chic',retailer:'Auric',img:UP('1566479144-8d92dcf5f1fd',600,560),likes:87},
+  {user:'@ellab',tags:'#scandi #neutral',retailer:'Nordly',img:UP('1558769132-cb1aea458c5e',600,560),likes:31},
+  {user:'@jakef',tags:'#tailored #smart',retailer:'Crest & Co',img:UP('1507679799987-c73779587ccf',600,560),likes:55},
+  {user:'@lunam',tags:'#capsule #mono',retailer:'Mave Studio',img:UP('1583744946564-b52ac1c389c8',600,560),likes:23},
 ];
 
 const aiReplies = [
-  {text:"Great taste! Based on that, here are my top picks for you:", products:[
-    {name:'Silk blend blazer', price:'£189', imgId:625},
-    {name:'Wide-leg trousers', price:'£95',  imgId:669},
-    {name:'Merino knit',       price:'£75',  imgId:399},
-  ]},
-  {text:"Love that direction — very elevated and effortless. These would work perfectly:", products:[
-    {name:'Linen shirt',   price:'£65', imgId:453},
-    {name:'Slim chinos',   price:'£89', imgId:584},
-    {name:'Canvas tote',   price:'£55', imgId:137},
-  ]},
-  {text:"For that occasion I would suggest something polished. Here are my recommendations:", products:[
-    {name:'Slip dress',    price:'£210', imgId:972},
-    {name:'Strappy heels', price:'£245', imgId:447},
-    {name:'Gold clutch',   price:'£189', imgId:250},
-  ]},
+  {text:"Great taste! Based on that, here are my top picks for you:", products:[]},
+  {text:"Love that direction — very elevated and effortless. These would work perfectly:", products:[]},
+  {text:"For that occasion I'd suggest something polished. Here are my recommendations:", products:[]},
 ];
 
-let chatState={}, storeTab={}, likedOutfits=new Set(), replyIdx=0;
+let chatState={}, storeTab={}, likedOutfits=new Set(), replyIdx=0, activeFilter={};
 
-const allSearchTerms = ['minimalist','workwear','occasionwear','streetwear','luxury','capsule','Velour','Crest & Co','Nordly','Harlo','Mave Studio','Auric','tailored','scandi','evening','casual','formal','knitwear','blazer','dresses','outerwear','tops','bottoms','accessories','footwear'];
+// Build AI reply products dynamically from retailer items
+function buildAiReply(rid, idx) {
+  const items = browseItems[rid] || [];
+  const picked = items.slice(idx*3, idx*3+3).map(i=>({name:i.name,price:i.price,img:i.img}));
+  return { text: aiReplies[idx%3].text, products: picked };
+}
+
+const allSearchTerms = ['minimalist','workwear','occasionwear','streetwear','luxury','capsule',
+  'Velour','Crest & Co','Nordly','Harlo','Mave Studio','Auric',
+  'tailored','scandi','evening','casual','formal','knitwear','blazer','dresses','outerwear','tops','bottoms','accessories','footwear','sets'];
 
 function handleSearch(val) {
   const el = document.getElementById('suggestions');
   if (!val.trim()) { el.classList.remove('open'); return; }
-  const hits = allSearchTerms.filter(t => t.toLowerCase().includes(val.toLowerCase())).slice(0,6);
+  const hits = allSearchTerms.filter(t=>t.toLowerCase().includes(val.toLowerCase())).slice(0,6);
   if (!hits.length) { el.classList.remove('open'); return; }
-  el.innerHTML = hits.map(m => {
-    const isR = retailers.find(r => r.name.toLowerCase()===m.toLowerCase());
+  el.innerHTML = hits.map(m=>{
+    const isR = retailers.find(r=>r.name.toLowerCase()===m.toLowerCase());
     return `<div class="suggestion-item" onclick="quickSearch('${m}')">${m}<span class="suggestion-tag">${isR?'Retailer':'Style'}</span></div>`;
   }).join('');
   el.classList.add('open');
 }
 
 function quickSearch(term) {
-  document.getElementById('main-search').value = term;
+  document.getElementById('main-search').value=term;
   document.getElementById('suggestions').classList.remove('open');
   doSearch();
 }
@@ -399,27 +535,25 @@ function doSearch() {
   const val = document.getElementById('main-search').value.trim().toLowerCase();
   document.getElementById('suggestions').classList.remove('open');
   if (!val) { clearSearch(); return; }
-  const matchedR = retailers.filter(r => r.name.toLowerCase().includes(val) || r.tag.toLowerCase().includes(val) || r.tier.toLowerCase().includes(val) || r.styles.some(s=>s.includes(val)));
+  const matchedR = retailers.filter(r=>r.name.toLowerCase().includes(val)||r.tag.toLowerCase().includes(val)||r.tier.toLowerCase().includes(val)||r.styles.some(s=>s.includes(val)));
   const matchedI = [];
-  retailers.forEach(r => {
-    (browseItems[r.id]||[]).forEach(item => {
-      if (item.name.toLowerCase().includes(val)||item.cat.toLowerCase().includes(val)||r.name.toLowerCase().includes(val)||r.styles.some(s=>s.includes(val))) {
-        matchedI.push({...item, retailer:r.name, retailerId:r.id});
-      }
+  retailers.forEach(r=>{
+    (browseItems[r.id]||[]).forEach(item=>{
+      if (item.name.toLowerCase().includes(val)||item.cat.toLowerCase().includes(val)||r.name.toLowerCase().includes(val)||r.styles.some(s=>s.includes(val)))
+        matchedI.push({...item,retailer:r.name,retailerId:r.id});
     });
   });
-  const total = matchedR.length + matchedI.length;
-  const header = document.getElementById('results-header');
-  const grid = document.getElementById('styles-grid');
+  const total = matchedR.length+matchedI.length;
+  const header=document.getElementById('results-header'), grid=document.getElementById('styles-grid');
   if (!total) {
-    header.innerHTML = `<div class="results-title">No results for "${val}"</div><div class="results-sub">Try a brand name, style, or occasion</div>`;
+    header.innerHTML=`<div class="results-title">No results for "${val}"</div><div class="results-sub">Try a brand name, style, or occasion</div>`;
     grid.innerHTML='';
   } else {
-    header.innerHTML = `<div class="results-title">Results for "<em style="font-style:italic;color:var(--gold-dark)">${val}</em>"</div><div class="results-sub">${total} result${total!==1?'s':''} found</div>`;
-    let cards = '';
-    matchedR.forEach(r => { cards += `<div class="style-card" onclick="openStore('${r.id}','browse')"><div class="style-card-img"><img src="${PICSUM(r.imgId,400,300)}" alt="${r.name}" loading="lazy"/></div><div class="style-card-info"><div class="style-card-name">${r.name}</div><div class="style-card-retailer">${r.tier} · ${r.tag}</div><div class="style-card-price">Shop now &rarr;</div></div></div>`; });
-    matchedI.forEach(item => { cards += `<div class="style-card" onclick="openStore('${item.retailerId}','browse')"><div class="style-card-img"><img src="${PICSUM(item.imgId,400,300)}" alt="${item.name}" loading="lazy"/></div><div class="style-card-info"><div class="style-card-name">${item.name}</div><div class="style-card-retailer">${item.retailer} · ${item.cat}</div><div class="style-card-price">${item.price}</div></div></div>`; });
-    grid.innerHTML = cards;
+    header.innerHTML=`<div class="results-title">Results for "<em style="font-style:italic;color:var(--gold-dark)">${val}</em>"</div><div class="results-sub">${total} result${total!==1?'s':''} found</div>`;
+    let cards='';
+    matchedR.forEach(r=>{cards+=`<div class="style-card" onclick="openStore('${r.id}','browse')"><div class="style-card-img"><img src="${r.heroImg}" alt="${r.name}" loading="lazy"/></div><div class="style-card-info"><div class="style-card-name">${r.name}</div><div class="style-card-retailer">${r.tier} · ${r.tag}</div><div class="style-card-price">Shop now &rarr;</div></div></div>`;});
+    matchedI.forEach(item=>{cards+=`<div class="style-card" onclick="openStore('${item.retailerId}','browse')"><div class="style-card-img"><img src="${item.img}" alt="${item.name}" loading="lazy"/></div><div class="style-card-info"><div class="style-card-name">${item.name}</div><div class="style-card-retailer">${item.retailer} · ${item.cat}</div><div class="style-card-price">${item.price}</div></div></div>`;});
+    grid.innerHTML=cards;
   }
   document.getElementById('search-results-section').style.display='block';
   document.getElementById('main-retailers').style.display='none';
@@ -431,14 +565,14 @@ function clearSearch() {
   document.getElementById('main-retailers').style.display='block';
 }
 
-document.addEventListener('click', e => { if (!e.target.closest('.search-container')) document.getElementById('suggestions').classList.remove('open'); });
+document.addEventListener('click',e=>{ if(!e.target.closest('.search-container')) document.getElementById('suggestions').classList.remove('open'); });
 
 function showPage(page) {
-  document.getElementById('home-page').style.display  = page==='home'  ? 'block':'none';
-  document.getElementById('store-page').style.display = page==='store' ? 'block':'none';
-  document.getElementById('feed-page').style.display  = page==='feed'  ? 'block':'none';
-  if (page==='feed') renderFeed();
-  if (page==='home') { clearSearch(); document.getElementById('main-search').value=''; }
+  document.getElementById('home-page').style.display=page==='home'?'block':'none';
+  document.getElementById('store-page').style.display=page==='store'?'block':'none';
+  document.getElementById('feed-page').style.display=page==='feed'?'block':'none';
+  if(page==='feed') renderFeed();
+  if(page==='home'){ clearSearch(); document.getElementById('main-search').value=''; }
   window.scrollTo(0,0);
 }
 
@@ -448,10 +582,10 @@ function setActive(el) {
 }
 
 function renderRetailerGrid() {
-  document.getElementById('retailer-grid').innerHTML = retailers.map(r => `
+  document.getElementById('retailer-grid').innerHTML=retailers.map(r=>`
     <div class="retailer-card">
       <div class="retailer-card-img">
-        <img src="${PICSUM(r.imgId,600,360)}" alt="${r.name}" loading="lazy"/>
+        <img src="${r.heroImg}" alt="${r.name}" loading="lazy"/>
         <div class="img-overlay"></div>
         <div class="img-abbr">${r.abbr}</div>
       </div>
@@ -468,9 +602,10 @@ function renderRetailerGrid() {
 }
 
 function openStore(rid, tab) {
-  storeTab[rid] = tab || storeTab[rid] || 'browse';
-  const r = retailers.find(x=>x.id===rid);
-  if (!chatState[rid]) chatState[rid]=[{role:'ai',text:`Hi, I'm ${r.name}'s style assistant. I'm here to help you find pieces you'll love. What are you looking for today?`}];
+  storeTab[rid]=tab||storeTab[rid]||'browse';
+  activeFilter[rid]='All';
+  const r=retailers.find(x=>x.id===rid);
+  if(!chatState[rid]) chatState[rid]=[{role:'ai',text:`Hi, I'm ${r.name}'s style assistant. I'm here to help you find pieces you'll love. What are you looking for today?`}];
   showPage('store');
   renderStoreHeader(rid);
   renderStoreTabs(rid);
@@ -478,62 +613,74 @@ function openStore(rid, tab) {
 }
 
 function renderStoreHeader(rid) {
-  const r = retailers.find(x=>x.id===rid);
-  document.getElementById('store-hero').innerHTML = `
+  const r=retailers.find(x=>x.id===rid);
+  document.getElementById('store-hero').innerHTML=`
     <button class="store-back" onclick="showPage('home')">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       Back to retailers
     </button>
-    <div class="store-hero-img"><img src="${PICSUM(r.imgId,128,128)}" alt="${r.name}"/></div>
+    <div class="store-hero-img"><img src="${r.thumbImg}" alt="${r.name}"/></div>
     <div><div class="store-hero-name">${r.name}</div><div class="store-hero-tag">${r.tag} &bull; ${r.tier}</div></div>`;
 }
 
 function renderStoreTabs(rid) {
-  const tab = storeTab[rid];
-  document.getElementById('store-tabs').innerHTML = `
+  const tab=storeTab[rid];
+  document.getElementById('store-tabs').innerHTML=`
     <button class="store-tab ${tab==='browse'?'active':''}" onclick="switchTab('${rid}','browse')">Browse items</button>
     <button class="store-tab ${tab==='chat'?'active':''}" onclick="switchTab('${rid}','chat')">AI concierge</button>`;
 }
 
-function switchTab(rid, tab) { storeTab[rid]=tab; renderStoreTabs(rid); renderStoreContent(rid); }
+function switchTab(rid,tab){ storeTab[rid]=tab; renderStoreTabs(rid); renderStoreContent(rid); }
 
 function renderStoreContent(rid) {
-  const tab = storeTab[rid];
-  const el = document.getElementById('store-content');
-  const r = retailers.find(x=>x.id===rid);
-  if (tab==='browse') {
-    const items = browseItems[rid]||[];
-    el.innerHTML = `<div class="items-grid">${items.map(item=>`
-      <div class="item-card">
-        <div class="item-img-wrap"><img src="${PICSUM(item.imgId,400,440)}" alt="${item.name}" loading="lazy"/></div>
-        <div class="item-details">
-          <div class="item-cat-label">${item.cat}</div>
-          <div class="item-name">${item.name}</div>
-          <div class="item-price">${item.price}</div>
-          <button class="item-add-btn">Add to bag</button>
-        </div>
-      </div>`).join('')}</div>`;
+  const tab=storeTab[rid], el=document.getElementById('store-content');
+  const r=retailers.find(x=>x.id===rid);
+  if(tab==='browse') {
+    const allItems=browseItems[rid]||[];
+    const cats=['All',...new Set(allItems.map(i=>i.cat))];
+    const cf=activeFilter[rid]||'All';
+    const items=cf==='All'?allItems:allItems.filter(i=>i.cat===cf);
+    const filterBtns=cats.map(c=>`<button class="filter-btn ${cf===c?'active':''}" onclick="setFilter('${rid}','${c}')">${c}</button>`).join('');
+    el.innerHTML=`
+      <div class="filter-bar"><span class="filter-label">Filter:</span>${filterBtns}</div>
+      <div class="items-grid">${items.map(item=>`
+        <div class="item-card">
+          <div class="item-img-wrap">
+            <img src="${item.img}" alt="${item.name}" loading="lazy"/>
+            ${item.badge?`<div class="item-badge">${item.badge}</div>`:''}
+          </div>
+          <div class="item-details">
+            <div class="item-cat-label">${item.cat}</div>
+            <div class="item-name">${item.name}</div>
+            <div class="item-desc">${item.desc}</div>
+            <div class="item-colors">${item.colors.map(c=>`<div class="color-dot" style="background:${c}" title="${c}"></div>`).join('')}</div>
+            <div class="item-sizes">${item.sizes.map(s=>`<button class="size-btn">${s}</button>`).join('')}</div>
+            <div class="item-price">${item.price}</div>
+            <button class="item-add-btn">Add to bag</button>
+          </div>
+        </div>`).join('')}
+      </div>`;
   } else {
-    const msgs = chatState[rid];
-    const bubbles = msgs.map(m => {
-      if (m.role==='ai') {
-        let prods = m.products ? `<div class="product-recs">${m.products.map(p=>`
+    const msgs=chatState[rid];
+    const bubbles=msgs.map(m=>{
+      if(m.role==='ai'){
+        let prods=m.products&&m.products.length?`<div class="product-recs">${m.products.map(p=>`
           <div class="rec-card">
-            <div class="rec-img"><img src="${PICSUM(p.imgId,260,200)}" alt="${p.name}" loading="lazy"/></div>
+            <div class="rec-img"><img src="${p.img}" alt="${p.name}" loading="lazy"/></div>
             <div class="rec-info"><div class="rec-name">${p.name}</div><div class="rec-price">${p.price}</div><button class="rec-save">Save</button></div>
-          </div>`).join('')}</div>` : '';
+          </div>`).join('')}</div>`:'';
         return `<div class="msg-row"><div class="msg-avatar">AI</div><div><div class="msg-bubble ai">${m.text}</div>${prods}</div></div>`;
       }
       return `<div class="msg-row user"><div class="msg-avatar user-av">You</div><div class="msg-bubble user">${m.text}</div></div>`;
     }).join('');
-    const esc = chatState[rid+'_esc'];
-    const sidebar = esc
-      ? `<div class="sidebar-card"><div class="sidebar-title">Connected</div><div class="escalated-notice">A ${r.name} stylist has your full conversation history and will be with you shortly.</div></div>`
-      : `<div class="sidebar-card"><div class="sidebar-title">Need more help?</div><div class="sidebar-desc">Our human stylists are available to provide personalised advice and deeper product expertise.</div><button class="escalate-btn" onclick="escalate('${rid}')">Talk to a ${r.name} stylist</button></div>
-         <div class="sidebar-card"><div class="sidebar-title" style="font-size:15px;margin-bottom:10px">Quick prompts</div>
-           ${['I need a work outfit','Something for a wedding','What goes with black trousers?','Show me new arrivals'].map(p=>`<div class="quick-prompt" onclick="quickPrompt('${rid}','${p}')">${p} &rarr;</div>`).join('')}
-         </div>`;
-    el.innerHTML = `<div class="chat-layout">
+    const esc=chatState[rid+'_esc'];
+    const sidebar=esc
+      ?`<div class="sidebar-card"><div class="sidebar-title">Connected</div><div class="escalated-notice">A ${r.name} stylist has your full conversation history and will be with you shortly.</div></div>`
+      :`<div class="sidebar-card"><div class="sidebar-title">Need more help?</div><div class="sidebar-desc">Our human stylists are available to provide personalised advice and deeper product expertise.</div><button class="escalate-btn" onclick="escalate('${rid}')">Talk to a ${r.name} stylist</button></div>
+        <div class="sidebar-card"><div class="sidebar-title" style="font-size:15px;margin-bottom:10px">Quick prompts</div>
+          ${['I need a work outfit','Something for a wedding','What goes with black trousers?','Show me new arrivals'].map(p=>`<div class="quick-prompt" onclick="quickPrompt('${rid}','${p}')">${p} &rarr;</div>`).join('')}
+        </div>`;
+    el.innerHTML=`<div class="chat-layout">
       <div class="chat-window">
         <div class="chat-header-bar"><div class="chat-dot"></div><div class="chat-header-title">${r.name} concierge</div><div class="chat-header-sub">AI-powered &bull; Always available</div></div>
         <div class="messages-area" id="msgs">${bubbles}</div>
@@ -544,35 +691,40 @@ function renderStoreContent(rid) {
       </div>
       <div class="chat-sidebar">${sidebar}</div>
     </div>`;
-    const msgsEl = document.getElementById('msgs');
-    if (msgsEl) msgsEl.scrollTop = msgsEl.scrollHeight;
+    const msgsEl=document.getElementById('msgs');
+    if(msgsEl) msgsEl.scrollTop=msgsEl.scrollHeight;
   }
 }
 
-function quickPrompt(rid, text) {
+function setFilter(rid,cat) {
+  activeFilter[rid]=cat;
+  renderStoreContent(rid);
+}
+
+function quickPrompt(rid,text) {
   chatState[rid].push({role:'user',text});
   renderStoreContent(rid);
-  setTimeout(()=>{ const rep=aiReplies[replyIdx++%aiReplies.length]; chatState[rid].push({role:'ai',text:rep.text,products:rep.products}); renderStoreContent(rid); },1200);
+  setTimeout(()=>{ const rep=buildAiReply(rid,replyIdx++); chatState[rid].push({role:'ai',text:rep.text,products:rep.products}); renderStoreContent(rid); },1200);
 }
 
 function sendMsg(rid) {
-  const input = document.getElementById('chat-in');
-  const text = input.value.trim(); if (!text) return;
+  const input=document.getElementById('chat-in');
+  const text=input.value.trim(); if(!text) return;
   input.value=''; chatState[rid].push({role:'user',text});
   const msgsEl=document.getElementById('msgs');
   const d=document.createElement('div'); d.className='typing-row'; d.id='typing';
   d.innerHTML=`<div class="msg-avatar">AI</div><div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
   msgsEl.appendChild(d); msgsEl.scrollTop=msgsEl.scrollHeight;
-  setTimeout(()=>{ const rep=aiReplies[replyIdx++%aiReplies.length]; chatState[rid].push({role:'ai',text:rep.text,products:rep.products}); renderStoreContent(rid); },1300);
+  setTimeout(()=>{ const rep=buildAiReply(rid,replyIdx++); chatState[rid].push({role:'ai',text:rep.text,products:rep.products}); renderStoreContent(rid); },1300);
 }
 
-function escalate(rid) { chatState[rid+'_esc']=true; renderStoreContent(rid); }
+function escalate(rid){ chatState[rid+'_esc']=true; renderStoreContent(rid); }
 
 function renderFeed() {
-  document.getElementById('feed-grid').innerHTML = outfits.map((o,i)=>{
+  document.getElementById('feed-grid').innerHTML=outfits.map((o,i)=>{
     const liked=likedOutfits.has(i);
     return `<div class="outfit-card">
-      <div class="outfit-img-wrap"><img src="${PICSUM(o.imgId,600,560)}" alt="${o.user}" loading="lazy"/></div>
+      <div class="outfit-img-wrap"><img src="${o.img}" alt="${o.user}" loading="lazy"/></div>
       <div class="outfit-meta">
         <div class="outfit-user">${o.user}</div>
         <div class="outfit-tags">${o.tags}</div>
@@ -585,10 +737,16 @@ function renderFeed() {
   }).join('');
 }
 
-function toggleLike(i) {
-  if (likedOutfits.has(i)) likedOutfits.delete(i); else likedOutfits.add(i);
-  renderFeed();
-}
+function toggleLike(i){ if(likedOutfits.has(i)) likedOutfits.delete(i); else likedOutfits.add(i); renderFeed(); }
+
+// Loading animation
+const bar=document.getElementById('loader-bar');
+let prog=0;
+const tick=setInterval(()=>{ prog+=Math.random()*25; if(prog>90) prog=90; bar.style.width=prog+'%'; },200);
+window.addEventListener('load',()=>{
+  clearInterval(tick); bar.style.width='100%';
+  setTimeout(()=>{ const l=document.getElementById('loader'); l.style.opacity='0'; setTimeout(()=>l.style.display='none',400); },300);
+});
 
 renderRetailerGrid();
 showPage('home');
