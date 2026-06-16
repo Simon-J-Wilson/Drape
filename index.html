@@ -702,6 +702,75 @@ footer { background: var(--charcoal); border-top: 1px solid #333; padding: 36px 
 .cart-continue-btn { width:100%; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; padding:12px 0; background:transparent; color:var(--charcoal); border:1px solid var(--light-border); border-radius:2px; cursor:pointer; }
 .cart-continue-btn:hover { border-color:var(--charcoal); }
 @media(max-width:500px){ .cart-drawer{width:100vw;} }
+
+/* ══ CHECKOUT MODAL ══════════════════════════════════ */
+.checkout-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.65); z-index:700; opacity:0; pointer-events:none; transition:opacity 0.3s; display:flex; align-items:center; justify-content:center; padding:20px; }
+.checkout-overlay.open { opacity:1; pointer-events:all; }
+.checkout-modal { background:var(--warm-white); width:100%; max-width:520px; max-height:90vh; border-radius:8px; overflow:hidden; display:flex; flex-direction:column; transform:translateY(30px) scale(0.97); transition:transform 0.3s ease; box-shadow:0 24px 80px rgba(0,0,0,0.35); }
+.checkout-overlay.open .checkout-modal { transform:translateY(0) scale(1); }
+.checkout-screen { display:none; flex-direction:column; flex:1; overflow:hidden; }
+.checkout-screen.active { display:flex; }
+.co-header { background:var(--charcoal); padding:18px 24px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+.co-header-title { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--warm-white); }
+.co-close { background:none; border:none; cursor:pointer; color:#7A7269; font-size:26px; line-height:1; transition:color 0.15s; }
+.co-close:hover { color:var(--gold); }
+.co-scrollable { overflow-y:auto; flex:1; }
+.co-section { padding:18px 24px; border-bottom:1px solid var(--light-border); }
+.co-section-label { font-size:9px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold-dark); margin-bottom:12px; }
+.co-item-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid var(--light-border); }
+.co-item-row:last-child { border-bottom:none; }
+.co-item-img { width:52px; height:52px; border-radius:4px; overflow:hidden; flex-shrink:0; border:1px solid var(--light-border); }
+.co-item-img img { width:100%; height:100%; object-fit:cover; display:block; }
+.co-item-info { flex:1; min-width:0; }
+.co-item-name { font-size:13px; color:var(--charcoal); }
+.co-item-meta { font-size:11px; color:var(--mid); margin-top:2px; }
+.co-item-price { font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--gold-dark); flex-shrink:0; }
+.co-totals { padding:14px 24px; border-bottom:1px solid var(--light-border); }
+.co-total-row { display:flex; justify-content:space-between; font-size:13px; color:var(--mid); padding:3px 0; }
+.co-total-row.grand { font-size:15px; color:var(--charcoal); font-weight:500; margin-top:8px; padding-top:10px; border-top:1px solid var(--light-border); }
+.co-total-row.grand span:last-child { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--charcoal); }
+.co-card { background:var(--charcoal); border-radius:10px; padding:16px 20px; display:flex; align-items:center; gap:14px; border:1px solid #3A3A3A; }
+.co-card-chip { width:32px; height:24px; background:linear-gradient(135deg,#C9A84C,#F5E9C8); border-radius:4px; flex-shrink:0; }
+.co-card-info { flex:1; }
+.co-card-number { font-size:14px; color:var(--warm-white); letter-spacing:2px; }
+.co-card-name { font-size:11px; color:#7A7269; margin-top:2px; letter-spacing:1px; text-transform:uppercase; }
+.co-card-expiry { font-size:11px; color:#7A7269; margin-top:2px; }
+.co-card-network { font-size:18px; font-style:italic; font-weight:700; color:var(--gold); letter-spacing:-1px; flex-shrink:0; }
+.co-address { font-size:13px; color:var(--charcoal); line-height:1.6; }
+.co-address-edit { font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--gold-dark); cursor:pointer; background:none; border:none; font-family:'Jost',sans-serif; margin-top:8px; display:block; }
+.co-pay-btn { width:100%; font-family:'Jost',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; padding:16px 0; background:var(--gold); color:var(--charcoal); border:none; cursor:pointer; font-weight:500; transition:background 0.2s; flex-shrink:0; }
+.co-pay-btn:hover { background:#B8943E; }
+.co-pay-btn:disabled { opacity:0.6; cursor:not-allowed; }
+/* thanks screen */
+.co-thanks { display:flex; flex-direction:column; align-items:center; padding:32px 28px 8px; text-align:center; }
+.co-thanks-icon { width:72px; height:72px; border-radius:50%; background:rgba(201,168,76,0.12); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:32px; margin-bottom:20px; animation:popIn 0.5s ease both; }
+@keyframes popIn { 0%{transform:scale(0);opacity:0} 70%{transform:scale(1.1)} 100%{transform:scale(1);opacity:1} }
+.co-thanks-title { font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--charcoal); margin-bottom:6px; }
+.co-thanks-sub { font-size:13px; color:var(--mid); line-height:1.6; max-width:340px; }
+.co-order-ref { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold-dark); background:var(--gold-light); padding:5px 14px; border-radius:20px; margin:14px 0 0; }
+.co-tracking { width:100%; margin-top:24px; text-align:left; }
+.co-tracking-label { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold-dark); margin-bottom:14px; }
+.co-map { width:100%; height:150px; background:linear-gradient(135deg,#E8F0F8,#C8D8E8); border-radius:6px; position:relative; overflow:hidden; border:1px solid var(--light-border); margin-bottom:20px; }
+.co-map-label { position:absolute; bottom:8px; left:10px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#4A7090; background:rgba(255,255,255,0.85); padding:3px 8px; border-radius:10px; }
+.co-map-pin { position:absolute; font-size:22px; animation:bounce 1s ease infinite alternate; }
+@keyframes bounce { from{transform:translateY(0)} to{transform:translateY(-6px)} }
+.co-map-truck { position:absolute; font-size:18px; animation:drive 5s linear infinite; }
+@keyframes drive { 0%{left:8%;top:55%} 33%{left:35%;top:42%} 66%{left:62%;top:50%} 100%{left:8%;top:55%} }
+.co-track-steps { position:relative; padding-left:26px; }
+.co-track-steps::before { content:''; position:absolute; left:9px; top:8px; bottom:8px; width:2px; background:var(--light-border); border-radius:1px; }
+.co-step { position:relative; padding:0 0 20px 14px; }
+.co-step:last-child { padding-bottom:0; }
+.co-step-dot { position:absolute; left:-17px; top:3px; width:14px; height:14px; border-radius:50%; background:var(--light-border); border:2px solid var(--warm-white); }
+.co-step.done .co-step-dot { background:var(--gold); }
+.co-step.active .co-step-dot { background:var(--gold); box-shadow:0 0 0 4px rgba(201,168,76,0.2); animation:pulse2 1.5s infinite; }
+@keyframes pulse2 { 0%,100%{box-shadow:0 0 0 4px rgba(201,168,76,0.2)} 50%{box-shadow:0 0 0 8px rgba(201,168,76,0.05)} }
+.co-step-label { font-size:13px; color:var(--charcoal); font-weight:500; }
+.co-step-label.dim { color:var(--mid); font-weight:400; }
+.co-step-time { font-size:11px; color:var(--mid); margin-top:2px; }
+.co-step-detail { font-size:12px; color:var(--mid); margin-top:3px; line-height:1.4; }
+.co-done-btn { display:block; width:calc(100% - 48px); margin:20px 24px 24px; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; padding:13px 0; background:var(--charcoal); color:var(--gold); border:none; border-radius:2px; cursor:pointer; font-weight:500; flex-shrink:0; }
+.co-done-btn:hover { background:var(--charcoal-light); }
+@media(max-width:560px){ .checkout-overlay{padding:0;align-items:flex-end} .checkout-modal{max-width:100%;border-radius:16px 16px 0 0;max-height:95vh} }
 </style>
 </head>
 <body>
@@ -2208,7 +2277,7 @@ function renderCartDrawer() {
   });
   const sym = cart.items[0] && cart.items[0].price ? (cart.items[0].price.match(/[^0-9.,]/) || ['£'])[0] : '£';
   const subtotalStr = sym + subtotal.toLocaleString('en-GB', {minimumFractionDigits:0,maximumFractionDigits:0});
-  footerEl.innerHTML = '<div class="cart-subtotal-row"><div class="cart-subtotal-label">Subtotal</div><div class="cart-subtotal-price">' + subtotalStr + '</div></div><div class="cart-delivery-note">Free express delivery on your order</div><button class="cart-checkout-btn" onclick="showToast(\'Checkout coming soon!\')">Proceed to checkout</button><button class="cart-continue-btn" onclick="closeCart()">Continue shopping</button>';
+  footerEl.innerHTML = '<div class="cart-subtotal-row"><div class="cart-subtotal-label">Subtotal</div><div class="cart-subtotal-price">' + subtotalStr + '</div></div><div class="cart-delivery-note">Free express delivery on your order</div><button class="cart-checkout-btn" onclick="openCheckout()">Proceed to checkout</button><button class="cart-continue-btn" onclick="closeCart()">Continue shopping</button>';
 }
 
 function openSaved() {
@@ -2234,6 +2303,87 @@ function buyItem(retailerId, itemName) {
   closeStlModal();
   document.body.style.overflow = '';
   setTimeout(() => openCart(), 350);
+}
+
+
+function openCheckout() {
+  if (cart.items.length === 0) { showToast('Your bag is empty'); return; }
+  renderReceiptScreen();
+  document.getElementById('co-screen-receipt').classList.add('active');
+  document.getElementById('co-screen-thanks').classList.remove('active');
+  document.getElementById('checkout-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCheckout() {
+  document.getElementById('checkout-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeCheckoutOnBackdrop(e) {
+  if (e.target === document.getElementById('checkout-overlay')) closeCheckout();
+}
+
+function renderReceiptScreen() {
+  var el = document.getElementById('co-items-list');
+  var tot = document.getElementById('co-totals');
+  var subtotal = 0;
+  el.innerHTML = cart.items.map(function(item) {
+    var num = parseFloat((item.price || '0').replace(/[^0-9.]/g, ''));
+    if (!isNaN(num)) subtotal += num * item.qty;
+    return '<div class="co-item-row">'
+      + '<div class="co-item-img"><img src="' + item.img + '" alt="' + item.name + '" loading="lazy"/></div>'
+      + '<div class="co-item-info">'
+      + '<div class="co-item-name">' + item.name + '</div>'
+      + '<div class="co-item-meta">' + item.retailerName + ' &bull; Size ' + item.size + (item.qty > 1 ? ' &bull; Qty ' + item.qty : '') + '</div>'
+      + '</div>'
+      + '<div class="co-item-price">' + item.price + '</div>'
+      + '</div>';
+  }).join('');
+  var sym = cart.items.length > 0 ? (cart.items[0].price.match(/[^0-9.,]/) || ['\u00a3'])[0] : '\u00a3';
+  var sub = sym + subtotal.toLocaleString('en-GB', {minimumFractionDigits:0});
+  tot.innerHTML = '<div class="co-total-row"><span>Subtotal</span><span>' + sub + '</span></div>'
+    + '<div class="co-total-row"><span>Delivery</span><span>Free</span></div>'
+    + '<div class="co-total-row"><span>Tax</span><span>Included</span></div>'
+    + '<div class="co-total-row grand"><span>Total</span><span>' + sub + '</span></div>';
+}
+
+function processPayment() {
+  var btn = document.getElementById('co-pay-btn');
+  btn.textContent = 'Processing\u2026';
+  btn.disabled = true;
+  setTimeout(function() {
+    var ref = 'DRP-' + Math.floor(100000 + Math.random() * 900000);
+    document.getElementById('co-order-ref').textContent = 'Order #' + ref;
+    var steps = [
+      {label:'Order confirmed', time:'Just now', detail:'Your payment was processed successfully.', done:true, active:false},
+      {label:'Preparing your order', time:'Within 30 minutes', detail:'Your items are being picked and packed.', done:false, active:true},
+      {label:'Out for delivery', time:'Est. tomorrow', detail:'Your order will be with our courier.', done:false, active:false},
+      {label:'Delivered', time:'Est. 1-2 days', detail:'14 Kensington Gardens, London W8 4PT', done:false, active:false},
+    ];
+    document.getElementById('co-track-steps').innerHTML = steps.map(function(s) {
+      return '<div class="co-step' + (s.done ? ' done' : '') + (s.active ? ' active' : '') + '">'
+        + '<div class="co-step-dot"></div>'
+        + '<div>'
+        + '<div class="co-step-label' + (!s.done && !s.active ? ' dim' : '') + '">' + s.label + '</div>'
+        + '<div class="co-step-time">' + s.time + '</div>'
+        + (s.detail ? '<div class="co-step-detail">' + s.detail + '</div>' : '')
+        + '</div></div>';
+    }).join('');
+    document.getElementById('co-screen-receipt').classList.remove('active');
+    document.getElementById('co-screen-thanks').classList.add('active');
+    btn.textContent = 'Pay now \u2192';
+    btn.disabled = false;
+  }, 1800);
+}
+
+function finishOrder() {
+  closeCheckout();
+  cart.items = [];
+  updateCartBadge();
+  renderCartDrawer();
+  closeCart();
+  showToast('Thank you for your order!');
 }
 
 renderRetailerGrid();
@@ -2392,6 +2542,74 @@ showPage('home');
     </div>
     <div class="cart-items" id="cart-items-list"></div>
     <div class="cart-footer" id="cart-footer"></div>
+  </div>
+</div>
+
+
+<div class="checkout-overlay" id="checkout-overlay" onclick="closeCheckoutOnBackdrop(event)">
+  <div class="checkout-modal">
+    <div class="checkout-screen active" id="co-screen-receipt">
+      <div class="co-header">
+        <div class="co-header-title">Review your order</div>
+        <button class="co-close" onclick="closeCheckout()">&#215;</button>
+      </div>
+      <div class="co-scrollable">
+        <div class="co-section">
+          <div class="co-section-label">Your items</div>
+          <div id="co-items-list"></div>
+        </div>
+        <div class="co-totals" id="co-totals"></div>
+        <div class="co-section">
+          <div class="co-section-label">Payment method</div>
+          <div class="co-card">
+            <div class="co-card-chip"></div>
+            <div class="co-card-info">
+              <div class="co-card-number">&#183;&#183;&#183;&#183; &#183;&#183;&#183;&#183; &#183;&#183;&#183;&#183; 4291</div>
+              <div class="co-card-name">Alex Rivera</div>
+              <div class="co-card-expiry">Expires 12 / 28</div>
+            </div>
+            <div class="co-card-network">VISA</div>
+          </div>
+        </div>
+        <div class="co-section">
+          <div class="co-section-label">Deliver to</div>
+          <div class="co-address">Alex Rivera<br>14 Kensington Gardens<br>London, W8 4PT<br>United Kingdom</div>
+          <button class="co-address-edit" onclick="showToast('Address edit coming soon')">Change address &rarr;</button>
+        </div>
+      </div>
+      <button class="co-pay-btn" id="co-pay-btn" onclick="processPayment()">Pay now &nbsp;&rarr;</button>
+    </div>
+    <div class="checkout-screen" id="co-screen-thanks">
+      <div class="co-scrollable">
+        <div class="co-thanks">
+          <div class="co-thanks-icon">&#10003;</div>
+          <div class="co-thanks-title">Order confirmed!</div>
+          <div class="co-thanks-sub">Your order has been placed and is being prepared. A confirmation has been sent to your email.</div>
+          <div class="co-order-ref" id="co-order-ref">Order #DRP-000000</div>
+          <div class="co-tracking">
+            <div class="co-tracking-label">Live package tracking</div>
+            <div class="co-map">
+              <svg width="100%" height="100%" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" y1="75" x2="400" y2="75" stroke="#C8D8E8" stroke-width="14"/>
+                <line x1="110" y1="0" x2="110" y2="150" stroke="#C8D8E8" stroke-width="8"/>
+                <line x1="270" y1="0" x2="270" y2="150" stroke="#C8D8E8" stroke-width="8"/>
+                <line x1="0" y1="35" x2="400" y2="35" stroke="#D8E8F0" stroke-width="5"/>
+                <line x1="0" y1="115" x2="400" y2="115" stroke="#D8E8F0" stroke-width="5"/>
+                <rect x="120" y="45" width="38" height="24" fill="#BDD0DF" rx="2"/>
+                <rect x="175" y="80" width="45" height="22" fill="#BDD0DF" rx="2"/>
+                <rect x="280" y="42" width="32" height="28" fill="#BDD0DF" rx="2"/>
+                <path d="M 35 75 Q 110 75 150 52 Q 210 28 270 58 Q 320 78 355 65" stroke="#C9A84C" stroke-width="3" fill="none" stroke-dasharray="8,4" stroke-linecap="round"/>
+              </svg>
+              <div class="co-map-truck" style="left:50%;top:36%">&#128666;</div>
+              <div class="co-map-pin" style="right:12%;top:22%">&#128205;</div>
+              <div class="co-map-label">Live tracking active</div>
+            </div>
+            <div class="co-track-steps" id="co-track-steps"></div>
+          </div>
+        </div>
+      </div>
+      <button class="co-done-btn" onclick="finishOrder()">Done</button>
+    </div>
   </div>
 </div>
 
