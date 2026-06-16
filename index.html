@@ -376,6 +376,335 @@ footer { background: var(--charcoal); border-top: 1px solid #333; padding: 36px 
 .stl-total-price { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--charcoal); }
 .stl-bag-btn { display:block; margin:14px 20px 0; width:calc(100% - 40px); font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; padding:13px 0; background:var(--gold); color:var(--charcoal); border:none; border-radius:2px; cursor:pointer; font-weight:500; transition:background 0.2s; }
 .stl-bag-btn:hover { background:var(--gold-dark); color:#fff; }
+
+/* ══════════════════════════════════════════════════════
+   PROFILE / ABOUT PAGE
+══════════════════════════════════════════════════════ */
+#about-page { display:none; }
+
+.profile-hero {
+  background: var(--charcoal);
+  padding: 48px;
+  border-bottom: 1px solid #333;
+  display: flex;
+  align-items: flex-end;
+  gap: 32px;
+}
+.profile-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  overflow: hidden;
+  background: var(--charcoal-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+.profile-edit-av {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 11px;
+}
+.profile-hero-info { flex: 1; }
+.profile-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 400;
+  color: var(--warm-white);
+  margin-bottom: 4px;
+}
+.profile-handle { font-size: 13px; color: #7A7269; margin-bottom: 12px; }
+.profile-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.profile-badge {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid #444;
+  color: #9A9088;
+}
+.profile-badge.gold { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.08); }
+.profile-stats-row {
+  display: flex;
+  gap: 32px;
+  margin-top: 20px;
+}
+.profile-stat { text-align: center; }
+.profile-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  color: var(--gold);
+}
+.profile-stat-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #6A6058;
+  margin-top: 2px;
+}
+
+.profile-body { max-width: 1280px; margin: 0 auto; padding: 0 48px 60px; }
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding-top: 36px;
+}
+.profile-card {
+  background: var(--warm-white);
+  border: 1px solid var(--light-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.profile-card.full-width { grid-column: 1 / -1; }
+.profile-card-header {
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--light-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profile-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: var(--charcoal);
+}
+.profile-card-edit {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: 'Jost', sans-serif;
+}
+.profile-card-edit:hover { color: var(--gold); }
+.profile-card-body { padding: 20px; }
+
+/* sizes */
+.sizes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.size-item { }
+.size-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 6px;
+}
+.size-value {
+  font-size: 15px;
+  color: var(--charcoal);
+  font-weight: 400;
+}
+.size-tag {
+  display: inline-block;
+  background: var(--charcoal);
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 5px 14px;
+  border-radius: 2px;
+  font-family: 'Jost', sans-serif;
+}
+
+/* colour swatches */
+.colours-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.colour-item { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; }
+.colour-swatch {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: transform 0.15s, border-color 0.15s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+.colour-swatch.active { border-color: var(--gold); transform: scale(1.1); }
+.colour-name { font-size: 10px; color: var(--mid); letter-spacing: 0.5px; }
+
+/* style chips */
+.style-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.style-chip {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--light-border);
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'Jost', sans-serif;
+  background: var(--warm-white);
+}
+.style-chip.active {
+  background: var(--charcoal);
+  color: var(--gold);
+  border-color: var(--charcoal);
+}
+
+/* brand affinities */
+.brand-affinities { display: flex; flex-direction: column; gap: 12px; }
+.brand-affinity-row { display: flex; align-items: center; gap: 12px; }
+.brand-affinity-name { font-size: 13px; color: var(--charcoal); width: 100px; flex-shrink: 0; }
+.brand-affinity-bar-wrap { flex: 1; height: 4px; background: var(--light-border); border-radius: 2px; overflow: hidden; }
+.brand-affinity-bar { height: 100%; background: linear-gradient(90deg, var(--gold-dark), var(--gold)); border-radius: 2px; transition: width 0.8s ease; }
+.brand-affinity-pct { font-size: 12px; color: var(--mid); width: 36px; text-align: right; flex-shrink: 0; }
+
+/* recent activity */
+.activity-list { display: flex; flex-direction: column; gap: 0; }
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--light-border);
+}
+.activity-item:last-child { border-bottom: none; }
+.activity-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--off-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  border: 1px solid var(--light-border);
+}
+.activity-text { flex: 1; font-size: 13px; color: var(--charcoal); line-height: 1.4; }
+.activity-text span { color: var(--gold-dark); font-weight: 500; }
+.activity-time { font-size: 11px; color: var(--mid); flex-shrink: 0; }
+
+/* AI insight banner */
+.ai-insight {
+  background: var(--charcoal);
+  border: 1px solid var(--gold-dark);
+  border-radius: 4px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 0;
+}
+.ai-insight-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.15);
+  border: 1px solid var(--gold-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.ai-insight-text { flex: 1; }
+.ai-insight-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 5px;
+}
+.ai-insight-body { font-size: 13px; color: #CCC; line-height: 1.6; }
+
+/* loyalty */
+.loyalty-tier-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.loyalty-tier-badge {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  color: var(--gold);
+}
+.loyalty-tier-name {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-top: 2px;
+}
+.loyalty-progress-wrap {
+  height: 5px;
+  background: var(--light-border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.loyalty-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+  border-radius: 3px;
+  transition: width 1s ease;
+}
+.loyalty-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--mid);
+}
+.loyalty-perks { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+.loyalty-perk {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--charcoal);
+}
+.loyalty-perk-icon { font-size: 16px; }
+
+/* saved items */
+.saved-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.saved-item {
+  border: 1px solid var(--light-border);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.saved-item:hover { border-color: var(--gold); transform: translateY(-2px); }
+.saved-item-img { height: 90px; overflow: hidden; }
+.saved-item-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.saved-item-name { font-size: 11px; color: var(--charcoal); padding: 6px 8px 3px; }
+.saved-item-price { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--gold-dark); padding: 0 8px 8px; }
+
+@media(max-width:900px){
+  .profile-hero { padding:32px 20px; flex-direction:column; align-items:flex-start; gap:20px; }
+  .profile-body { padding:0 20px 40px; }
+  .profile-grid { grid-template-columns:1fr; }
+  .profile-card.full-width { grid-column:1; }
+  .saved-grid { grid-template-columns:repeat(2,1fr); }
+  .sizes-grid { grid-template-columns:repeat(2,1fr); }
+}
 </style>
 </head>
 <body>
@@ -391,10 +720,10 @@ footer { background: var(--charcoal); border-top: 1px solid #333; padding: 36px 
   <div class="nav-links">
     <a class="active" onclick="showPage('home');setActive(this)">Retailers</a>
     <a onclick="showPage('feed');setActive(this)">Style feed</a>
-    <a>About</a>
+    <a onclick="showPage('about');setActive(this)">Profile</a>
   </div>
   <div class="nav-actions">
-    <button class="nav-btn nav-btn-outline">Sign in</button>
+    <button class="nav-btn nav-btn-outline" onclick="showPage('about')">My Profile</button>
     <button class="nav-btn nav-btn-fill">Join free</button>
   </div>
 </nav>
@@ -761,7 +1090,9 @@ function showPage(page) {
   document.getElementById('home-page').style.display=page==='home'?'block':'none';
   document.getElementById('store-page').style.display=page==='store'?'block':'none';
   document.getElementById('feed-page').style.display=page==='feed'?'block':'none';
+  document.getElementById('about-page').style.display=page==='about'?'block':'none';
   if(page==='feed') { renderFeed(); renderIgFeed(); }
+  if(page==='about') { renderProfile(); }
   if(page==='home'){ clearSearch(); document.getElementById('main-search').value=''; }
   window.scrollTo(0,0);
 }
@@ -1697,6 +2028,126 @@ function addAllToBag() {
   showToast('All items added to bag!');
 }
 
+
+// ── Profile data ─────────────────────────────────────────────────────────
+const profileData = {
+  colours: [
+    {name:'Ivory',   hex:'#F5F0EB', active:true},
+    {name:'Charcoal',hex:'#2C2C2C', active:true},
+    {name:'Camel',   hex:'#C4A882', active:true},
+    {name:'Navy',    hex:'#1B3A4B', active:false},
+    {name:'Stone',   hex:'#C5B9A8', active:true},
+    {name:'Rust',    hex:'#C25B4E', active:false},
+    {name:'Forest',  hex:'#3A5C3A', active:false},
+    {name:'Blush',   hex:'#E8C4C4', active:false},
+  ],
+  styles: [
+    'Minimalist','Workwear','Tailored','Capsule','Smart Casual',
+    'Scandi','Contemporary','Luxury','Streetwear','Evening',
+  ],
+  activeStyles: ['Minimalist','Tailored','Capsule','Smart Casual'],
+  brandAffinities: [
+    {name:'Velour',    pct:82},
+    {name:'Nordly',    pct:74},
+    {name:'Crest & Co',pct:61},
+    {name:'Mave Studio',pct:55},
+    {name:'Auric',     pct:38},
+    {name:'Harlo',     pct:22},
+  ],
+  activity: [
+    {icon:'🛍',text:'Saved <span>Silk Blend Blazer</span> from Velour',   time:'2h ago'},
+    {icon:'❤️',text:'Liked a post by <span>@lunam</span>',                time:'3h ago'},
+    {icon:'💬',text:"Commented on <span>@priyam's</span> evening look",  time:'5h ago'},
+    {icon:'📦',text:'Order delivered · <span>Cashmere Crewneck</span>',   time:'1d ago'},
+    {icon:'🔍',text:'Searched for <span>linen trousers</span>',           time:'1d ago'},
+    {icon:'✦',text:'Earned <span>120 loyalty points</span> from last order',time:'2d ago'},
+    {icon:'🛍',text:'Saved <span>Cigarette Trouser</span> from Mave Studio',time:'2d ago'},
+    {icon:'📦',text:'Order confirmed · <span>Wide-Leg Trousers</span>',   time:'3d ago'},
+  ],
+  savedItems: [
+    {retailer:'velour', name:'Silk Blend Blazer',      price:'£189'},
+    {retailer:'nordly', name:'Oversized Wool Coat',    price:'£295'},
+    {retailer:'mave',   name:'Cashmere Roll Neck',     price:'£295'},
+    {retailer:'crest',  name:'Slim Wool Trousers',     price:'£195'},
+    {retailer:'velour', name:'Linen Column Dress',     price:'£145'},
+    {retailer:'mave',   name:'The Bias Slip Dress',    price:'£385'},
+    {retailer:'nordly', name:'Clean Linen Co-ord',     price:'£185'},
+    {retailer:'auric',  name:'Crystal Drop Earrings',  price:'£285'},
+  ],
+};
+
+function renderProfile() {
+  // Colours
+  document.getElementById('colours-row').innerHTML = profileData.colours.map((col,i) => `
+    <div class="colour-item" onclick="toggleColour(${i})">
+      <div class="colour-swatch ${col.active?'active':''}" style="background:${col.hex}"></div>
+      <div class="colour-name">${col.name}</div>
+    </div>`).join('');
+
+  // Style chips
+  document.getElementById('style-chips').innerHTML = profileData.styles.map(s => `
+    <div class="style-chip ${profileData.activeStyles.includes(s)?'active':''}"
+         onclick="toggleStyle('${s}')">${s}</div>`).join('');
+
+  // Brand affinities
+  document.getElementById('brand-affinities').innerHTML = profileData.brandAffinities.map(b => `
+    <div class="brand-affinity-row">
+      <div class="brand-affinity-name">${b.name}</div>
+      <div class="brand-affinity-bar-wrap">
+        <div class="brand-affinity-bar" style="width:${b.pct}%"></div>
+      </div>
+      <div class="brand-affinity-pct">${b.pct}%</div>
+    </div>`).join('');
+
+  // Saved items
+  document.getElementById('saved-grid').innerHTML = profileData.savedItems.map(item => {
+    const allItems = browseItems[item.retailer] || [];
+    const full = allItems.find(i => i.name === item.name);
+    const imgSrc = full ? full.img : makeImg('fsh', 90, 90);
+    return `
+      <div class="saved-item" onclick="openStore('${item.retailer}','browse')">
+        <div class="saved-item-img"><img src="${imgSrc}" alt="${item.name}" loading="lazy"/></div>
+        <div class="saved-item-name">${item.name}</div>
+        <div class="saved-item-price">${item.price}</div>
+      </div>`;
+  }).join('');
+
+  // Activity
+  document.getElementById('activity-list').innerHTML = profileData.activity.map(a => `
+    <div class="activity-item">
+      <div class="activity-icon">${a.icon}</div>
+      <div class="activity-text">${a.text}</div>
+      <div class="activity-time">${a.time}</div>
+    </div>`).join('');
+}
+
+function toggleColour(i) {
+  profileData.colours[i].active = !profileData.colours[i].active;
+  renderProfile();
+  showToast('Colour preferences updated');
+}
+
+function toggleStyle(s) {
+  const idx = profileData.activeStyles.indexOf(s);
+  if (idx > -1) profileData.activeStyles.splice(idx, 1);
+  else profileData.activeStyles.push(s);
+  renderProfile();
+  showToast('Style preferences updated');
+}
+
+function editSizes() {
+  const sizes = ['XS','S','M','L','XL','XXL'];
+  const current = 'M';
+  // Simple prompt-based edit for now
+  const newSize = prompt('Enter your tops size (XS, S, M, L, XL, XXL):', current);
+  if (newSize && sizes.includes(newSize.toUpperCase())) {
+    showToast('Size updated to ' + newSize.toUpperCase());
+    renderProfile();
+  } else if (newSize) {
+    showToast('Please enter a valid size');
+  }
+}
+
 renderRetailerGrid();
 renderIgFeed();
 showPage('home');
@@ -1721,6 +2172,152 @@ showPage('home');
       <div class="stl-total-price" id="stl-total"></div>
     </div>
     <button class="stl-bag-btn" onclick="addAllToBag()">Add all to bag</button>
+  </div>
+</div>
+
+
+<!-- ABOUT / PROFILE PAGE -->
+<div id="about-page">
+  <div class="profile-hero">
+    <div class="profile-avatar-wrap">
+      <div class="profile-avatar">👤</div>
+      <div class="profile-edit-av" onclick="showToast('Photo upload coming soon')">✏️</div>
+    </div>
+    <div class="profile-hero-info">
+      <div class="profile-name" id="profile-display-name">Alex Rivera</div>
+      <div class="profile-handle">@alex.rivera · Member since 2024</div>
+      <div class="profile-badges">
+        <div class="profile-badge gold">✦ Gold Member</div>
+        <div class="profile-badge">Size: M</div>
+        <div class="profile-badge">London, UK</div>
+      </div>
+      <div class="profile-stats-row">
+        <div class="profile-stat"><div class="profile-stat-num">47</div><div class="profile-stat-label">Saved items</div></div>
+        <div class="profile-stat"><div class="profile-stat-num">12</div><div class="profile-stat-label">Orders</div></div>
+        <div class="profile-stat"><div class="profile-stat-num">8</div><div class="profile-stat-label">Posts</div></div>
+        <div class="profile-stat"><div class="profile-stat-num">230</div><div class="profile-stat-label">Followers</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-body">
+    <div class="profile-grid">
+
+      <!-- AI Insight (full width) -->
+      <div class="profile-card full-width">
+        <div class="profile-card-body">
+          <div class="ai-insight">
+            <div class="ai-insight-icon">✦</div>
+            <div class="ai-insight-text">
+              <div class="ai-insight-label">Your Drape AI insight</div>
+              <div class="ai-insight-body" id="ai-insight-text">
+                Based on your browsing and purchase history, you gravitate towards <strong style="color:var(--gold)">minimalist and tailored pieces</strong> in neutral tones. You tend to invest in outerwear and knitwear, and prefer premium to luxury price points. Your most-shopped retailer this month is <strong style="color:var(--gold)">Velour</strong>. We'd recommend exploring the new Nordly linen co-ord and Mave Studio's cashmere collection.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sizes -->
+      <div class="profile-card">
+        <div class="profile-card-header">
+          <div class="profile-card-title">My sizes</div>
+          <button class="profile-card-edit" onclick="editSizes()">Edit</button>
+        </div>
+        <div class="profile-card-body">
+          <div class="sizes-grid" id="sizes-grid">
+            <div class="size-item"><div class="size-label">Tops</div><div><span class="size-tag">M</span></div></div>
+            <div class="size-item"><div class="size-label">Bottoms</div><div><span class="size-tag">32</span></div></div>
+            <div class="size-item"><div class="size-label">Dresses</div><div><span class="size-tag">M</span></div></div>
+            <div class="size-item"><div class="size-label">Outerwear</div><div><span class="size-tag">L</span></div></div>
+            <div class="size-item"><div class="size-label">Footwear</div><div><span class="size-tag">42</span></div></div>
+            <div class="size-item"><div class="size-label">Knitwear</div><div><span class="size-tag">M</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Favourite colours -->
+      <div class="profile-card">
+        <div class="profile-card-header">
+          <div class="profile-card-title">Favourite colours</div>
+          <button class="profile-card-edit" onclick="showToast('Colour preferences saved')">Save</button>
+        </div>
+        <div class="profile-card-body">
+          <div class="colours-row" id="colours-row"></div>
+        </div>
+      </div>
+
+      <!-- Style preferences -->
+      <div class="profile-card">
+        <div class="profile-card-header">
+          <div class="profile-card-title">Style preferences</div>
+          <button class="profile-card-edit" onclick="showToast('Style preferences saved')">Save</button>
+        </div>
+        <div class="profile-card-body">
+          <div class="style-chips" id="style-chips"></div>
+        </div>
+      </div>
+
+      <!-- Brand affinities -->
+      <div class="profile-card">
+        <div class="profile-card-header">
+          <div class="profile-card-title">Brand affinities</div>
+        </div>
+        <div class="profile-card-body">
+          <div class="brand-affinities" id="brand-affinities"></div>
+        </div>
+      </div>
+
+      <!-- Loyalty -->
+      <div class="profile-card">
+        <div class="profile-card-header">
+          <div class="profile-card-title">Loyalty status</div>
+        </div>
+        <div class="profile-card-body">
+          <div class="loyalty-tier-row">
+            <div>
+              <div class="loyalty-tier-badge">✦</div>
+            </div>
+            <div>
+              <div class="profile-name" style="font-size:20px;color:var(--charcoal)">Gold Member</div>
+              <div class="loyalty-tier-name">1,240 points · Next tier: Platinum</div>
+            </div>
+          </div>
+          <div class="loyalty-progress-wrap">
+            <div class="loyalty-progress-bar" style="width:62%"></div>
+          </div>
+          <div class="loyalty-progress-label"><span>Gold (1,000 pts)</span><span>Platinum (2,000 pts)</span></div>
+          <div class="loyalty-perks">
+            <div class="loyalty-perk"><span class="loyalty-perk-icon">✓</span> Free express delivery on all orders</div>
+            <div class="loyalty-perk"><span class="loyalty-perk-icon">✓</span> Early access to new collections</div>
+            <div class="loyalty-perk"><span class="loyalty-perk-icon">✓</span> Dedicated personal stylist sessions</div>
+            <div class="loyalty-perk"><span class="loyalty-perk-icon">◯</span> Platinum: exclusive brand events</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saved items -->
+      <div class="profile-card full-width">
+        <div class="profile-card-header">
+          <div class="profile-card-title">Saved items</div>
+          <button class="profile-card-edit" onclick="showPage('home')">Browse more</button>
+        </div>
+        <div class="profile-card-body">
+          <div class="saved-grid" id="saved-grid"></div>
+        </div>
+      </div>
+
+      <!-- Recent activity -->
+      <div class="profile-card full-width">
+        <div class="profile-card-header">
+          <div class="profile-card-title">Recent activity</div>
+        </div>
+        <div class="profile-card-body">
+          <div class="activity-list" id="activity-list"></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
