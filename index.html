@@ -339,6 +339,43 @@ footer { background: var(--charcoal); border-top: 1px solid #333; padding: 36px 
   .stories-bar { padding:12px 10px 10px; }
   .story-ring { width:52px; height:52px; }
 }
+
+/* ── Shop This Look Modal ─────────────────────────────────── */
+.stl-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:500; display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.25s; }
+.stl-overlay.open { opacity:1; pointer-events:all; }
+.stl-sheet { background:var(--warm-white); width:100%; max-width:560px; border-radius:18px 18px 0 0; padding:0 0 40px; transform:translateY(100%); transition:transform 0.3s ease; max-height:85vh; overflow-y:auto; }
+.stl-overlay.open .stl-sheet { transform:translateY(0); }
+.stl-sheet-handle { width:36px; height:3px; background:#DDD; border-radius:2px; margin:14px auto 0; }
+.stl-sheet-header { padding:16px 20px 12px; border-bottom:1px solid var(--light-border); display:flex; align-items:center; justify-content:space-between; }
+.stl-sheet-title { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--charcoal); }
+.stl-sheet-sub { font-size:11px; color:var(--mid); letter-spacing:0.5px; margin-top:2px; }
+.stl-close { background:none; border:none; cursor:pointer; font-size:22px; color:var(--mid); padding:0; line-height:1; }
+.stl-user-row { display:flex; align-items:center; gap:10px; padding:12px 20px; border-bottom:1px solid var(--light-border); background:var(--off-white); }
+.stl-user-av { width:36px; height:36px; border-radius:50%; overflow:hidden; flex-shrink:0; }
+.stl-user-av img { width:100%; height:100%; object-fit:cover; }
+.stl-user-name { font-size:13px; font-weight:500; color:var(--charcoal); }
+.stl-user-caption { font-size:12px; color:var(--mid); line-height:1.4; }
+.stl-items-label { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold-dark); padding:16px 20px 10px; }
+.stl-items-list { display:flex; flex-direction:column; gap:0; }
+.stl-item { display:flex; align-items:center; gap:14px; padding:14px 20px; border-bottom:1px solid var(--light-border); transition:background 0.15s; }
+.stl-item:hover { background:var(--off-white); }
+.stl-item-img { width:72px; height:72px; border-radius:6px; overflow:hidden; flex-shrink:0; border:1px solid var(--light-border); }
+.stl-item-img img { width:100%; height:100%; object-fit:cover; display:block; }
+.stl-item-info { flex:1; min-width:0; }
+.stl-item-retailer { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold-dark); background:var(--gold-light); display:inline-block; padding:2px 7px; border-radius:1px; margin-bottom:5px; }
+.stl-item-name { font-size:14px; color:var(--charcoal); font-weight:400; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.stl-item-desc { font-size:11px; color:var(--mid); line-height:1.4; margin-top:3px; }
+.stl-item-price { font-family:'Cormorant Garamond',serif; font-size:18px; color:var(--gold-dark); margin-top:4px; }
+.stl-item-actions { display:flex; flex-direction:column; gap:6px; flex-shrink:0; }
+.stl-buy-btn { font-family:'Jost',sans-serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; padding:9px 16px; background:var(--charcoal); color:var(--gold); border:none; border-radius:2px; cursor:pointer; font-weight:500; white-space:nowrap; transition:background 0.15s; }
+.stl-buy-btn:hover { background:var(--charcoal-light); }
+.stl-save-btn { font-family:'Jost',sans-serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; padding:8px 16px; background:transparent; color:var(--charcoal); border:1px solid var(--light-border); border-radius:2px; cursor:pointer; font-weight:500; white-space:nowrap; transition:all 0.15s; }
+.stl-save-btn:hover { border-color:var(--gold); color:var(--gold-dark); }
+.stl-total-bar { margin:16px 20px 0; padding:14px 18px; background:var(--off-white); border:1px solid var(--light-border); border-radius:4px; display:flex; justify-content:space-between; align-items:center; }
+.stl-total-label { font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--mid); }
+.stl-total-price { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--charcoal); }
+.stl-bag-btn { display:block; margin:14px 20px 0; width:calc(100% - 40px); font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; padding:13px 0; background:var(--gold); color:var(--charcoal); border:none; border-radius:2px; cursor:pointer; font-weight:500; transition:background 0.2s; }
+.stl-bag-btn:hover { background:var(--gold-dark); color:#fff; }
 </style>
 </head>
 <body>
@@ -1433,7 +1470,7 @@ function renderIgPost(p) {
             <polygon points="19 21 12 16 5 21 5 3 19 3"/>
           </svg>
         </button>
-        <button class="action-shop" onclick="openStore('${p.taggedProducts[0]?.retailer||'velour'}','browse')">Shop this look</button>
+        <button class="action-shop" onclick="openShopThisLook(${p.id})">Shop this look</button>
       </div>
 
       <div class="post-likes">${likeCount} likes</div>
@@ -1558,9 +1595,134 @@ function showToast(msg) {
 }
 
 
+
+function openShopThisLook(postId) {
+  const post = igPosts.find(p => p.id === postId);
+  if (!post) return;
+
+  // Populate user row
+  document.getElementById('stl-user-row').innerHTML = `
+    <div class="stl-user-av"><img src="${post.avatar}" alt="${post.user}"/></div>
+    <div>
+      <div class="stl-user-name">${post.user}</div>
+      <div class="stl-user-caption">${post.caption}</div>
+    </div>`;
+
+  document.getElementById('stl-sub').textContent = `${post.taggedProducts.length} item${post.taggedProducts.length !== 1 ? 's' : ''} · ${post.retailer}`;
+
+  // Build items list
+  let total = 0;
+  const itemsHTML = post.taggedProducts.map(item => {
+    // Get full item details from browseItems
+    const allItems = browseItems[item.retailer] || [];
+    const full = allItems.find(i => i.name === item.name) || item;
+    const imgSrc = full.img ? full.img : makeImg('fsh', 72, 72);
+
+    // Parse price for total
+    const priceNum = parseFloat((item.price || '0').replace(/[^0-9.]/g, ''));
+    if (!isNaN(priceNum)) total += priceNum;
+
+    // Get retailer display name
+    const retailerObj = retailers.find(r => r.id === item.retailer);
+    const retailerName = retailerObj ? retailerObj.name : item.retailer;
+
+    return `
+      <div class="stl-item">
+        <div class="stl-item-img"><img src="${imgSrc}" alt="${item.name}" loading="lazy"/></div>
+        <div class="stl-item-info">
+          <div class="stl-item-retailer">${retailerName}</div>
+          <div class="stl-item-name">${item.name}</div>
+          ${full.desc ? `<div class="stl-item-desc">${full.desc.substring(0,70)}…</div>` : ''}
+          <div class="stl-item-price">${item.price}</div>
+        </div>
+        <div class="stl-item-actions">
+          <button class="stl-buy-btn" onclick="buyItem('${item.retailer}','${item.name}')">Buy now</button>
+          <button class="stl-save-btn" onclick="saveItem('${item.name}')">Save</button>
+        </div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('stl-items-list').innerHTML = itemsHTML;
+
+  // Format total
+  const sym = post.taggedProducts[0]?.price?.match(/[^0-9.,]/)?.[0] || '£';
+  document.getElementById('stl-total').textContent = sym + total.toLocaleString('en-GB', {minimumFractionDigits:0, maximumFractionDigits:0});
+
+  // Open modal
+  document.getElementById('stl-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeStlModal(e) {
+  if (e && e.target !== document.getElementById('stl-overlay')) return;
+  document.getElementById('stl-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function buyItem(retailerId, itemName) {
+  closeStlModal();
+  document.body.style.overflow = '';
+  openStore(retailerId, 'browse');
+  setTimeout(() => {
+    // Find item category and filter to it
+    const allItems = browseItems[retailerId] || [];
+    const item = allItems.find(i => i.name === itemName);
+    if (item) {
+      activeFilter[retailerId] = item.cat;
+      renderStoreContent(retailerId);
+      // Scroll to item
+      setTimeout(() => {
+        const cards = document.querySelectorAll('.item-card');
+        for (const card of cards) {
+          if (card.querySelector('.item-name')?.textContent === itemName) {
+            card.scrollIntoView({behavior:'smooth', block:'center'});
+            card.style.borderColor = 'var(--gold)';
+            setTimeout(() => card.style.borderColor = '', 2000);
+            break;
+          }
+        }
+      }, 200);
+    }
+  }, 150);
+  showToast('Taking you to ' + itemName);
+}
+
+function saveItem(itemName) {
+  showToast('Saved: ' + itemName);
+}
+
+function addAllToBag() {
+  closeStlModal();
+  document.body.style.overflow = '';
+  showToast('All items added to bag!');
+}
+
 renderRetailerGrid();
 renderIgFeed();
 showPage('home');
 </script>
+
+<!-- Shop This Look Modal -->
+<div class="stl-overlay" id="stl-overlay" onclick="closeStlModal(event)">
+  <div class="stl-sheet" id="stl-sheet">
+    <div class="stl-sheet-handle"></div>
+    <div class="stl-sheet-header">
+      <div>
+        <div class="stl-sheet-title">Shop this look</div>
+        <div class="stl-sheet-sub" id="stl-sub"></div>
+      </div>
+      <button class="stl-close" onclick="closeStlModal()">×</button>
+    </div>
+    <div class="stl-user-row" id="stl-user-row"></div>
+    <div class="stl-items-label">Items in this look</div>
+    <div class="stl-items-list" id="stl-items-list"></div>
+    <div class="stl-total-bar">
+      <div class="stl-total-label">Total look value</div>
+      <div class="stl-total-price" id="stl-total"></div>
+    </div>
+    <button class="stl-bag-btn" onclick="addAllToBag()">Add all to bag</button>
+  </div>
+</div>
+
 </body>
 </html>
